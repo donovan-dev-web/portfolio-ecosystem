@@ -1,0 +1,18 @@
+/**
+* _Breackpoints.scss
+* Ce fichier contient les regles de breackpoint pour les media queries
+*/
+
+@use 'sass:map';
+
+$breakpoints: (
+  mobile: 768px,
+  tablet: 1024px,
+  desktop: 1240px,
+);
+
+@mixin respond-to($device) {
+  @media (max-width: map.get($breakpoints, $device)) {
+    @content;
+  }
+}
