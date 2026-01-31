@@ -3,5 +3,19 @@
 * Ce fichier contient les styles spécifiques à la barre de navigation de l'application Kasa
 */
 
-@use '@/styles/variables';
-@use '@/styles/breackpoint';
+@use 'styles/mixins';
+@use 'styles/variables';
+
+.navbar {
+  height: 100vh;
+  @include mixins.glasscards;
+
+  & ul {
+    height: 500px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

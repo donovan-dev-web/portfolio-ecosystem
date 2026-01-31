@@ -23,19 +23,16 @@ import { NotFound } from './pages/NotFound/NotFound'
 
 function App() {
   return (
-    <>
-      <div className="app">
-        <Routes>
-          {/* Layout Global */}
-          <Route element={<MainLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Project />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </div>
-    </>
+    <div className="app">
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="projects" element={<Project />} />
+          <Route path="messages" element={<Messages />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </div>
   )
 }
 
