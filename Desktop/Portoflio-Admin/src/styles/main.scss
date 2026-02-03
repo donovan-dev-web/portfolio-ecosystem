@@ -15,24 +15,3 @@ body,
   font-family: variables.$font-primary;
   color: variables.$color-text-light;
 }
-
-.app {
-  background-image: url('@/assets/BackgroundImages.jpeg');
-  background-position: center;
-  background-size: cover;
-  background-blend-mode: darken;
-  background-color: rgba($color: #000000, $alpha: 0.2);
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-}
-
-.main-layout {
-  height: 100vh;
-  margin-left: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-}

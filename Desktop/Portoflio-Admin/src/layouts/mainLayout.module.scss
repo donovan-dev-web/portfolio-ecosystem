@@ -1,0 +1,18 @@
+:root {
+  --grid-color: grey;
+}
+
+.mainContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100vh;
+}
+
+.mainLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+}

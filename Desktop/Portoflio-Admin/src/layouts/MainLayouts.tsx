@@ -5,20 +5,26 @@
 
 import { Outlet } from 'react-router-dom'
 
-import { NavBar } from '../components/NavBar'
+import { Background } from '../components/Global/Background/background'
+import { TechSideBar } from '../components/Global/TechSideBar/TechSideBar'
 
 /* Global Style import */
 import '@/styles/_reset.scss'
 import '@/styles/main.scss'
+import style from './mainLayout.module.scss'
 
 export function MainLayout() {
   return (
     <>
-      <NavBar />
+      <Background />
 
-      <main className="main-layout">
-        <Outlet />
-      </main>
+      <div className={style.mainContent}>
+        <TechSideBar />
+
+        <main className={style.mainLayout}>
+          <Outlet />
+        </main>
+      </div>
     </>
   )
 }

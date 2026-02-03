@@ -1,0 +1,149 @@
+:root {
+  --background: oklch(0.06 0.005 270);
+  --foreground: oklch(0.88 0.01 270);
+
+  --glow-violet: oklch(0.6 0.28 285);
+  --glow-blue: oklch(0.55 0.25 250);
+  --metallic-light: oklch(0.5 0.018 265);
+  --border: oklch(0.28 0.015 265);
+}
+.wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--background);
+  z-index: 0;
+}
+
+/* ===== AMBIENT BACKGROUND ===== */
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Orbs (glow balls) */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+}
+
+.violet {
+  left: 25%;
+  top: 25%;
+  width: 600px;
+  height: 600px;
+  background: var(--glow-violet);
+}
+
+.blue {
+  right: 25%;
+  bottom: 25%;
+  width: 500px;
+  height: 500px;
+  background: var(--glow-blue);
+  opacity: 0.15;
+}
+
+.metallic {
+  right: 33%;
+  top: 50%;
+  width: 400px;
+  height: 400px;
+  background: var(--metallic-light);
+  opacity: 0.1;
+  filter: blur(80px);
+}
+
+/* ===== GRID PATTERN ===== */
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--border) 30%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--border) 30%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+
+  /* Fade aux bords (comme je te proposais avant) */
+  mask-image: radial-gradient(
+    circle at center,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+}
+
+/* ===== ELECTRIC LINES ===== */
+.electricLines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Vertical lines */
+.verticalLine {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  opacity: 0.15;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--glow-violet) 30%,
+    var(--glow-blue) 70%,
+    transparent 100%
+  );
+  animation: pulse-line ease-in-out infinite;
+}
+
+/* Horizontal lines */
+.horizontalLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  opacity: 0.1;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--metallic-light) 30%,
+    var(--glow-violet) 50%,
+    var(--metallic-light) 70%,
+    transparent 100%
+  );
+  animation: pulse-line ease-in-out infinite;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes pulse-line {
+  0% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.05;
+  }
+}
