@@ -4,7 +4,7 @@ import { globalStyles } from '@/styles/global'
 export default function HomeScreen() {
   return (
     <View style={globalStyles.screen}>
-      <View style={globalStyles.cards}>
+      <View>
         <Text style={globalStyles.text}>🏠 Home</Text>
       </View>
     </View>

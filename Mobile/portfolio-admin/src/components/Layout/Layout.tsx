@@ -1,39 +1,32 @@
 import { ReactNode } from 'react'
-import { ImageBackground, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { SafeAreaView, SafeAreaProvider } from 'react-native-safe-area-context'
+import { Background } from '../Background/Background' // adapte le chemin
 
 type Props = { children: ReactNode }
 
 export default function Layout({ children }: Props) {
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.container} edges={['left', 'right']}>
-        <ImageBackground
-          source={require('@/assets/images/background.jpeg')}
-          resizeMode="cover"
-          style={styles.image}
-        >
+      <View style={styles.root}>
+        <Background />
+
+        <SafeAreaView style={styles.container} edges={['left', 'right']}>
           {children}
-        </ImageBackground>
-      </SafeAreaView>
+        </SafeAreaView>
+      </View>
     </SafeAreaProvider>
   )
 }
 
 const styles = StyleSheet.create({
+  root: {
+    flex: 1,
+    backgroundColor: '#0b0b12',
+  },
+
   container: {
     flex: 1,
-  },
-  image: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  text: {
-    color: 'white',
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    backgroundColor: '#000000c0',
+    zIndex: 10, // pour que ton contenu soit AU-DESSUS du background
   },
 })
