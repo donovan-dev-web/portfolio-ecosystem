@@ -1,38 +1,50 @@
-// controller/user.js
-const User = require('../models/Users');
-const bcrypt = require('bcrypt');
+const argon2 = require('argon2');
 const jwt = require('jsonwebtoken');
+const jwtConfig = require('../config/jwt');
+const UserModles = require('../models/Users');
+const errors = require('../utils/errors');
 
-exports.login = async (req, res) => {
+exports.signup = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
+    const { email, password } = req.body;
+    if (!email || !password) return next(errors.INVALID_INPUT);
 
-    // Vérifier que l'utilisateur existe
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res.status(401).json({ message: 'Utilisateur non trouvé !' });
-    }
+    const hashedPassword = await argon2.hash(password, {
+      type: argon2.argon2id,
+      memoryCost: 131072,
+      timeCost: 2,
+      parallelism: 4,
+    });
 
-    // Vérifier le mot de passe
-    const validPassword = await bcrypt.compare(password, user.password);
-    if (!validPassword) {
-      return res.status(401).json({ message: 'Mot de passe incorrect !' });
-    }
+    const user = new UserModles({ email, password: hashedPassword });
+    await user.save();
 
-    // Créer un token JWT (optionnel mais recommandé)
-    const token = jwt.sign(
-      { userId: user._id, username: user.username },
-      'RANDOM_SECRET_KEY', // remplacer par une vraie clé secrète
-      { expiresIn: '24h' }
-    );
+    res.status(201).json({ message: 'Utilisateur créé avec succès' });
+  } catch (err) {
+    if (err.isOperational) return next(err);
+    next(errors.SERVER_ERROR);
+  }
+};
+
+exports.login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) return next(errors.INVALID_INPUT);
+
+    const user = await UserModles.findOne({ email });
+    if (!user) return next(errors.INVALID_CREDENTIALS);
+
+    const valid = await argon2.verify(user.password, password);
+    if (!valid) return next(errors.INVALID_CREDENTIALS);
 
     res.status(200).json({
       userId: user._id,
-      username: user.username,
-      token
+      token: jwt.sign({ userId: user._id }, jwtConfig.secret, {
+        expiresIn: jwtConfig.expiresIn,
+      }),
     });
-
   } catch (err) {
-    res.status(500).json({ message: 'Erreur serveur', error: err });
+    if (err.isOperational) return next(err);
+    next(errors.SERVER_ERROR);
   }
 };

@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const mongooseErrorHandler = require('mongoose-error-handler');
 
 const userSchema = mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
+
+userSchema.plugin(mongooseErrorHandler);
 
 module.exports = mongoose.model('User', userSchema);
