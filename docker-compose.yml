@@ -1,0 +1,36 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  backend:
+    build: ./Backend-proto
+    container_name: backend_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    volumes:
+      - ./Backend-proto:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  desktop:
+    build: ./Desktop/portfolio-admin-desktop
+    container_name: Desktop_app
+    ports:
+      - "4200:4200"
+    command: npm run dev
+    volumes:
+      - ./Desktop/portfolio-admin-desktop:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+volumes:
+  mongo_data:
