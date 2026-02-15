@@ -1,0 +1,35 @@
+{
+  "info": {
+    "_postman_id": "portfolio-project-kasa",
+    "name": "Portfolio Project Kasa",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Create Project - Kasa",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Kasa - Application de location\",\n  \"order\": 1,\n  \"projectType\": \"{{ID_ProjectType_Frontend}}\",\n  \"technologies\": [\"{{ID_Tech_React}}\", \"{{ID_Tech_Sass}}\"],\n  \"languages\": [\"{{ID_Lang_TS}}\"],\n  \"shortDescription\": \"Refonte front-end React d’un site de location immobilière.\",\n  \"coverImage\": \"/images/kasa-cover.png\",\n  \"stack\": [\"React\", \"Sass\", \"React Router\", \"JSON\"],\n  \"presentation\": {\n    \"description\": \"Refonte complète du front-end pour Kasa.\",\n    \"context\": \"Client Kasa, ancien site ASP.NET à moderniser.\",\n    \"objectives\": \"Créer des composants réutilisables et responsive.\",\n    \"skills\": \"React, Sass, Responsive Design, React Router.\",\n    \"results\": \"Site fonctionnel, responsive et maintenable.\",\n    \"improvements\": \"Préparer l’intégration d’une API pour les données dynamiques.\"\n  },\n  \"gallery\": [\n    {\n      \"desktopUrl\": \"/images/kasa-desktop-1.png\",\n      \"mobileUrl\": \"/images/kasa-mobile-1.png\",\n      \"alt\": \"Page d’accueil desktop et mobile\",\n      \"order\": 0\n    },\n    {\n      \"desktopUrl\": \"/images/kasa-desktop-2.png\",\n      \"mobileUrl\": \"/images/kasa-mobile-2.png\",\n      \"alt\": \"Page logement desktop et mobile\",\n      \"order\": 1\n    }\n  ],\n  \"githubUrl\": \"https://github.com/donovan-dev-web/Projet-Kasa\",\n  \"isLive\": true,\n  \"liveUrl\": \"https://kasa-demo.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/projects",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api","projects"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

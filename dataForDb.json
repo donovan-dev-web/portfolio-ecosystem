@@ -1,0 +1,164 @@
+{
+  "info": {
+    "_postman_id": "portfolio-api-sample",
+    "name": "Portfolio API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "ProjectTypes",
+      "item": [
+        {
+          "name": "Get All ProjectTypes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:3000/api/project-types", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","project-types"] }
+          }
+        },
+        {
+          "name": "Create ProjectType - Frontend",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Frontend\", \"icon\": \"/icons/frontend.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/project-types", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","project-types"] }
+          }
+        },
+        {
+          "name": "Create ProjectType - Backend",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Backend\", \"icon\": \"/icons/backend.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/project-types", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","project-types"] }
+          }
+        },
+        {
+          "name": "Create ProjectType - Fullstack",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Fullstack\", \"icon\": \"/icons/fullstack.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/project-types", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","project-types"] }
+          }
+        },
+        {
+          "name": "Create ProjectType - Mobile",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Mobile\", \"icon\": \"/icons/mobile.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/project-types", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","project-types"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Technologies",
+      "item": [
+        {
+          "name": "Create Technology - React",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"React\", \"icon\": \"/icons/react.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/technologies", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","technologies"] }
+          }
+        },
+        {
+          "name": "Create Technology - React Native",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"React Native\", \"icon\": \"/icons/react-native.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/technologies", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","technologies"] }
+          }
+        },
+        {
+          "name": "Create Technology - Node.js",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Node.js\", \"icon\": \"/icons/nodejs.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/technologies", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","technologies"] }
+          }
+        },
+        {
+          "name": "Create Technology - Express",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Express\", \"icon\": \"/icons/express.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/technologies", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","technologies"] }
+          }
+        },
+        {
+          "name": "Create Technology - Sass",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"Sass\", \"icon\": \"/icons/sass.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/technologies", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","technologies"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "ProgrammingLanguages",
+      "item": [
+        {
+          "name": "Create Language - TypeScript",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"TypeScript\", \"icon\": \"/icons/typescript.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/languages", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","languages"] }
+          }
+        },
+        {
+          "name": "Create Language - JavaScript",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{JWT_TOKEN}}", "type": "text" },
+              { "key": "Content-Type", "value": "application/json", "type": "text" }
+            ],
+            "body": { "mode": "raw", "raw": "{\"name\": \"JavaScript\", \"icon\": \"/icons/javascript.png\"}" },
+            "url": { "raw": "http://localhost:3000/api/languages", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api","languages"] }
+          }
+        }
+      ]
+    }
+  ]
+}
