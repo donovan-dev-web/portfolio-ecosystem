@@ -2,7 +2,7 @@ const http = require('http');
 const mongoose = require('mongoose');
 const app = require('./app');
 
-const normalizePort = val => {
+const normalizePort = (val) => {
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -13,15 +13,16 @@ const normalizePort = val => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT ||'3000');
+const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-const errorHandler = error => {
+const errorHandler = (error) => {
   if (error.syscall !== 'listen') {
     throw error;
   }
   const address = server.address();
-  const bind = typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
+  const bind =
+    typeof address === 'string' ? 'pipe ' + address : 'port: ' + port;
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges.');
@@ -45,13 +46,15 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
-mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Connexion à MongoDB réussie !');
-    server.listen(port);
-  })
-  .catch((error) => {
-    console.error('Connexion à MongoDB échouée !');
-    process.exit(1);
-  });
+if (process.env.NODE_ENV !== 'test') {
+  mongoose
+    .connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log('Connexion à MongoDB réussie !');
+      server.listen(port);
+    })
+    .catch((error) => {
+      console.error('Connexion à MongoDB échouée !');
+      process.exit(1);
+    });
+}

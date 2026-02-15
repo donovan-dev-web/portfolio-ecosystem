@@ -21,7 +21,4 @@ const technologySchema = new Schema(
   }
 );
 
-// Index unique pour éviter les doublons
-technologySchema.index({ name: 1 }, { unique: true });
-
 module.exports = mongoose.model('Technology', technologySchema);

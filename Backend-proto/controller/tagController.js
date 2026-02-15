@@ -37,7 +37,7 @@ exports.createProjectType = async (req, res) => {
 exports.updateProjectType = async (req, res) => {
   try {
     const type = await ProjectType.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
+      returnDocument: 'after',
       runValidators: true,
     });
     if (!type) return res.status(404).json({ message: 'Type non trouvé' });
@@ -93,7 +93,7 @@ exports.createTechnology = async (req, res) => {
 exports.updateTechnology = async (req, res) => {
   try {
     const tech = await Technology.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
+      returnDocument: 'after',
       runValidators: true,
     });
     if (!tech)
@@ -152,7 +152,7 @@ exports.updateLanguage = async (req, res) => {
     const lang = await ProgrammingLanguage.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true }
+      { returnDocument: 'after', runValidators: true }
     );
     if (!lang) return res.status(404).json({ message: 'Langage non trouvé' });
     res.status(200).json(lang);

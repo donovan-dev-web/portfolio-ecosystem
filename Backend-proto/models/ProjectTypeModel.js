@@ -21,7 +21,4 @@ const projectTypeSchema = new Schema(
   }
 );
 
-// Index pour éviter les doublons et accélérer les recherches
-projectTypeSchema.index({ name: 1 }, { unique: true });
-
 module.exports = mongoose.model('ProjectType', projectTypeSchema);
