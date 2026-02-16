@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   mongo:
     image: mongo:latest
@@ -24,19 +26,6 @@ services:
     command: npm run dev
     depends_on:
       - mongo
-
-
-  desktop:
-    build: ./Desktop/portfolio-admin-desktop
-    container_name: Desktop_app
-    ports:
-      - "4200:4200"
-    command: npm run dev
-    volumes:
-      - ./Desktop/portfolio-admin-desktop:/app
-      - /app/node_modules
-    environment:
-      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   mongo_data:
