@@ -1,7 +1,8 @@
 // src/pages/Project/ProjectDetail.tsx
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { getProjectById } from '../../services/ProjectService'
+import style from './ProjectDetails.module.scss'
 
 export const ProjectDetail = () => {
   const { id } = useParams()
@@ -19,6 +20,11 @@ export const ProjectDetail = () => {
 
   return (
     <div>
+      <div className={style.header}>
+        <h2>Détails du projet</h2>
+        {/* Ajouter un bouton de retour à la liste des projets */}
+        <Link to="/projects">← Retour à la liste</Link>
+      </div>
       <h1>{project.title}</h1>
       <p>{project.shortDescription}</p>
       <div className="gallery">
