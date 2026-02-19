@@ -14,12 +14,14 @@ import { Home } from './pages/Home/Home'
 import { Project } from './pages/Project/Project'
 import { ProjectDetail } from './pages/Project/ProjectDetail'
 import { Messages } from './pages/Messages/Message'
+import MessageDetail from './pages/Messages/MessageDetail'
 import { MyDocuments } from './pages/Documents/MyDocuments'
 import { NotFound } from './pages/NotFound/NotFound'
 
 /* Context */
 import { ProjectProvider } from './context/ProjectProvider'
 import { AuthProvider } from './context/Auth/AuthProvider'
+import { MessagesProvider } from './context/Messages/MessagesProvider'
 import { Outlet } from 'react-router-dom'
 
 function ProjectProviderWrapper() {
@@ -27,6 +29,14 @@ function ProjectProviderWrapper() {
     <ProjectProvider>
       <Outlet />
     </ProjectProvider>
+  )
+}
+
+function MessagesProviderWrapper() {
+  return (
+    <MessagesProvider>
+      <Outlet />
+    </MessagesProvider>
   )
 }
 
@@ -42,7 +52,10 @@ function App() {
               <Route path="projects/" element={<Project />} />
               <Route path="projects/:id" element={<ProjectDetail />} />
             </Route>
-            <Route path="messages/:section?" element={<Messages />} />{' '}
+            <Route element={<MessagesProviderWrapper />}>
+              <Route path="messages/" element={<Messages />} />
+              <Route path="messages/:id" element={<MessageDetail />} />
+            </Route>
             <Route path="documents/:section?" element={<MyDocuments />} />
             <Route path="*" element={<NotFound />} />
           </Route>

@@ -1,7 +1,11 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, ipcMain, shell } = require('electron')
 const path = require('path')
 
 let mainWindow
+
+ipcMain.handle('open-mail', (event, email) => {
+  shell.openExternal(`mailto:${email}`)
+})
 
 function createWindow() {
   mainWindow = new BrowserWindow({

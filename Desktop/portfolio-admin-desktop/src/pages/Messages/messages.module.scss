@@ -1,0 +1,87 @@
+// src/pages/Messages/Message.module.scss
+
+.messagesPage {
+  padding: 5px;
+  margin-left: 300px;
+  width: 80%;
+  height: 90%;
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .loading {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  .table {
+    border-collapse: collapse;
+    max-height: 50%;
+    width: 80%;
+    overflow-y: scroll;
+
+    th,
+    td {
+      padding: 5px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    tr.unread {
+      background-color: #3a3a3a57; // couleur pour les messages non lus
+    }
+  }
+
+  .viewButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+
+  .markButton {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0;
+
+    &:hover {
+      background-color: #1e7e34;
+    }
+  }
+
+  .pagination {
+    display: flex;
+    gap: 0.5rem;
+
+    button {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 0;
+
+      &:disabled {
+        background-color: #eee;
+        cursor: default;
+      }
+    }
+
+    .activePage {
+      background-color: #007bff;
+      color: #fff;
+      border-color: #007bff;
+    }
+  }
+}
