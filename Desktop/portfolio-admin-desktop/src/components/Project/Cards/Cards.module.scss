@@ -1,22 +1,65 @@
 .cardItem {
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  background-color: #cccccc55;
   padding: 16px;
-  margin: 8px;
-  width: 300px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  min-width: 500px;
+}
+
+.draggableHandler {
+  width: 5%;
+  &:hover {
+    cursor: move;
+  }
+  & span {
+    font-size: 18px;
+    color: white;
+  }
+}
+.OrderINdex {
+  width: 5%;
+  & span {
+    font-size: 18px;
+    color: white;
+  }
+}
+.CardsImg {
+  width: 10%;
+  & img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+}
+
+.CardsInfo {
+  width: 45%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  & img {
-    width: 100%;
-    height: auto;
-    min-height: 150px;
-    border-radius: 4px;
-    margin-bottom: 12px;
-    background-color: #ccc;
-    color: black;
+  gap: 8px;
+  &.CardsName {
+    & h3 {
+      margin: 0;
+      color: white;
+      font-weight: 700;
+    }
   }
+  &.CardsDescription {
+    & p {
+      margin: 0;
+      color: white;
+      font-size: 14px;
+    }
+  }
+}
+.CardsActions {
+  display: flex;
+  gap: 10px;
+  flex-direction: row;
+  width: 20%;
+  align-items: center;
 }

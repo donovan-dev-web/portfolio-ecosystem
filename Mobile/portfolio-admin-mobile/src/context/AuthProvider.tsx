@@ -2,6 +2,7 @@ import React, { ReactNode, useEffect, useState } from 'react'
 import { AuthContextType, User } from './AuthContext'
 import { storage } from '../utils/storage'
 import { authService } from '../services/authService'
+import { setLogoutHandler } from '@/services/api'
 
 export const AuthContext = React.createContext<AuthContextType | undefined>(
   undefined,
@@ -17,8 +18,8 @@ export function AuthProvider({ children }: Props) {
 
   const isAuthenticated = !!user
 
-  // 🔁 Restaurer session au lancement
   useEffect(() => {
+    setLogoutHandler(logout)
     const restoreSession = async () => {
       const token = await storage.getToken()
       const savedUser = await storage.getUser()

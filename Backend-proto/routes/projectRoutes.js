@@ -66,6 +66,38 @@ router.get('/:id', projectController.getProjectById);
 router.post('/', auth, projectController.createProject);
 
 /**
+ * * @swagger
+ * /projects/reorder:
+ *   put:
+ *     summary: Réorganiser les projets
+ *     tags: [Projects]
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: array
+ *             items:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                   description: ID du projet
+ *                 order:
+ *                   type: integer
+ *                   description: Nouvelle position du projet
+ *     responses:
+ *       200:
+ *         description: Projets réorganisés
+ *       400:
+ *         description: Format invalide
+ */
+
+router.put('/reorder', auth, projectController.reorderProjects);
+
+/**
  * @swagger
  * /projects/{id}:
  *   put:

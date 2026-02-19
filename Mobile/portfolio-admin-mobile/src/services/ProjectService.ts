@@ -1,4 +1,5 @@
-// src/services/ProjectService.ts
+// src/services/projectService.ts
+
 import { api } from './api'
 
 export const getProjects = async () => {
@@ -27,20 +28,8 @@ export const getProjectTypes = async () => {
 }
 
 export const reorderProjects = async (
-  updates: { id: string; order: number }[]
+  updates: { id: string; order: number }[],
 ) => {
   const res = await api.put('/projects/reorder', updates)
-  return res.data
-}
-
-export const deleteProject = async (id: string) => {
-  const res = await api.delete(`/projects/${id}`)
-  return res.data
-}
-
-export const createProject = async (projectData: any) => {
-  console.log('Creating project with data:', projectData)
-  const res = await api.post('/projects', projectData)
-  console.log('createProject response:', res)
   return res.data
 }

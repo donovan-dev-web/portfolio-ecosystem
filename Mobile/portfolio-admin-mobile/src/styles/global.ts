@@ -8,7 +8,7 @@ export const globalStyles = StyleSheet.create({
     padding: spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'none',
+    backgroundColor: 'transparent',
   },
   text: {
     color: colors.text,

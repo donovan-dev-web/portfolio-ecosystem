@@ -2,10 +2,6 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-/* =========================
-   Subdocuments
-========================= */
-
 // Gallery Item Schema
 const galleryItemSchema = new Schema(
   {
@@ -24,11 +20,6 @@ const galleryItemSchema = new Schema(
       required: true,
       trim: true,
     },
-    order: {
-      type: Number,
-      required: true,
-      default: 0,
-    },
   },
   { _id: false }
 );
@@ -45,10 +36,6 @@ const presentationSchema = new Schema(
   },
   { _id: false }
 );
-
-/* =========================
-   Main Project Schema
-========================= */
 
 const projectSchema = new Schema(
   {

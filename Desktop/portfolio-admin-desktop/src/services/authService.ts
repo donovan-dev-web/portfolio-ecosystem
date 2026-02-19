@@ -1,19 +1,13 @@
-const API_URL = 'http://localhost:3000/api';
+// src/services/authService.ts
+import { api } from './api'
 
 export const authService = {
   async login(email: string, password: string) {
-    const response = await fetch(`${API_URL}/auth/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+    const response = await api.post('/auth/login', {
+      email,
+      password,
     })
 
-    if (!response.ok) {
-      throw new Error('Invalid credentials')
-    }
-
-    return response.json()
+    return response.data
   },
 }

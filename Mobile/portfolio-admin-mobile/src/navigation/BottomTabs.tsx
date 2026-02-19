@@ -2,6 +2,7 @@ import { Linking, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '@/screens/HomeScreen'
 import ProjectsScreen from '@/screens/ProjectsScreen'
+import ProjectsStack from './ProjectsStack'
 import MessagesScreen from '@/screens/MessagesScreen'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import React from 'react'
@@ -27,7 +28,7 @@ export default function BottomTabs() {
     {
       name: 'Projects',
       icon: <Ionicons name="folder-open-outline" />,
-      component: ProjectsScreen,
+      component: ProjectsStack,
     },
     {
       name: 'Messages',

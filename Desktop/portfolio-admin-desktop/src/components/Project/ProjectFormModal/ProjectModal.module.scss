@@ -1,0 +1,146 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: #fff;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  .closeBtn {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    font-weight: bold;
+
+    &:hover {
+      color: #ef4444; /* rouge clair au hover */
+    }
+  }
+}
+
+.modalTabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+
+  button {
+    flex: 1;
+    padding: 0.5rem 0;
+    background: #e5e7eb; /* gris clair */
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+
+    &.active {
+      background: #4f46e5;
+      color: #fff;
+    }
+
+    &:hover:not(.active) {
+      background: #d1d5db;
+    }
+  }
+}
+
+.modalBody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+
+    &:focus {
+      outline: none;
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+    }
+  }
+
+  textarea {
+    min-height: 80px;
+    resize: vertical;
+  }
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+
+  button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+
+    &.nextBtn {
+      background: #4f46e5;
+      color: #fff;
+
+      &:hover {
+        background: #4338ca;
+      }
+    }
+
+    &.cancelBtn {
+      background: #e5e7eb;
+      color: #111827;
+
+      &:hover {
+        background: #d1d5db;
+      }
+    }
+
+    &.submitBtn {
+      background: #10b981; /* vert */
+      color: #fff;
+
+      &:hover {
+        background: #059669;
+      }
+    }
+  }
+}

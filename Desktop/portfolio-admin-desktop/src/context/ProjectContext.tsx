@@ -6,6 +6,9 @@ interface ProjectContextProps {
   languages: any[]
   projectTypes: any[]
   loading: boolean
+  reorderProjects: (newOrder: any[]) => Promise<void>
+  deleteProject: (id: string, title: string) => Promise<void>
+  createProject: (projectData: any) => Promise<void>
 }
 
 export const ProjectContext = createContext<ProjectContextProps | undefined>(

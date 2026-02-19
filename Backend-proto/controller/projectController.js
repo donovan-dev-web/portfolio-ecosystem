@@ -44,6 +44,30 @@ exports.createProject = async (req, res) => {
   }
 };
 
+// PUT /api/projects/reorder
+exports.reorderProjects = async (req, res) => {
+  try {
+    const updates = req.body; // array [{id, order}]
+
+    if (!Array.isArray(updates)) {
+      return res.status(400).json({ message: 'Format invalide' });
+    }
+
+    const bulkOps = updates.map((item) => ({
+      updateOne: {
+        filter: { _id: item.id },
+        update: { $set: { order: item.order } },
+      },
+    }));
+
+    await Project.bulkWrite(bulkOps);
+
+    res.status(200).json({ message: 'Ordre mis à jour avec succès' });
+  } catch (error) {
+    res.status(500).json({ message: 'Erreur serveur', error: error.message });
+  }
+};
+
 // PUT /api/projects/:id
 exports.updateProject = async (req, res) => {
   try {
