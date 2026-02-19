@@ -157,6 +157,33 @@ const options = {
             icon: { type: 'string', example: '/icons/typescript.png' },
           },
         },
+
+        // ================= Message =================
+        Message: {
+          type: 'object',
+          required: ['name', 'email', 'content'],
+          properties: {
+            _id: { type: 'string', example: '64fa123abc456def7890mnop' },
+            name: { type: 'string', example: 'John Doe' },
+            email: { type: 'string', example: 'john@example.com' },
+            phone: { type: 'string', example: '0612345678' },
+            content: {
+              type: 'string',
+              example: 'Bonjour, je souhaite vous contacter pour...',
+            },
+            read: { type: 'boolean', example: false },
+            dateSent: {
+              type: 'string',
+              format: 'date-time',
+              example: '2026-02-19T10:20:30Z',
+            },
+            dateRead: {
+              type: 'string',
+              format: 'date-time',
+              example: '2026-02-19T12:15:00Z',
+            },
+          },
+        },
       },
     },
     security: [{ bearerAuth: [] }],

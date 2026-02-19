@@ -1,0 +1,248 @@
+[
+  {
+    "name": "Alice Dupont",
+    "email": "alice.dupont@example.com",
+    "phone": "0601020304",
+    "content": "Bonjour, je souhaite avoir des informations sur vos services.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-18T09:30:00Z" }
+  },
+  {
+    "name": "Bob Martin",
+    "email": "bob.martin@example.com",
+    "phone": "0611121314",
+    "content": "Pouvez-vous me rappeler pour un projet urgent ?",
+    "read": true,
+    "dateSent": { "$date": "2026-02-17T14:45:00Z" },
+    "dateRead": { "$date": "2026-02-17T15:00:00Z" }
+  },
+  {
+    "name": "Caroline Lemoine",
+    "email": "caroline.lemoine@example.com",
+    "phone": "0622233344",
+    "content": "Je suis intéressée par votre offre de développement web.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-16T08:15:00Z" }
+  },
+  {
+    "name": "David Nguyen",
+    "email": "david.nguyen@example.com",
+    "phone": "0633344455",
+    "content": "Merci de me confirmer la disponibilité pour une réunion.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-15T12:20:00Z" },
+    "dateRead": { "$date": "2026-02-15T12:45:00Z" }
+  },
+  {
+    "name": "Emma Moreau",
+    "email": "emma.moreau@example.com",
+    "phone": "0644455566",
+    "content": "J'ai un problème avec l'accès à votre plateforme.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-14T17:10:00Z" }
+  },
+  {
+    "name": "François Petit",
+    "email": "francois.petit@example.com",
+    "phone": "0655566677",
+    "content": "Je voudrais en savoir plus sur les tarifs.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-13T10:05:00Z" },
+    "dateRead": { "$date": "2026-02-13T10:30:00Z" }
+  },
+  {
+    "name": "Gabrielle Renault",
+    "email": "gabrielle.renault@example.com",
+    "phone": "0666677788",
+    "content": "Merci pour votre retour rapide.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-12T15:50:00Z" }
+  },
+  {
+    "name": "Hugo Bernard",
+    "email": "hugo.bernard@example.com",
+    "phone": "0677788899",
+    "content": "J’ai une question concernant la facturation.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-11T09:00:00Z" },
+    "dateRead": { "$date": "2026-02-11T09:15:00Z" }
+  },
+  {
+    "name": "Isabelle Fontaine",
+    "email": "isabelle.fontaine@example.com",
+    "phone": "0688899900",
+    "content": "Pouvez-vous m’envoyer un devis pour un projet mobile ?",
+    "read": false,
+    "dateSent": { "$date": "2026-02-10T11:30:00Z" }
+  },
+  {
+    "name": "Jacques Leroy",
+    "email": "jacques.leroy@example.com",
+    "phone": "0699900011",
+    "content": "Je souhaite organiser une réunion avec votre équipe.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-09T14:00:00Z" },
+    "dateRead": { "$date": "2026-02-09T14:30:00Z" }
+  },
+  {
+    "name": "Karine Dupuis",
+    "email": "karine.dupuis@example.com",
+    "phone": "0611122233",
+    "content": "Merci pour votre assistance sur le projet précédent.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-08T08:45:00Z" }
+  },
+  {
+    "name": "Laurent Michel",
+    "email": "laurent.michel@example.com",
+    "phone": "0622233345",
+    "content": "Je rencontre un bug sur votre application.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-07T13:15:00Z" },
+    "dateRead": { "$date": "2026-02-07T13:40:00Z" }
+  },
+  {
+    "name": "Marie-Claire Simon",
+    "email": "marie-claire.simon@example.com",
+    "phone": "0633344456",
+    "content": "Pouvez-vous m’expliquer les fonctionnalités avancées ?",
+    "read": false,
+    "dateSent": { "$date": "2026-02-06T16:30:00Z" }
+  },
+  {
+    "name": "Nicolas Robert",
+    "email": "nicolas.robert@example.com",
+    "phone": "0644455567",
+    "content": "Je veux annuler ma dernière commande.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-05T10:10:00Z" },
+    "dateRead": { "$date": "2026-02-05T10:25:00Z" }
+  },
+  {
+    "name": "Olivia Thomas",
+    "email": "olivia.thomas@example.com",
+    "phone": "0655566678",
+    "content": "Merci pour la mise à jour du projet.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-04T09:50:00Z" }
+  },
+  {
+    "name": "Pauline Richard",
+    "email": "pauline.richard@example.com",
+    "phone": "0666677789",
+    "content": "Je souhaite planifier une démo de votre solution.",
+    "read": true,
+    "dateSent": { "$date": "2026-02-03T14:20:00Z" },
+    "dateRead": { "$date": "2026-02-03T14:45:00Z" }
+  },
+  {
+    "name": "Quentin Leroy",
+    "email": "quentin.leroy@example.com",
+    "phone": "0677788890",
+    "content": "J’ai besoin d’une assistance technique rapidement.",
+    "read": false,
+    "dateSent": { "$date": "2026-02-02T11:05:00Z" }
+  },
+  {
+    "name": "Rachel Morel",
+    "email": "rachel.morel@example.com",
+    "phone": "0688899901",
+    "content": "Pouvez-vous me confirmer la disponibilité de l’équipe ?",
+    "read": true,
+    "dateSent": { "$date": "2026-02-01T15:35:00Z" },
+    "dateRead": { "$date": "2026-02-01T16:00:00Z" }
+  },
+  {
+    "name": "Samuel Garnier",
+    "email": "samuel.garnier@example.com",
+    "phone": "0699900012",
+    "content": "Merci pour le support sur le dernier ticket.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-31T08:25:00Z" }
+  },
+  {
+    "name": "Thérèse Lambert",
+    "email": "therese.lambert@example.com",
+    "phone": "0611122234",
+    "content": "Je voudrais une formation sur votre produit.",
+    "read": true,
+    "dateSent": { "$date": "2026-01-30T10:40:00Z" },
+    "dateRead": { "$date": "2026-01-30T11:05:00Z" }
+  },
+  {
+    "name": "Ugo Maillard",
+    "email": "ugo.maillard@example.com",
+    "phone": "0622233346",
+    "content": "Problème d’accès à mon compte.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-29T13:15:00Z" }
+  },
+  {
+    "name": "Valérie Denis",
+    "email": "valerie.denis@example.com",
+    "phone": "0633344457",
+    "content": "J’ai une question sur la facturation.",
+    "read": true,
+    "dateSent": { "$date": "2026-01-28T09:50:00Z" },
+    "dateRead": { "$date": "2026-01-28T10:15:00Z" }
+  },
+  {
+    "name": "William Perrin",
+    "email": "william.perrin@example.com",
+    "phone": "0644455568",
+    "content": "Merci pour votre retour rapide sur mon ticket.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-27T14:10:00Z" }
+  },
+  {
+    "name": "Xavier Noel",
+    "email": "xavier.noel@example.com",
+    "phone": "0655566679",
+    "content": "Je souhaite modifier mon dernier projet soumis.",
+    "read": true,
+    "dateSent": { "$date": "2026-01-26T11:30:00Z" },
+    "dateRead": { "$date": "2026-01-26T11:55:00Z" }
+  },
+  {
+    "name": "Yasmine Faure",
+    "email": "yasmine.faure@example.com",
+    "phone": "0666677790",
+    "content": "Merci pour la démonstration de votre produit.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-25T08:20:00Z" }
+  },
+  {
+    "name": "Zacharie Colin",
+    "email": "zacharie.colin@example.com",
+    "phone": "0677788891",
+    "content": "Pouvez-vous m’envoyer le contrat finalisé ?",
+    "read": true,
+    "dateSent": { "$date": "2026-01-24T15:10:00Z" },
+    "dateRead": { "$date": "2026-01-24T15:35:00Z" }
+  },
+  {
+    "name": "Anaïs Dubois",
+    "email": "anais.dubois@example.com",
+    "phone": "0688899902",
+    "content": "Je voudrais un suivi détaillé du projet.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-23T09:05:00Z" }
+  },
+  {
+    "name": "Benoît Girard",
+    "email": "benoit.girard@example.com",
+    "phone": "0699900013",
+    "content": "Merci pour vos conseils lors de la réunion.",
+    "read": true,
+    "dateSent": { "$date": "2026-01-22T13:40:00Z" },
+    "dateRead": { "$date": "2026-01-22T14:05:00Z" }
+  },
+  {
+    "name": "Camille Leclerc",
+    "email": "camille.leclerc@example.com",
+    "phone": "0611122235",
+    "content": "J’ai besoin d’un nouveau devis rapidement.",
+    "read": false,
+    "dateSent": { "$date": "2026-01-21T10:25:00Z" }
+  }
+]
