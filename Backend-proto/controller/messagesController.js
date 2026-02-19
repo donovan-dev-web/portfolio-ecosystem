@@ -76,13 +76,15 @@ exports.getMessageById = async (req, res) => {
 exports.markMessageAsRead = async (req, res) => {
   try {
     const msg = await Message.findById(req.params.id);
+
     if (!msg) return res.status(404).json({ message: 'Message non trouvé' });
 
     msg.read = true;
     msg.dateRead = new Date();
     await msg.save();
 
-    res.status(200).json({ message: 'Message marqué comme lu', data: msg });
+    // FIX : retourner directement le message
+    res.status(200).json(msg);
   } catch (error) {
     if (error.kind === 'ObjectId') {
       return res.status(404).json({ message: 'Message non trouvé' });

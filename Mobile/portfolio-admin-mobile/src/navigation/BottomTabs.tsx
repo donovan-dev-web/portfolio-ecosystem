@@ -1,9 +1,8 @@
 import { Linking, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '@/screens/HomeScreen'
-import ProjectsScreen from '@/screens/ProjectsScreen'
 import ProjectsStack from './ProjectsStack'
-import MessagesScreen from '@/screens/MessagesScreen'
+import MessagesStack from './MessagesStack'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -33,7 +32,7 @@ export default function BottomTabs() {
     {
       name: 'Messages',
       icon: <AntDesign name="message" />,
-      component: MessagesScreen,
+      component: MessagesStack,
     },
     {
       name: 'Website',
