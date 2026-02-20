@@ -1,4 +1,5 @@
 const Message = require('../models/MessagesModels');
+const pushService = require('../services/pushNotificationService');
 
 /* =========================
    Message Controllers
@@ -7,13 +8,32 @@ const Message = require('../models/MessagesModels');
 /**
  * Créer un nouveau message
  */
+
 exports.createMessage = async (req, res) => {
   try {
     const msg = new Message(req.body);
+
     await msg.save();
-    res.status(201).json({ message: 'Message envoyé', data: msg });
+
+    await pushService.sendNotification(
+      'Nouveau message',
+      `Message de ${msg.name}`,
+      {
+        messageId: msg._id.toString(),
+      }
+    );
+
+    res.status(201).json({
+      message: 'Message envoyé',
+      data: msg,
+    });
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    console.error(error);
+
+    res.status(400).json({
+      message: 'Erreur',
+      error,
+    });
   }
 };
 

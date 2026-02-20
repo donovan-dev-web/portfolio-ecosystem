@@ -88,7 +88,9 @@ const usersController = require('../controller/user');
  *                   type: string
  *                   example: Une erreur inattendue est survenue
  */
-router.post('/signup', usersController.signup);
+
+// Route d'inscription (commentée pour bloquer la création de nouveaux utilisateurs) - à décommenter pour activer l'inscription
+/*router.post('/signup', usersController.signup);*/
 
 /**
  * @swagger

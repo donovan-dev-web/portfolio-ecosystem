@@ -163,7 +163,6 @@ const options = {
           type: 'object',
           required: ['name', 'email', 'content'],
           properties: {
-            _id: { type: 'string', example: '64fa123abc456def7890mnop' },
             name: { type: 'string', example: 'John Doe' },
             email: { type: 'string', example: 'john@example.com' },
             phone: { type: 'string', example: '0612345678' },
@@ -176,11 +175,6 @@ const options = {
               type: 'string',
               format: 'date-time',
               example: '2026-02-19T10:20:30Z',
-            },
-            dateRead: {
-              type: 'string',
-              format: 'date-time',
-              example: '2026-02-19T12:15:00Z',
             },
           },
         },

@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /.idea
+/config/firebase-service-account.json
 # testing
 /coverage
 

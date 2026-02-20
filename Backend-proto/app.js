@@ -9,6 +9,7 @@ const express = require('express');
 
 /* ===== Importation du middleware de gestion des erreurs ===== */
 const errorHandler = require('./middlesware/errorHandler');
+const configRoutes = require('./routes/configRoutes');
 const userRoutes = require('./routes/user');
 const projectRoutes = require('./routes/projectRoutes');
 const tagRoutes = require('./routes/tagRoutes');
@@ -36,6 +37,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /* ===== Routes ===== */
 app.use('/api/auth', userRoutes);
+app.use('/api/push-token', configRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/messages', messagesRoutes);
 app.use('/api', tagRoutes);
