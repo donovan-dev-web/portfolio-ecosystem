@@ -11,27 +11,34 @@ const pushService = require('../services/pushNotificationService');
 
 exports.createMessage = async (req, res) => {
   try {
+    // 1️⃣ Créer et sauvegarder le message
     const msg = new Message(req.body);
-
     await msg.save();
 
+    console.log('Message créé:', msg._id.toString());
+
+    // 2️⃣ Préparer les données à envoyer dans la notification
+    const notificationData = {
+      messageId: msg._id.toString(),
+    };
+
+    // 3️⃣ Envoyer la notification via Expo Push Service
     await pushService.sendNotification(
       'Nouveau message',
       `Message de ${msg.name}`,
-      {
-        messageId: msg._id.toString(),
-      }
+      notificationData
     );
 
+    // 4️⃣ Répondre au client
     res.status(201).json({
-      message: 'Message envoyé',
+      message: 'Message envoyé et notifications déclenchées',
       data: msg,
     });
   } catch (error) {
-    console.error(error);
+    console.error('Erreur createMessage:', error);
 
     res.status(400).json({
-      message: 'Erreur',
+      message: "Erreur lors de l'envoi du message",
       error,
     });
   }

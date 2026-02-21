@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "70469145699",
+    "project_id": "portfolio-ecosystem-6e39e",
+    "storage_bucket": "portfolio-ecosystem-6e39e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70469145699:android:865889668332f6248d5456",
+        "android_client_info": {
+          "package_name": "com.donovan.portfolioAdmin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCa6V6tfp0gdIzHBYhY-YK5pxFy7tweAzY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

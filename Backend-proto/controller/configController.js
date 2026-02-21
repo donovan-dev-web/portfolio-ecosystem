@@ -1,6 +1,7 @@
 const PushToken = require('../models/PushToken');
 
 exports.savePushToken = async (req, res) => {
+  console.log('REquete recus:', req.body);
   try {
     const { token } = req.body;
 

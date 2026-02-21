@@ -5,6 +5,7 @@ import { User } from '../context/AuthContext'
 const USER_KEY = 'auth_user'
 const EMAIL_KEY = 'auth_email'
 const TOKEN_KEY = 'auth_token'
+const PUSH_TOKEN_KEY = 'push_token'
 
 export const storage = {
   // 🔐 Token sécurisé
@@ -45,5 +46,18 @@ export const storage = {
 
   async clearEmail() {
     await AsyncStorage.removeItem(EMAIL_KEY)
+  },
+
+  /* SavePush Token */
+  savePushToken: async (token: string) => {
+    await AsyncStorage.setItem(PUSH_TOKEN_KEY, token)
+  },
+
+  getPushToken: async () => {
+    return await AsyncStorage.getItem(PUSH_TOKEN_KEY)
+  },
+
+  clearPushToken: async () => {
+    await AsyncStorage.removeItem(PUSH_TOKEN_KEY)
   },
 }

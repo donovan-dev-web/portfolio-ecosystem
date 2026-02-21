@@ -3,7 +3,6 @@
 import axios from 'axios'
 import { storage } from '@/utils/storage'
 
-// ⚠️ Remplace par ton IP locale
 const BASE_URL = 'http://192.168.1.17:3000/api'
 
 export const api = axios.create({
