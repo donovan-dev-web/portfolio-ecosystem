@@ -1,0 +1,46 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo-nextjs
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_db_data:/data/db
+    restart: always
+
+  fullstack:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: fullstack_app
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    command: npm run dev
+    depends_on:
+      - mongo
+    develop:
+      watch:
+        # sync complet du projet
+        - action: sync
+          path: ./
+          target: /src
+          ignore:
+            - node_modules/
+        # rebuild + restart si Dockerfile ou package.json change
+        - action: sync+restart
+          path: ./package.json
+          target: /app/package.json
+        - action: sync+restart
+          path: ./Dockerfile
+          target: /app/Dockerfile
+        - action: sync+restart
+          path: ./next.config.ts
+          target: /app/next.config.ts
+
+volumes:
+  mongo_db_data:

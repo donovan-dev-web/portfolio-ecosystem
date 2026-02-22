@@ -1,0 +1,43 @@
+{
+  "name": "portfolio-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@scalar/api-reference-react": "^0.8.62",
+    "ajv": "^8.18.0",
+    "argon2": "^0.44.0",
+    "expo-server-sdk": "^6.0.0",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.1",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "sass": "^1.97.3",
+    "sharp": "^0.34.5",
+    "zod": "^4.3.6",
+    "zod-form-data": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/supertest": "^6.0.3",
+    "@vitest/coverage-v8": "^4.0.18",
+    "eslint": "^10.0.1",
+    "eslint-config-next": "^0.2.4",
+    "mongodb-memory-server": "^11.0.1",
+    "next-openapi-gen": "^0.10.2",
+    "supertest": "^7.2.2",
+    "typescript": "^5",
+    "vitest": "^4.0.18"
+  }
+}
