@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ProjectTypeSchema } from '@/backend/tags/tags.schema';
 import { TagService } from '@/backend/tags/tags.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
-import type { ProjectTypeType } from '@/backend/tags/tags.types';
+import { connectDB } from '@/backend/database/mongoose';
 
 function getId(request: NextRequest) {
   return new URL(request.url).pathname.split('/').pop()!;
@@ -15,6 +15,7 @@ function getId(request: NextRequest) {
  * @openapi
  */
 export async function GET(request: NextRequest) {
+  await connectDB();
   const id = getId(request);
 
   const data = await TagService.getProjectTypeById(id);
@@ -38,6 +39,7 @@ export async function GET(request: NextRequest) {
  * @openapi
  */
 export async function PUT(request: NextRequest) {
+  await connectDB();
   requireAuth(request);
 
   const id = getId(request);
@@ -64,6 +66,7 @@ export async function PUT(request: NextRequest) {
  * @openapi
  */
 export async function DELETE(request: NextRequest) {
+  await connectDB();
   requireAuth(request);
 
   const id = getId(request);

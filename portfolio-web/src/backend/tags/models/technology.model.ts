@@ -10,4 +10,4 @@ const technologySchema = new Schema<TechnologyType>(
 );
 
 export const Technology =
-  models.Technology || model<TechnologyType>('Technology', technologySchema);
+  models.Technology || model<TechnologyType>('Technologies', technologySchema);

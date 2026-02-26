@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { TagService } from '@/backend/tags/tags.services';
 import { ProgrammingLanguageType } from '@/backend/tags/tags.types';
+import { connectDB } from '@/backend/database/mongoose';
 
 /**
  * Récupère tous les langages de programmation
@@ -8,6 +9,8 @@ import { ProgrammingLanguageType } from '@/backend/tags/tags.types';
  * @openapi
  */
 export async function GET() {
+  await connectDB();
+
   const languages = await TagService.getAllLanguages();
   return NextResponse.json(languages, { status: 200 });
 }
@@ -19,6 +22,8 @@ export async function GET() {
  * @openapi
  */
 export async function POST(request: NextRequest) {
+  await connectDB();
+
   const body: ProgrammingLanguageType = await request.json();
 
   const created = await TagService.createLanguage(body);

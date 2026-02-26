@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { LoginBody, LoginResponse } from '@/backend/auth/auth.schema';
 import { loginService } from '@/backend/auth/auth.service';
+import { connectDB } from '@/backend/database/mongoose';
 
 /**
  * Connecte un utilisateur existant
@@ -10,6 +11,7 @@ import { loginService } from '@/backend/auth/auth.service';
  * @openapi
  */
 export async function POST(request: NextRequest) {
+  await connectDB();
   const body = await request.json();
   const data = LoginBody.parse(body);
 

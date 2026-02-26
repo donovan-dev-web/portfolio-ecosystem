@@ -3,6 +3,7 @@ import { ProjectTypeSchema } from '@/backend/tags/tags.schema';
 import { TagService } from '@/backend/tags/tags.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import type { ProjectTypeType } from '@/backend/tags/tags.types';
+import { connectDB } from '@/backend/database/mongoose';
 
 /**
  * Récupérer tous les ProjectTypes
@@ -10,6 +11,7 @@ import type { ProjectTypeType } from '@/backend/tags/tags.types';
  * @openapi
  */
 export async function GET() {
+  await connectDB();
   const data: ProjectTypeType[] = await TagService.getAllProjectTypes();
   return NextResponse.json(data, { status: 200 });
 }
@@ -23,6 +25,7 @@ export async function GET() {
  * @openapi
  */
 export async function POST(request: NextRequest) {
+  await connectDB();
   requireAuth(request);
 
   const body = await request.json();

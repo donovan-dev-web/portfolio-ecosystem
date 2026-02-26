@@ -83,6 +83,9 @@
           }
         }
       },
+      "ProjectType": {
+        "type": "object"
+      },
       "TechnologySchema": {
         "type": "object",
         "properties": {
@@ -524,6 +527,178 @@
           "204": {
             "description": "No Content"
           },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "operationId": "get-projects",
+        "summary": "Récupérer tous les projets",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectType"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-projects",
+        "summary": "Créer un nouveau projet",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/projects/{id}": {
+      "get": {
+        "operationId": "get-projects-{id}",
+        "summary": "Récupérer un projet par ID",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectType:Projet trouvé"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-projects-{id}",
+        "summary": "Mettre à jour un projet",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectType:Projet mis à jour"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-projects-{id}",
+        "summary": "Supprimer un projet",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/projects/reorder": {
+      "put": {
+        "operationId": "put-projects-reorder",
+        "summary": "Réorganiser les projets",
+        "description": "",
+        "tags": [
+          "Projects"
+        ],
+        "parameters": [],
+        "responses": {
           "400": {
             "$ref": "#/components/responses/400"
           },
