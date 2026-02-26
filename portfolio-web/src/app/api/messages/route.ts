@@ -14,14 +14,22 @@ export async function GET(request: NextRequest) {
   try {
     await connectDB();
     requireAuth(request);
-    const messages = await MessagesServices.getAll();
-    return NextResponse.json(messages, { status: 200 });
+
+    const { searchParams } = new URL(request.url);
+
+    const page = parseInt(searchParams.get('page') || '1');
+    const limit = parseInt(searchParams.get('limit') || '20');
+
+    const result = await MessagesServices.getPaginated(page, limit);
+
+    return NextResponse.json(result, { status: 200 });
   } catch (error: any) {
     if (error.Message === 'UNAUTHORIZED') {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
+
     return NextResponse.json(
-      { message: 'impossible de recupérer les messages', error: error.message },
+      { message: 'impossible de récupérer les messages', error: error.message },
       { status: 500 }
     );
   }

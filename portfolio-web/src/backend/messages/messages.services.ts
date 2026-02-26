@@ -23,6 +23,25 @@ export const MessagesServices = {
 
     return created;
   },
+  async getPaginated(page = 1, limit = 20) {
+    const safePage = Math.max(1, page);
+    const safeLimit = Math.min(100, Math.max(1, limit));
+
+    const skip = (safePage - 1) * safeLimit;
+
+    const [messages, total] = await Promise.all([
+      MessageQueries.findPaginated(skip, safeLimit),
+      MessageQueries.countAll(),
+    ]);
+
+    return {
+      page: safePage,
+      limit: safeLimit,
+      total,
+      totalPages: Math.ceil(total / safeLimit),
+      data: messages,
+    };
+  },
   getAll: () => MessageQueries.getAll(),
   getOneMessage: (id: string) => MessageQueries.getOneMessage(id),
   setMessageAsRead: async (id: string, data: MessageReadUpdate) => {

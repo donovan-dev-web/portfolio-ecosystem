@@ -24,7 +24,7 @@ export const getMessages = async (
   page = 1,
   limit = 20,
 ): Promise<PaginatedMessages> => {
-  const res = await api.get(`/messages`)
+  const res = await api.get(`/messages?page=${page}&limit=${limit}`)
   return res.data
 }
 
