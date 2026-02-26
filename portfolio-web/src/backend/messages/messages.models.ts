@@ -40,4 +40,4 @@ const messagesSchema = new Schema({
 });
 
 export const Messages =
-  mongoose.models.MEssages || mongoose.model('Messages', messagesSchema);
+  mongoose.models.Messages || mongoose.model('Messages', messagesSchema);
