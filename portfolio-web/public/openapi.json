@@ -83,6 +83,53 @@
           }
         }
       },
+      "MessageType": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "read": {
+            "type": "boolean"
+          },
+          "dateSent": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dateRead": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ProjectTypeSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Nom du type de projet"
+          },
+          "icon": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Icone représentant le type de projet"
+          }
+        },
+        "required": [
+          "name",
+          "icon"
+        ]
+      },
       "ProjectType": {
         "type": "object"
       },
@@ -132,25 +179,6 @@
         "required": [
           "userId",
           "token"
-        ]
-      },
-      "ProjectTypeSchema": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Nom du type de projet"
-          },
-          "icon": {
-            "type": "string",
-            "minLength": 1,
-            "description": "Icone représentant le type de projet"
-          }
-        },
-        "required": [
-          "name",
-          "icon"
         ]
       },
       "ProgrammingLanguageSchema": {
@@ -536,6 +564,218 @@
         }
       }
     },
+    "/messages": {
+      "get": {
+        "operationId": "get-messages",
+        "summary": "Recupérer tous les messages",
+        "description": "",
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-messages",
+        "summary": "Créer un nouveau messages",
+        "description": "",
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MessageType"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/messages/{id}": {
+      "get": {
+        "operationId": "get-messages-{id}",
+        "summary": "Recupérer un message par ID",
+        "description": "",
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-messages-{id}",
+        "summary": "Mise a jour du status d'un messages",
+        "description": "",
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageType:Message correctement mise à jour"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-messages-{id}",
+        "summary": "Supprimér un message",
+        "description": "",
+        "tags": [
+          "Messages"
+        ],
+        "parameters": [],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/project-types": {
+      "get": {
+        "operationId": "get-project-types",
+        "summary": "Récupérer tous les ProjectTypes",
+        "description": "",
+        "tags": [
+          "Project-types"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectTypeType[]:Liste des ProjectTypes"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-project-types",
+        "summary": "Créer un ProjectType",
+        "description": "",
+        "tags": [
+          "Project-types"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectTypeSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectTypeType:ProjectType créé"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/projects": {
       "get": {
         "operationId": "get-projects",
@@ -708,13 +948,13 @@
         }
       }
     },
-    "/technology": {
+    "/technologies": {
       "get": {
-        "operationId": "get-technology",
+        "operationId": "get-technologies",
         "summary": "Récupérer toutes les Technologies",
         "description": "",
         "tags": [
-          "Technology"
+          "Technologies"
         ],
         "parameters": [],
         "responses": {
@@ -737,11 +977,11 @@
         }
       },
       "post": {
-        "operationId": "post-technology",
+        "operationId": "post-technologies",
         "summary": "Créer une Technology",
         "description": "",
         "tags": [
-          "Technology"
+          "Technologies"
         ],
         "parameters": [],
         "requestBody": {
@@ -779,13 +1019,13 @@
         }
       }
     },
-    "/technology/{id}": {
+    "/technologies/{id}": {
       "get": {
-        "operationId": "get-technology-{id}",
+        "operationId": "get-technologies-{id}",
         "summary": "Récupérer une Technology par ID",
         "description": "",
         "tags": [
-          "Technology"
+          "Technologies"
         ],
         "parameters": [],
         "responses": {
@@ -808,11 +1048,11 @@
         }
       },
       "put": {
-        "operationId": "put-technology-{id}",
+        "operationId": "put-technologies-{id}",
         "summary": "Mettre à jour une Technology",
         "description": "",
         "tags": [
-          "Technology"
+          "Technologies"
         ],
         "parameters": [],
         "requestBody": {
@@ -850,11 +1090,11 @@
         }
       },
       "delete": {
-        "operationId": "delete-technology-{id}",
+        "operationId": "delete-technologies-{id}",
         "summary": "Supprimer une Technology",
         "description": "",
         "tags": [
-          "Technology"
+          "Technologies"
         ],
         "parameters": [],
         "responses": {
