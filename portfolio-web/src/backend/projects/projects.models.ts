@@ -1,9 +1,18 @@
 import mongoose, { Schema } from 'mongoose';
 
+const imageVariantSchema = new Schema(
+  {
+    small: { type: String, required: true },
+    medium: { type: String, required: true },
+    large: { type: String, required: true },
+  },
+  { _id: false }
+);
+
 const galleryItemSchema = new Schema(
   {
-    desktopUrl: { type: String, required: true },
-    mobileUrl: { type: String, required: true },
+    desktop: { type: imageVariantSchema, required: true },
+    mobile: { type: imageVariantSchema, required: true },
     alt: { type: String, required: true },
   },
   { _id: false }
@@ -33,10 +42,14 @@ const projectSchema = new Schema(
     technologies: [{ type: Schema.Types.ObjectId, ref: 'Technologies' }],
     languages: [{ type: Schema.Types.ObjectId, ref: 'ProgrammingLanguage' }],
     shortDescription: { type: String, required: true },
-    coverImage: { type: String, required: true },
+
+    coverImage: { type: imageVariantSchema, required: true },
+
     stack: [{ type: String }],
     presentation: { type: presentationSchema, required: true },
+
     gallery: [galleryItemSchema],
+
     githubUrl: String,
     isLive: { type: Boolean, default: false },
     liveUrl: String,

@@ -1,6 +1,12 @@
+export type ImageVariants = {
+  small: string;
+  medium: string;
+  large: string;
+};
+
 export type GalleryItemType = {
-  desktopUrl: string;
-  mobileUrl: string;
+  desktop: ImageVariants;
+  mobile: ImageVariants;
   alt: string;
 };
 
@@ -21,7 +27,7 @@ export type ProjectType = {
   technologies: string[];
   languages: string[];
   shortDescription: string;
-  coverImage: string;
+  coverImage: ImageVariants;
   stack?: string[];
   presentation: PresentationType;
   gallery?: GalleryItemType[];

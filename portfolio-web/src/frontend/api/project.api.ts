@@ -15,17 +15,38 @@ export const ProjectAPI = {
     return res.json();
   },
 
-  create: async (data: ProjectType, token: string) => {
+  create: async (
+    data: ProjectType,
+    files: {
+      cover: File;
+      galleryDesktop: File[];
+      galleryMobile: File[];
+    },
+    token: string
+  ) => {
+    const formData = new FormData();
+
+    formData.append('data', JSON.stringify(data));
+    formData.append('coverImage', files.cover);
+
+    files.galleryDesktop.forEach((file) =>
+      formData.append('galleryDesktop', file)
+    );
+
+    files.galleryMobile.forEach((file) =>
+      formData.append('galleryMobile', file)
+    );
+
     const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(data),
+      body: formData,
     });
 
     if (!res.ok) throw new Error('Erreur création projet');
+
     return res.json();
   },
 };

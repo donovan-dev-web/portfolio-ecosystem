@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ProjectService } from '@/backend/projects/projects.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import { connectDB } from '@/backend/database/mongoose';
+import { ImageService } from '@/backend/config/image.service';
 
 /**
  * Récupérer un projet par ID
@@ -30,35 +31,78 @@ export async function GET(
  * @response 404:Projet non trouvé
  * @openapi
  */
+
+export const runtime = 'nodejs';
+
 export async function PUT(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
   await connectDB();
-  try {
-    requireAuth(request);
+  requireAuth(request);
 
-    const body = await request.json();
-    const updated = await ProjectService.update(params.id, body);
+  const existingProject = await ProjectService.getById(params.id);
 
-    if (!updated) {
-      return NextResponse.json(
-        { message: 'Projet non trouvé' },
-        { status: 404 }
-      );
-    }
+  if (!existingProject) {
+    return NextResponse.json({ message: 'Projet non trouvé' }, { status: 404 });
+  }
 
-    return NextResponse.json(updated, { status: 200 });
-  } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
+  const formData = await request.formData();
+  const data = JSON.parse(formData.get('data') as string);
 
-    return NextResponse.json(
-      { message: 'Données invalides', error: error.message },
-      { status: 400 }
+  let coverVariants = existingProject.coverImage;
+
+  const newCoverFile = formData.get('coverImage') as File | null;
+
+  if (newCoverFile && newCoverFile.size > 0) {
+    await ImageService.deleteImageVariants(existingProject.coverImage);
+
+    coverVariants = await ImageService.processAndUpload(
+      newCoverFile,
+      'projects'
     );
   }
+
+  let gallery = existingProject.gallery || [];
+
+  const desktopFiles = formData.getAll('galleryDesktop') as File[];
+  const mobileFiles = formData.getAll('galleryMobile') as File[];
+
+  if (desktopFiles.length > 0 && mobileFiles.length > 0) {
+    // supprimer anciennes
+    for (const item of gallery) {
+      await ImageService.deleteImageVariants(item.desktop);
+      await ImageService.deleteImageVariants(item.mobile);
+    }
+
+    gallery = [];
+
+    for (let i = 0; i < desktopFiles.length; i++) {
+      const desktopVariants = await ImageService.processAndUpload(
+        desktopFiles[i],
+        'projects'
+      );
+
+      const mobileVariants = await ImageService.processAndUpload(
+        mobileFiles[i],
+        'projects'
+      );
+
+      gallery.push({
+        desktop: desktopVariants,
+        mobile: mobileVariants,
+        alt: data.gallery?.[i]?.alt || '',
+      });
+    }
+  }
+
+  const updated = await ProjectService.update(params.id, {
+    ...data,
+    coverImage: coverVariants,
+    gallery,
+  });
+
+  return NextResponse.json(updated, { status: 200 });
 }
 
 /**
@@ -72,24 +116,22 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   await connectDB();
-  try {
-    requireAuth(request);
+  requireAuth(request);
 
-    const deleted = await ProjectService.delete(params.id);
+  const project = await ProjectService.getById(params.id);
 
-    if (!deleted) {
-      return NextResponse.json(
-        { message: 'Projet non trouvé' },
-        { status: 404 }
-      );
-    }
-
-    return new NextResponse(null, { status: 204 });
-  } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
-
-    return NextResponse.json({ message: 'Erreur serveur' }, { status: 500 });
+  if (!project) {
+    return NextResponse.json({ message: 'Projet non trouvé' }, { status: 404 });
   }
+
+  // supprimer cover
+  await ImageService.deleteImageVariants(project.coverImage);
+  for (const item of project.gallery || []) {
+    await ImageService.deleteImageVariants(item.desktop);
+    await ImageService.deleteImageVariants(item.mobile);
+  }
+
+  await ProjectService.delete(params.id);
+
+  return new NextResponse(null, { status: 204 });
 }

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@scalar/api-reference-react": "^0.8.62",
+    "@vercel/blob": "^2.3.0",
     "ajv": "^8.18.0",
     "argon2": "^0.44.0",
     "expo-server-sdk": "^6.0.0",

@@ -874,32 +874,13 @@
       },
       "put": {
         "operationId": "put-projects-{id}",
-        "summary": "Mettre à jour un projet",
+        "summary": "",
         "description": "",
         "tags": [
           "Projects"
         ],
         "parameters": [],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProjectType"
-              }
-            }
-          }
-        },
         "responses": {
-          "200": {
-            "description": "Successful response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProjectType:Projet mis à jour"
-                }
-              }
-            }
-          },
           "400": {
             "$ref": "#/components/responses/400"
           },

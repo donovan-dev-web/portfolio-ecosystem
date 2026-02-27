@@ -1,9 +1,15 @@
 import { z } from 'zod';
 
+const ImageVariantsSchema = z.object({
+  small: z.string().url(),
+  medium: z.string().url(),
+  large: z.string().url(),
+});
+
 export const GalleryItemSchema = z.object({
-  desktopUrl: z.string().min(1).describe('URL image desktop'),
-  mobileUrl: z.string().min(1).describe('URL image mobile'),
-  alt: z.string().min(1).describe('Texte alternatif'),
+  desktop: ImageVariantsSchema,
+  mobile: ImageVariantsSchema,
+  alt: z.string().min(1),
 });
 
 export const PresentationSchema = z.object({
@@ -38,7 +44,13 @@ export const ProjectSchema = z
       .min(1)
       .describe('Description courte du projet'),
 
-    coverImage: z.string().min(1).describe('Image principale du projet'),
+    coverImage: z
+      .object({
+        small: z.string(),
+        medium: z.string(),
+        large: z.string(),
+      })
+      .describe('Image principale du projet'),
 
     stack: z.array(z.string()).describe('Stack technique affichée').optional(),
 
