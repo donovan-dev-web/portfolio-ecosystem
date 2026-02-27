@@ -1,10 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectDB } from '@/backend/database/mongoose';
 import { PushTokenServices } from '@/backend/push-token/pushToken.services';
+import { requireAuth } from '@/backend/auth/auth.middleware';
+
+/**
+ * Envoi et enregistrement du Token de notifification
+ * @response 200:Token enregisté
+ * @response 400:Donnée invalide
+ * @response 500:Erreur serveurs
+ * @openapi
+ */
 
 export async function POST(request: NextRequest) {
   try {
     await connectDB();
+    requireAuth(request);
 
     const body = await request.json();
 
@@ -30,9 +40,17 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
+/**
+ * Récupération des Token de notifification
+ * @response 200:PushTokenType:Liste des Tokens
+ * @response 500:Erreur serveurs
+ * @openapi
+ */
+
+export async function GET(request: NextRequest) {
   try {
     await connectDB();
+    requireAuth(request);
 
     const tokens = await PushTokenServices.getAllTokens();
 

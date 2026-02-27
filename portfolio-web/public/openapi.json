@@ -948,6 +948,62 @@
         }
       }
     },
+    "/push-token": {
+      "post": {
+        "operationId": "post-push-token",
+        "summary": "Envoi et enregistrement du Token de notifification",
+        "description": "",
+        "tags": [
+          "Push-token"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Token enregisté"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "get": {
+        "operationId": "get-push-token",
+        "summary": "Récupération des Token de notifification",
+        "description": "",
+        "tags": [
+          "Push-token"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PushTokenType:Liste des Tokens"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/technologies": {
       "get": {
         "operationId": "get-technologies",
