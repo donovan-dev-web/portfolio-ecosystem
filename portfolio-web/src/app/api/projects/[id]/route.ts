@@ -12,10 +12,11 @@ import { ImageService } from '@/backend/config/image.service';
  */
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
-  const project = await ProjectService.getById(params.id);
+  const { id } = await context.params;
+  const project = await ProjectService.getById(id);
 
   if (!project) {
     return NextResponse.json({ message: 'Projet non trouvé' }, { status: 404 });
@@ -113,12 +114,12 @@ export async function PUT(
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
   requireAuth(request);
-
-  const project = await ProjectService.getById(params.id);
+  const { id } = await context.params;
+  const project = await ProjectService.getById(id);
 
   if (!project) {
     return NextResponse.json({ message: 'Projet non trouvé' }, { status: 404 });
@@ -131,7 +132,7 @@ export async function DELETE(
     await ImageService.deleteImageVariants(item.mobile);
   }
 
-  await ProjectService.delete(params.id);
+  await ProjectService.delete(id);
 
   return new NextResponse(null, { status: 204 });
 }

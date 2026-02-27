@@ -8,9 +8,9 @@ interface ProjectContextProps {
   loading: boolean
   reorderProjects: (newOrder: any[]) => Promise<void>
   deleteProject: (id: string, title: string) => Promise<void>
-  createProject: (projectData: any) => Promise<void>
+  createProject: (formData: FormData) => Promise<any>
+  updateProject: (id: string, formData: FormData) => Promise<any>
 }
-
 export const ProjectContext = createContext<ProjectContextProps | undefined>(
   undefined,
 )

@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from 'next/server';
+// src/app/api/projects/route.ts
+import { NextResponse } from 'next/server';
 import { ProjectService } from '@/backend/projects/projects.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import { connectDB } from '@/backend/database/mongoose';
@@ -23,46 +24,129 @@ export async function GET() {
  * @response 201:ProjectType
  * @openapi
  */
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   await connectDB();
   requireAuth(request);
 
   const formData = await request.formData();
 
-  const coverFile = formData.get('coverImage') as File;
-  const galleryDesktopFiles = formData.getAll('galleryDesktop') as File[];
-  const galleryMobileFiles = formData.getAll('galleryMobile') as File[];
-  const data = JSON.parse(formData.get('data') as string);
+  // 🔹 Récupérer les variantes du cover
+  const coverSmall = formData.get('coverImage[small]') as File | null;
+  const coverMedium = formData.get('coverImage[medium]') as File | null;
+  const coverLarge = formData.get('coverImage[large]') as File | null;
 
-  const coverVariants = await ImageService.processAndUpload(
-    coverFile,
-    'projects'
-  );
+  if (!coverSmall || !coverMedium || !coverLarge) {
+    throw new Error('All cover image variants are required');
+  }
 
-  const gallery = [];
+  // 🔹 Générer les URLs via ImageService
+  const coverVariants = {
+    small: (await ImageService.processAndUpload(coverSmall, 'projects')).small,
+    medium: (await ImageService.processAndUpload(coverMedium, 'projects'))
+      .medium,
+    large: (await ImageService.processAndUpload(coverLarge, 'projects')).large,
+  };
 
-  for (let i = 0; i < galleryDesktopFiles.length; i++) {
-    const desktopVariants = await ImageService.processAndUpload(
-      galleryDesktopFiles[i],
-      'projects'
-    );
+  // 🔹 Traitement de la gallery
+  const gallery: any[] = [];
+  const galleryCount = Number(formData.get('galleryCount') || 0);
 
-    const mobileVariants = await ImageService.processAndUpload(
-      galleryMobileFiles[i],
-      'projects'
-    );
+  for (let i = 0; i < galleryCount; i++) {
+    const desktopSmall = formData.get(
+      `gallery[${i}][desktop][small]`
+    ) as File | null;
+    const desktopMedium = formData.get(
+      `gallery[${i}][desktop][medium]`
+    ) as File | null;
+    const desktopLarge = formData.get(
+      `gallery[${i}][desktop][large]`
+    ) as File | null;
+
+    const mobileSmall = formData.get(
+      `gallery[${i}][mobile][small]`
+    ) as File | null;
+    const mobileMedium = formData.get(
+      `gallery[${i}][mobile][medium]`
+    ) as File | null;
+    const mobileLarge = formData.get(
+      `gallery[${i}][mobile][large]`
+    ) as File | null;
+
+    if (
+      !desktopSmall ||
+      !desktopMedium ||
+      !desktopLarge ||
+      !mobileSmall ||
+      !mobileMedium ||
+      !mobileLarge
+    ) {
+      continue; // skip incomplete gallery item
+    }
+
+    const desktopVariants = {
+      small: (await ImageService.processAndUpload(desktopSmall, 'projects'))
+        .small,
+      medium: (await ImageService.processAndUpload(desktopMedium, 'projects'))
+        .medium,
+      large: (await ImageService.processAndUpload(desktopLarge, 'projects'))
+        .large,
+    };
+
+    const mobileVariants = {
+      small: (await ImageService.processAndUpload(mobileSmall, 'projects'))
+        .small,
+      medium: (await ImageService.processAndUpload(mobileMedium, 'projects'))
+        .medium,
+      large: (await ImageService.processAndUpload(mobileLarge, 'projects'))
+        .large,
+    };
 
     gallery.push({
       desktop: desktopVariants,
       mobile: mobileVariants,
-      alt: data.gallery?.[i]?.alt || '',
+      alt: (formData.get(`gallery[${i}][alt]`) as string) || '',
     });
   }
 
+  // 🔹 Données JSON supplémentaires
+  // Récupérer les champs projet directement
+  const title = formData.get('title') as string;
+  const projectType = formData.get('projectType') as string;
+  const shortDescription = formData.get('shortDescription') as string;
+  const githubUrl = formData.get('githubUrl') as string;
+  const isLive = formData.get('isLive') === 'true';
+  const liveUrl = formData.get('liveUrl') as string;
+
+  // Présentation
+  const presentation = {
+    description: formData.get('presentation[description]') as string,
+    context: formData.get('presentation[context]') as string,
+    objectives: formData.get('presentation[objectives]') as string,
+    skills: formData.get('presentation[skills]') as string,
+    results: formData.get('presentation[results]') as string,
+    improvements: formData.get('presentation[improvements]') as string,
+  };
+
+  // Stack & technologies
+  const stack = formData.getAll('stack[]') as string[];
+  const technologies = formData.getAll('technologies[]') as string[];
+  const languages = formData.getAll('languages[]') as string[];
+
+  // 🔹 Création du projet
   const created = await ProjectService.create({
-    ...data,
+    title,
+    projectType,
+    shortDescription,
+    githubUrl,
+    isLive,
+    liveUrl,
+    presentation,
+    stack,
+    technologies,
+    languages,
     coverImage: coverVariants,
     gallery,
+    order: 0,
   });
 
   return NextResponse.json(created, { status: 201 });

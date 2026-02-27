@@ -61,9 +61,9 @@ export async function PUT(
   try {
     requireAuth(request);
 
-    const { id } = await context.params; // 👈 correction
+    const { id } = await context.params;
     const body = await request.json();
-
+    console.log('Body content', body);
     const updated = await MessagesServices.setMessageAsRead(id, body);
 
     if (!updated) {

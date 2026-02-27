@@ -1,8 +1,14 @@
 // src/types/newProjectForm.ts
 
+export interface ImageVariant {
+  small: File | null
+  medium: File | null
+  large: File | null
+}
+
 export interface GalleryItemForm {
-  desktopUrl: string
-  mobileUrl: string
+  desktop: ImageVariant
+  mobile: ImageVariant
   alt: string
 }
 
@@ -21,7 +27,7 @@ export interface NewProjectForm {
   technologies: string[]
   languages: string[]
   shortDescription: string
-  coverImage: string
+  coverImage: ImageVariant
   githubUrl?: string
   isLive: boolean
   liveUrl?: string

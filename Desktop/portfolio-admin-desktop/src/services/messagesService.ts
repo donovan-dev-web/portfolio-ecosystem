@@ -25,7 +25,10 @@ export type PaginatedMessages = {
  * @param page numéro de page (par défaut 1)
  * @param limit nombre de messages par page (par défaut 20)
  */
-export const getMessages = async (page = 1, limit = 20): Promise<PaginatedMessages> => {
+export const getMessages = async (
+  page = 1,
+  limit = 20,
+): Promise<PaginatedMessages> => {
   const res = await api.get('/messages', {
     params: { page, limit },
   })
@@ -43,7 +46,9 @@ export const getMessageById = async (id: string): Promise<Message> => {
 /**
  * Marquer un message comme lu
  */
+
+//BUG ajout contenue ou correction coté backendsuppression du body
 export const markMessageAsRead = async (id: string): Promise<Message> => {
-  const res = await api.put(`/messages/${id}/read`)
-  return res.data 
+  const res = await api.put(`/messages/${id}`)
+  return res.data
 }

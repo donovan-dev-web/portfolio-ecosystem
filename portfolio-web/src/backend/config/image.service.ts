@@ -1,5 +1,4 @@
-// src/backend/files/image.service.ts
-
+// src/backend/config/image.service.ts
 import sharp from 'sharp';
 import { put, del } from '@vercel/blob';
 import { randomUUID } from 'crypto';

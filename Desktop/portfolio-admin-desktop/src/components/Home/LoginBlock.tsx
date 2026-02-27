@@ -12,7 +12,6 @@ export function LoginBlock() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  // 🔁 Pré-remplir email
   useEffect(() => {
     const savedEmail = storage.getEmail()
     if (savedEmail) {

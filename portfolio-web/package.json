@@ -16,6 +16,7 @@
     "ajv": "^8.18.0",
     "argon2": "^0.44.0",
     "expo-server-sdk": "^6.0.0",
+    "formidable": "^3.5.4",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.1",
     "next": "16.1.6",
@@ -27,6 +28,7 @@
     "zod-form-data": "^3.0.1"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.7",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^19",

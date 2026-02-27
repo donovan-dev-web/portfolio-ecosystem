@@ -10,7 +10,10 @@ import {
 } from '../services/ProjectService'
 import { ProjectContext } from './ProjectContext'
 import { type Project as ProjectType } from '../types/project'
-import { createProject as createProjectService } from '../services/ProjectService'
+import {
+  createProject as createProjectService,
+  updateProject as updateProjectService,
+} from '../services/ProjectService'
 import { toast } from 'react-toastify'
 
 export function ProjectProvider({ children }: { children: React.ReactNode }) {
@@ -79,11 +82,11 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     }
   }
 
-  const createProject = async (newProject: ProjectType) => {
+  const createProject = async (formData: FormData) => {
     try {
-      const createdProject = await createProjectService(newProject)
+      const createdProject = await createProjectService(formData) // formData au lieu de JSON
 
-      // 🔹 Mettre à jour le state local pour que le projet apparaisse immédiatement
+      // 🔹 Mise à jour du state local
       setProjects((prev) => [...prev, createdProject])
 
       toast.success(`Projet "${createdProject.title}" ajouté !`)
@@ -91,6 +94,19 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
     } catch (error) {
       console.error('Erreur création projet:', error)
       toast.error('Impossible de créer le projet')
+      throw error
+    }
+  }
+
+  const updateProject = async (id: string, formData: FormData) => {
+    try {
+      const updated = await updateProjectService(id, formData)
+      setProjects((prev) => prev.map((p) => (p._id === id ? updated : p)))
+      toast.success(`Projet "${updated.title}" mis à jour !`)
+      return updated
+    } catch (error) {
+      console.error('Erreur mise à jour projet:', error)
+      toast.error('Impossible de mettre à jour le projet')
       throw error
     }
   }
@@ -106,6 +122,7 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
         reorderProjects,
         deleteProject,
         createProject,
+        updateProject,
       }}
     >
       {children}
