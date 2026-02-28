@@ -52,3 +52,10 @@ export const markMessageAsRead = async (id: string): Promise<Message> => {
   const res = await api.put(`/messages/${id}`)
   return res.data
 }
+
+/**
+ * Supprimer un message
+ */
+export const deleteMessage = async (id: string): Promise<void> => {
+  await api.delete(`/messages/${id}`)
+}

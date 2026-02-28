@@ -13,6 +13,7 @@ export type MessageContextType = {
   loading: boolean
   fetchMessages: (page?: number) => Promise<void>
   markAsRead: (id: string) => Promise<void>
+  deleteMessage: (id: string) => Promise<void>
 
   fetchMessageById: (id: string) => Promise<Message | null> // <-- ajout ici
 }
@@ -23,5 +24,6 @@ export const MessageContext = createContext<MessageContextType>({
   loading: false,
   fetchMessages: async () => {},
   markAsRead: async () => {},
+  deleteMessage: async () => {},
   fetchMessageById: async () => null, // <-- valeur par défaut
 })

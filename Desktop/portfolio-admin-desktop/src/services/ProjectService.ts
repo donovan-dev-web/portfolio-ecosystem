@@ -29,6 +29,67 @@ export const getProjectTypes = async () => {
   return res.data
 }
 
+// 🔹 Tags: create / update
+export const createTechnology = async (payload: {
+  name: string
+  icon: string
+}) => {
+  const res = await api.post('/technologies', payload)
+  return res.data
+}
+
+export const updateTechnology = async (
+  id: string,
+  payload: { name: string; icon: string },
+) => {
+  const res = await api.put(`/technologies/${id}`, payload)
+  return res.data
+}
+
+export const createLanguage = async (payload: { name: string; icon: string }) => {
+  const res = await api.post('/languages', payload)
+  return res.data
+}
+
+export const updateLanguage = async (
+  id: string,
+  payload: { name: string; icon: string },
+) => {
+  const res = await api.put(`/languages/${id}`, payload)
+  return res.data
+}
+
+export const createProjectType = async (payload: {
+  name: string
+  icon: string
+}) => {
+  const res = await api.post('/project-types', payload)
+  return res.data
+}
+
+export const updateProjectType = async (
+  id: string,
+  payload: { name: string; icon: string },
+) => {
+  const res = await api.put(`/project-types/${id}`, payload)
+  return res.data
+}
+
+export const deleteTechnologyTag = async (id: string) => {
+  const res = await api.delete(`/technologies/${id}`)
+  return res.data
+}
+
+export const deleteLanguageTag = async (id: string) => {
+  const res = await api.delete(`/languages/${id}`)
+  return res.data
+}
+
+export const deleteProjectTypeTag = async (id: string) => {
+  const res = await api.delete(`/project-types/${id}`)
+  return res.data
+}
+
 // 🔹 Reorder projects
 export const reorderProjects = async (
   updates: { id: string; order: number }[],

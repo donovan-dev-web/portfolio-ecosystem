@@ -11,10 +11,11 @@ import { connectDB } from '@/backend/database/mongoose';
  */
 export async function GET(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
-  const language = await TagService.getLanguageById(params.id);
+  const { id } = await context.params;
+  const language = await TagService.getLanguageById(id);
 
   if (!language) {
     return NextResponse.json(
@@ -35,12 +36,13 @@ export async function GET(
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
+  const { id } = await context.params;
   const body: ProgrammingLanguageType = await request.json();
 
-  const updated = await TagService.updateLanguage(params.id, body);
+  const updated = await TagService.updateLanguage(id, body);
 
   if (!updated) {
     return NextResponse.json(
@@ -60,10 +62,11 @@ export async function PUT(
  */
 export async function DELETE(
   _request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
-  const deleted = await TagService.deleteLanguage(params.id);
+  const { id } = await context.params;
+  const deleted = await TagService.deleteLanguage(id);
 
   if (!deleted) {
     return NextResponse.json(

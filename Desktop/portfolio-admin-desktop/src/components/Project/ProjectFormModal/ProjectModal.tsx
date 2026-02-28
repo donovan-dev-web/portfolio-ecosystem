@@ -61,6 +61,7 @@ async function createVariants(file: File) {
 export const ProjectModal = ({ isOpen, onClose }: Props) => {
   const { projectTypes, technologies, languages, projects } = useProjects()
   const [step, setStep] = useState(0)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const [form, setForm] = useState<NewProjectForm>({
     title: '',
@@ -179,12 +180,19 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
   }
 
   const handleNext = () => {
+    if (isSubmitting) return
+
     if (!isStepValid()) {
       toast.error('Veuillez remplir tous les champs obligatoires')
       return
     }
     if (step < 2) setStep(step + 1)
     else handleSubmit()
+  }
+
+  const handlePrevious = () => {
+    if (isSubmitting) return
+    if (step > 0) setStep(step - 1)
   }
 
   // 🔹 Build FormData pour multipart/form-data
@@ -228,20 +236,26 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
   }
 
   const handleSubmit = async () => {
+    setIsSubmitting(true)
+
     try {
       const projectToSend = { ...form, order: projects.length + 1 }
       const formData = buildFormData(projectToSend)
 
       await createProject(formData)
       toast.success('Projet créé avec succès !')
-      handleClose()
+      handleClose(true)
     } catch (err) {
       console.error('Erreur création project:', err)
       toast.error('Erreur lors de la création du projet')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
-  const handleClose = () => {
+  const handleClose = (force = false) => {
+    if (isSubmitting && !force) return
+
     setForm({
       title: '',
       projectType: '',
@@ -268,12 +282,16 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
   }
 
   return (
-    <div className={style.modalBackdrop}>
+    <div className={style.modalOverlay}>
       <div className={style.modalContent}>
         {/* Header */}
         <div className={style.modalHeader}>
           <h2>Nouveau Projet</h2>
-          <button className={style.closeBtn} onClick={handleClose}>
+          <button
+            className={style.closeBtn}
+            onClick={() => handleClose()}
+            disabled={isSubmitting}
+          >
             <LucideX size={20} />
           </button>
         </div>
@@ -452,8 +470,33 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
 
         {/* Footer */}
         <div className={style.modalFooter}>
-          <button type="button" onClick={handleNext}>
-            {step < 2 ? 'Suivant' : 'Valider'}
+          {step > 0 && (
+            <button
+              type="button"
+              className={style.cancelBtn}
+              onClick={handlePrevious}
+              disabled={isSubmitting}
+            >
+              Précédent
+            </button>
+          )}
+
+          <button
+            type="button"
+            className={step < 2 ? style.nextBtn : style.submitBtn}
+            onClick={handleNext}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className={style.loader} aria-hidden="true" />
+                Envoi en cours...
+              </>
+            ) : step < 2 ? (
+              'Suivant'
+            ) : (
+              'Valider'
+            )}
           </button>
         </div>
       </div>

@@ -17,6 +17,15 @@ export const Card = ({ project, dragHandleProps }: Props) => {
     deleteProject(project._id, project.title)
   }
 
+  const cover =
+    typeof project.coverImage === 'string'
+      ? {
+          small: project.coverImage,
+          medium: project.coverImage,
+          large: project.coverImage,
+        }
+      : project.coverImage
+
   return (
     <div className={style.cardItem}>
       <div className={style.draggableHandler} {...dragHandleProps}>
@@ -26,7 +35,13 @@ export const Card = ({ project, dragHandleProps }: Props) => {
         <span>{project.order}</span>
       </div>
       <div className={style.CardsImg}>
-        <img src={project.coverImage} alt={project.title} />
+        <img
+          src={cover.medium}
+          srcSet={`${cover.small} 400w, ${cover.medium} 800w, ${cover.large} 1200w`}
+          sizes="50px"
+          alt={project.title}
+          loading="lazy"
+        />
       </div>
       <div className={style.CardsInfo}>
         <h3>{project.title}</h3>

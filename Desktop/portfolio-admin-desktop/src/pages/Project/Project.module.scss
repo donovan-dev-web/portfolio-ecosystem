@@ -67,3 +67,101 @@
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.5); /* halo violet */
   }
 }
+
+.tagPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tagList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tagItem {
+  width: 100%;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
+}
+
+.tagRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  span {
+    color: #111827;
+    font-size: 14px;
+  }
+}
+
+.tagRowActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tagEditor {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+
+  input {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
+.tagActions {
+  display: flex;
+  gap: 8px;
+}
+
+.tagCreate {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 10px;
+
+  input {
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}
+
+.tagRow button,
+.tagActions button,
+.tagCreate button {
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 10px;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.deleteTagBtn {
+  background: #dc2626 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 8px !important;
+}

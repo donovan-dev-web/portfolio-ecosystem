@@ -37,12 +37,13 @@ export const runtime = 'nodejs';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   await connectDB();
   requireAuth(request);
+  const { id } = await context.params;
 
-  const existingProject = await ProjectService.getById(params.id);
+  const existingProject = await ProjectService.getById(id);
 
   if (!existingProject) {
     return NextResponse.json({ message: 'Projet non trouvé' }, { status: 404 });
@@ -97,7 +98,7 @@ export async function PUT(
     }
   }
 
-  const updated = await ProjectService.update(params.id, {
+  const updated = await ProjectService.update(id, {
     ...data,
     coverImage: coverVariants,
     gallery,
