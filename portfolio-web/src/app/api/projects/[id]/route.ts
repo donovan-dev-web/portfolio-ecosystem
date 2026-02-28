@@ -134,5 +134,5 @@ export async function DELETE(
 
   await ProjectService.delete(id);
 
-  return new NextResponse(null, { status: 204 });
+  return new NextResponse(null, { status: 200 });
 }

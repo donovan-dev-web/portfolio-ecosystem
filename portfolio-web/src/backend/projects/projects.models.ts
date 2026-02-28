@@ -1,4 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
+import '../tags/models/projectType.model';
+import '../tags/models/technology.model';
+import '../tags/models/programmingLanguage.model';
 
 const imageVariantSchema = new Schema(
   {

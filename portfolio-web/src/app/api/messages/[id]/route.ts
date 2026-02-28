@@ -20,7 +20,7 @@ export async function GET(
   try {
     requireAuth(_request);
 
-    const { id } = await context.params; // 👈 correction ici
+    const { id } = await context.params;
 
     const message = await MessagesServices.getOneMessage(id);
 
@@ -62,9 +62,7 @@ export async function PUT(
     requireAuth(request);
 
     const { id } = await context.params;
-    const body = await request.json();
-    console.log('Body content', body);
-    const updated = await MessagesServices.setMessageAsRead(id, body);
+    const updated = await MessagesServices.setMessageAsRead(id);
 
     if (!updated) {
       return NextResponse.json(
@@ -77,6 +75,13 @@ export async function PUT(
   } catch (error: any) {
     if (error.message === 'UNAUTHORIZED') {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    if (error.message === 'MESSAGE_ALREADY_READ') {
+      return NextResponse.json(
+        { message: 'Ce message est déjà marqué comme lu' },
+        { status: 409 }
+      );
     }
 
     return NextResponse.json(
@@ -103,7 +108,7 @@ export async function DELETE(
   try {
     requireAuth(request);
 
-    const { id } = await context.params; // 👈 correction
+    const { id } = await context.params;
 
     const deleted = await MessagesServices.deleteOneMessage(id);
 

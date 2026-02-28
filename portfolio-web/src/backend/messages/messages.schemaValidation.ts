@@ -8,6 +8,6 @@ export const MessagesSchema = z.object({
 });
 
 export const MessageReadSchema = z.object({
-  read: z.boolean(),
+  read: z.literal(true),
   dateRead: z.coerce.date().optional(),
 });

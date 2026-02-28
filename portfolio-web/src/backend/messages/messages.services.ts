@@ -1,6 +1,6 @@
 import { MessageQueries } from './messages.queries';
 import { MessagesSchema, MessageReadSchema } from './messages.schemaValidation';
-import { MessageType, MessageReadUpdate } from './messages.types';
+import { MessageType } from './messages.types';
 import { PushNotificationService } from '../config/pushNotification.service';
 
 export const MessagesServices = {
@@ -44,13 +44,24 @@ export const MessagesServices = {
   },
   getAll: () => MessageQueries.getAll(),
   getOneMessage: (id: string) => MessageQueries.getOneMessage(id),
-  setMessageAsRead: async (id: string, data: MessageReadUpdate) => {
-    const parsed = MessageReadSchema.parse(data);
+  setMessageAsRead: async (id: string) => {
+    const existingMessage = await MessageQueries.getOneMessage(id);
 
-    return MessageQueries.setMessageAsRead(id, {
-      ...parsed,
-      dateRead: parsed.dateRead || new Date(),
+    if (!existingMessage) {
+      return null;
+    }
+
+    if (existingMessage.read) {
+      const error = new Error('MESSAGE_ALREADY_READ');
+      throw error;
+    }
+
+    const parsed = MessageReadSchema.parse({
+      read: true,
+      dateRead: new Date(),
     });
+
+    return MessageQueries.setMessageAsRead(id, parsed);
   },
   deleteOneMessage: (id: string) => MessageQueries.deleteOneMessage(id),
 };

@@ -9,6 +9,35 @@ const SIZES = {
   large: 1920,
 };
 
+type ImageVariants = {
+  small: string;
+  medium: string;
+  large: string;
+};
+
+const VARIANT_KEYS = ['small', 'medium', 'large'] as const;
+
+function buildSiblingVariantUrls(url: string): string[] {
+  try {
+    const parsed = new URL(url);
+    const match = parsed.pathname.match(/^(.*)-(small|medium|large)(\.[^.]+)$/);
+
+    if (!match) {
+      return [url];
+    }
+
+    const [, basePath, , ext] = match;
+
+    return VARIANT_KEYS.map((variant) => {
+      const sibling = new URL(parsed.toString());
+      sibling.pathname = `${basePath}-${variant}${ext}`;
+      return sibling.toString();
+    });
+  } catch {
+    return [url];
+  }
+}
+
 export const ImageService = {
   async processAndUpload(file: File, folder: string) {
     const buffer = Buffer.from(await file.arrayBuffer());
@@ -32,15 +61,22 @@ export const ImageService = {
     return variants;
   },
 
-  async deleteImageVariants(variants: {
-    small: string;
-    medium: string;
-    large: string;
-  }) {
-    await Promise.all([
-      del(variants.small),
-      del(variants.medium),
-      del(variants.large),
-    ]);
+  async deleteImageVariants(variants?: ImageVariants | null) {
+    if (!variants) return;
+
+    const urls = new Set<string>();
+
+    for (const url of [variants.small, variants.medium, variants.large]) {
+      if (!url) continue;
+      for (const siblingUrl of buildSiblingVariantUrls(url)) {
+        urls.add(siblingUrl);
+      }
+    }
+
+    await Promise.allSettled(
+      Array.from(urls).map(async (url) => {
+        await del(url);
+      })
+    );
   },
 };
