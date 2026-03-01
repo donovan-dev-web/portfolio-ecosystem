@@ -1,0 +1,7 @@
+@use './variables';
+@use './resets';
+
+body {
+  color: var(--foreground);
+  background: transparent;
+}

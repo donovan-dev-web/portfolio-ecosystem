@@ -1,0 +1,59 @@
+.items {
+  padding: 12px 10px;
+  border: 1px solid var(--sidebar-metallic-light);
+  border-radius: 2rem;
+  background: linear-gradient(
+    135deg,
+    var(--sidebar-metallic),
+    var(--sidebar-metallic-dark),
+    var(--sidebar-metallic)
+  );
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.withIcons {
+  box-shadow: 0 0 20px
+    color-mix(in oklch, var(--sidebar-glow-violet) 50%, transparent);
+  margin: 20px;
+}
+
+.pins {
+  width: 5px;
+  height: 5px;
+  border-radius: 100%;
+  background-color: var(--glow-blue);
+  margin: auto 20px;
+  box-shadow: 0 0 20px
+    color-mix(in oklch, var(--sidebar-glow-violet) 50%, transparent);
+  animation: electricPulse 2s ease-in-out infinite;
+}
+
+.text {
+  font-family: var(--font-jet);
+  line-height: 0.5rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 2px 8px;
+}
+
+@keyframes electricPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px var(--sidebar-glow-violet),
+      0 0 10px color-mix(in oklch, var(--sidebar-glow-violet) 50%, transparent),
+      inset 0 0 5px
+        color-mix(in oklch, var(--sidebar-glow-violet) 20%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 15px var(--sidebar-glow-violet),
+      0 0 30px color-mix(in oklch, var(--sidebar-glow-blue) 60%, transparent),
+      inset 0 0 10px
+        color-mix(in oklch, var(--sidebar-glow-violet) 40%, transparent);
+  }
+}

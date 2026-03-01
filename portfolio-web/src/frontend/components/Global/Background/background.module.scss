@@ -1,0 +1,131 @@
+.wrapper {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--background);
+  z-index: 0;
+}
+
+.ambient {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.1;
+}
+
+.violet {
+  left: 25%;
+  top: 25%;
+  width: 600px;
+  height: 600px;
+  background: var(--glow-violet);
+}
+
+.blue {
+  right: 25%;
+  bottom: 25%;
+  width: 500px;
+  height: 500px;
+  background: var(--glow-blue);
+  opacity: 0.15;
+}
+
+.metallic {
+  right: 33%;
+  top: 50%;
+  width: 400px;
+  height: 400px;
+  background: var(--metallic-light);
+  opacity: 0.1;
+  filter: blur(80px);
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, var(--border) 30%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--border) 30%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 60px 60px;
+  mask-image: radial-gradient(
+    circle at center,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    black 0%,
+    black 60%,
+    transparent 100%
+  );
+}
+
+.electricLines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 1px;
+  opacity: 0.15;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--glow-violet) 30%,
+    var(--glow-blue) 70%,
+    transparent 100%
+  );
+  animation: pulse-line ease-in-out infinite;
+}
+
+.horizontalLine {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  opacity: 0.1;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--metallic-light) 30%,
+    var(--glow-violet) 50%,
+    var(--metallic-light) 70%,
+    transparent 100%
+  );
+  animation: pulse-line ease-in-out infinite;
+}
+
+@keyframes pulse-line {
+  0% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0.05;
+  }
+}

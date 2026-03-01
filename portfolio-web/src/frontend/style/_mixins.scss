@@ -1,0 +1,15 @@
+@use './variables' as v;
+
+@mixin mobile-and-tablet-portrait {
+  @media (max-width: v.$bp-mobile-max),
+    (min-width: v.$bp-tablet-min) and (max-width: 1024px) and (orientation: portrait) {
+    @content;
+  }
+}
+
+@mixin desktop-and-tablet-landscape {
+  @media (min-width: v.$bp-desktop-min),
+    (min-width: v.$bp-tablet-min) and (max-width: 1024px) and (orientation: landscape) {
+    @content;
+  }
+}
