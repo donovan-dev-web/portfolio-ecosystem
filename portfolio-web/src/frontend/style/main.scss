@@ -1,7 +1,13 @@
 @use './variables';
 @use './resets';
 
+html,
+body {
+  height: 100%;
+}
+
 body {
   color: var(--foreground);
   background: transparent;
+  overflow: hidden;
 }
