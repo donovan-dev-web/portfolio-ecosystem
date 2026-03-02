@@ -6,7 +6,7 @@ import { ReactNode } from 'react';
 import {
   AtSign,
   ChevronRight,
-  FileText,
+  IdCard,
   FolderOpen,
   Github,
   Linkedin,
@@ -44,16 +44,16 @@ const navItems: NavItem[] = [
     icon: <FolderOpen />,
   },
   {
-    path: '/messages',
-    label: 'Mes Messages',
+    path: '/expertise',
+    label: 'Expertise',
     code: '03',
-    icon: <Mail />,
+    icon: <IdCard />,
   },
   {
-    path: '/documents',
-    label: 'Mes Documents',
+    path: '/contact',
+    label: 'Me contacter',
     code: '04',
-    icon: <FileText />,
+    icon: <Mail />,
   },
 ];
 
@@ -113,7 +113,8 @@ export function TechSideBar() {
             const isActive =
               item.path === '/'
                 ? pathname === '/' || pathname.startsWith('/home')
-                : pathname === item.path || pathname.startsWith(`${item.path}/`);
+                : pathname === item.path ||
+                  pathname.startsWith(`${item.path}/`);
 
             return (
               <Link
@@ -122,9 +123,13 @@ export function TechSideBar() {
                 className={`${style.techSidebarNavItem} ${isActive ? style.active : ''}`}
               >
                 <span className={style.techSidebarNavCode}>{item.code}</span>
-                <div className={style.techSidebarNavIconWrapper}>{item.icon}</div>
+                <div className={style.techSidebarNavIconWrapper}>
+                  {item.icon}
+                </div>
                 <div className={style.techSidebarNavLabelWrapper}>
-                  <span className={style.techSidebarNavLabel}>{item.label}</span>
+                  <span className={style.techSidebarNavLabel}>
+                    {item.label}
+                  </span>
                   <ChevronRight className={style.techSidebarNavArrow} />
                 </div>
                 <div className={style.techSidebarConnectionLine} />

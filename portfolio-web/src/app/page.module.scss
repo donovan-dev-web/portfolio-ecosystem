@@ -1,0 +1,125 @@
+@use '../frontend//style/mixins' as m;
+
+.sectionClass {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.badgePanel {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.titleContainer {
+  width: 80%;
+  animation: gradient-change 2s linear infinite alternate;
+  background: linear-gradient(
+    to right in oklch,
+    var(--＠color-1),
+    var(--＠color-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+.title {
+  text-align: center;
+  font-size: 4rem;
+  font-family: var(--font-satochi);
+  font-weight: 700;
+  line-height: 4rem;
+  color: var(--foreground);
+  -webkit-text-fill-color: var(--foreground);
+}
+
+.title strong {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@property --＠color-1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.6 0.28 285);
+}
+
+@property --＠color-2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.55 0.25 250);
+}
+
+/* keyframes that change the color variable */
+@keyframes gradient-change {
+  to {
+    --＠color-1: oklch(0.55 0.25 250);
+    --＠color-2: oklch(0.6 0.28 285);
+  }
+}
+
+.subTitle {
+  width: 80%;
+  text-align: center;
+  font-family: var(--font-satochi);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--sidebar-metallic-bright);
+}
+
+.subTitle strong {
+  font-weight: 700;
+  font-family: var(--font-jet);
+  color: var(--foreground);
+}
+
+.panelCtaHero {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+@include m.mobile-and-tablet-portrait {
+  .sectionClass {
+    gap: 20px;
+    padding-bottom: 100px;
+    justify-content: center;
+  }
+  .titleContainer {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .title {
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+  }
+
+  .subTitle {
+    width: 95%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .panelCtaHero {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .badgePanel {
+    margin-top: 0;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    width: 80%;
+  }
+}

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
-import { FileText, FolderOpen, House, Mail } from 'lucide-react';
+import { IdCard, FolderOpen, House, Mail } from 'lucide-react';
 
 import styles from './bottomBar.module.scss';
 
@@ -15,9 +15,9 @@ type TabItem = {
 
 const tabs: TabItem[] = [
   { label: 'Home', path: '/', icon: <House /> },
-  { label: 'Projects', path: '/projects', icon: <FolderOpen /> },
-  { label: 'Messages', path: '/messages', icon: <Mail /> },
-  { label: 'Documents', path: '/documents', icon: <FileText /> },
+  { label: 'Mes Projets', path: '/projects', icon: <FolderOpen /> },
+  { label: 'Expertise', path: '/expertise', icon: <IdCard /> },
+  { label: 'Me contacter', path: '/contact', icon: <Mail /> },
 ];
 
 export function BottomBar() {
@@ -39,7 +39,9 @@ export function BottomBar() {
                 className={`${styles.tabLink} ${isActive ? styles.active : ''}`}
                 aria-current={isActive ? 'page' : undefined}
               >
-                {isActive && <span className={styles.tabLabel}>{tab.label}</span>}
+                {isActive && (
+                  <span className={styles.tabLabel}>{tab.label}</span>
+                )}
                 <span className={styles.tabIcon}>{tab.icon}</span>
               </Link>
             </li>

@@ -1,0 +1,16 @@
+.link {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: linear-gradient(
+    135deg,
+    var(--sidebar-metallic),
+    var(--sidebar-metallic-dark),
+    var(--sidebar-metallic)
+  );
+  border: 1px solid var(--sidebar-metallic-light);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
