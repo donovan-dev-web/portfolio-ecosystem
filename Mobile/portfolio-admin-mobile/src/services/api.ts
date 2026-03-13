@@ -3,7 +3,7 @@
 import axios from 'axios'
 import { storage } from '@/utils/storage'
 
-const BASE_URL = 'http://192.168.11.113:3000/api'
+const BASE_URL = 'https://donovan-dev-web.vercel.app/api'
 
 export const api = axios.create({
   baseURL: BASE_URL,

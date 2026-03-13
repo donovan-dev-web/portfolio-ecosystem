@@ -180,7 +180,6 @@ const getTopProjects = unstable_cache(
 
     const projects = await ProjectService.getAll();
 
-    // Convertit les documents Mongoose en donnees simples et limite a 3.
     const normalized = JSON.parse(JSON.stringify(projects)) as Array<{
       _id?: string;
       title?: string;
@@ -191,7 +190,17 @@ const getTopProjects = unstable_cache(
       languages?: unknown[];
       stack?: string[];
       githubUrl?: string;
+      order?: number;
     }>;
+
+    // 🔹 Trier par order croissant
+    normalized.sort((a, b) => {
+      const orderA =
+        typeof a.order === 'number' ? a.order : Number.MAX_SAFE_INTEGER;
+      const orderB =
+        typeof b.order === 'number' ? b.order : Number.MAX_SAFE_INTEGER;
+      return orderA - orderB;
+    });
 
     return normalized.slice(0, 3).map((project, index) => {
       const id = project._id || `project-${index}`;

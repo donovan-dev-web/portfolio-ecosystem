@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
-      "description": "Local development server"
+      "url": "https://donovan-dev-web.vercel.app/api",
+      "description": "api severless du portoflio de developpeur web"
     }
   ],
   "components": {

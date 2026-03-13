@@ -2,7 +2,7 @@ import axios from 'axios'
 import { storage } from '../utils/storage'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3000/api',
+  baseURL: 'https://donovan-dev-web.vercel.app/api',
 })
 
 // 🔹 Interceptor pour inclure le token
@@ -23,5 +23,5 @@ api.interceptors.response.use(
       window.location.href = '/'
     }
     return Promise.reject(error)
-  }
+  },
 )

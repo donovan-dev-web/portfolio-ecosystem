@@ -35,7 +35,7 @@ const jetBrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ton-domaine.com'),
+  metadataBase: new URL('https://donovan-dev-web.vercel.app/'),
 
   title: {
     default: 'Donovan — Développeur Web Fullstack & Mobile',
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Donovan',
-      url: 'https://ton-domaine.com',
+      url: 'https://donovan-dev-web.vercel.app/',
     },
   ],
 
@@ -70,13 +70,13 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://ton-domaine.com',
+    canonical: 'https://donovan-dev-web.vercel.app/',
   },
 
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://ton-domaine.com',
+    url: 'https://donovan-dev-web.vercel.app/',
     siteName: 'Portfolio Donovan',
 
     title: 'Donovan — Développeur Web Fullstack & Mobile',
@@ -124,15 +124,15 @@ export default function RootLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      '@id': 'https://ton-domaine.com/#person',
+      '@id': 'https://donovan-dev-web.vercel.app//#person',
       name: 'Donovan',
-      url: 'https://ton-domaine.com',
-      image: 'https://ton-domaine.com/avatar.jpg',
+      url: 'https://donovan-dev-web.vercel.app/',
+      image: 'https://donovan-dev-web.vercel.app//avatar.jpg',
       jobTitle: 'Développeur Web Fullstack & Mobile',
       description:
         "Développeur web fullstack spécialisé en React, Next.js, Node.js et développement d'applications web modernes et performantes.",
       sameAs: [
-        'https://github.com/tonprofil',
+        'https://github.com/donovan-dev-web',
         'https://www.linkedin.com/in/tonprofil',
       ],
       knowsAbout: [
@@ -158,12 +158,12 @@ export default function RootLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      '@id': 'https://ton-domaine.com/#website',
-      url: 'https://ton-domaine.com',
+      '@id': 'https://donovan-dev-web.vercel.app/#website',
+      url: 'https://donovan-dev-web.vercel.app/',
       name: 'Portfolio Donovan',
       description: 'Portfolio de Donovan, développeur web fullstack & mobile.',
       publisher: {
-        '@id': 'https://ton-domaine.com/#person',
+        '@id': 'https://donovan-dev-web.vercel.app/#person',
       },
       inLanguage: 'fr-FR',
     },
@@ -171,10 +171,10 @@ export default function RootLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
-      '@id': 'https://ton-domaine.com/#service',
+      '@id': 'https://donovan-dev-web.vercel.app/#service',
       name: 'Développement Web & Mobile',
       provider: {
-        '@id': 'https://ton-domaine.com/#person',
+        '@id': 'https://donovan-dev-web.vercel.app/#person',
       },
       areaServed: {
         '@type': 'Country',

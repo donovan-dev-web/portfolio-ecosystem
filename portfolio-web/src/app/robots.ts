@@ -10,6 +10,6 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: 'https://ton-domaine.com/sitemap.xml',
+    sitemap: 'https://donovan-dev-web.vercel.app/sitemap.xml',
   };
 }
