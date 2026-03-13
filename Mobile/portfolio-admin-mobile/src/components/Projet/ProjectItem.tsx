@@ -55,7 +55,7 @@ export default function ProjectItem({
 
       {/* Image */}
       <Image
-        source={{ uri: project.coverImage }}
+        source={{ uri: project.coverImage.medium }}
         style={{
           width: 50,
           height: 50,

@@ -35,7 +35,7 @@ export const storage = {
     await AsyncStorage.removeItem(USER_KEY)
   },
 
-  // 📧 Remember email
+  // Remember email
   async saveEmail(email: string) {
     await AsyncStorage.setItem(EMAIL_KEY, email)
   },

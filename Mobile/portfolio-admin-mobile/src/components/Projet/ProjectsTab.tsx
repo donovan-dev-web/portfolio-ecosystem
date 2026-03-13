@@ -29,8 +29,8 @@ export default function ProjectsTab() {
     <ProjectItem
       project={item}
       index={index}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
+      onDragStart={onDragStart ?? (() => {})}
+      onDragEnd={onDragEnd ?? (() => {})}
     />
   )
 
@@ -47,7 +47,7 @@ export default function ProjectsTab() {
     <View style={{ flex: 1, width: '100%' }}>
       <DragList
         data={localProjects}
-        keyExtractor={(item) => item._id}
+        keyExtractor={(item: { _id: any }) => item._id}
         renderItem={renderItem}
         onReordered={handleReorder}
       />
