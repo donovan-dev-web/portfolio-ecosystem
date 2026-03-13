@@ -6,9 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "lint": "eslint"
   },
   "dependencies": {
     "@scalar/api-reference-react": "^0.8.62",
@@ -40,8 +38,6 @@
     "eslint-config-next": "^0.2.4",
     "mongodb-memory-server": "^11.0.1",
     "next-openapi-gen": "^0.10.2",
-    "supertest": "^7.2.2",
-    "typescript": "^5",
-    "vitest": "^4.0.18"
+    "typescript": "^5"
   }
 }
