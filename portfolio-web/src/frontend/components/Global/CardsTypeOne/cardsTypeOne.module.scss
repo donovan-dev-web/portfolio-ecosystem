@@ -1,0 +1,72 @@
+@use '../../../style/mixins' as m;
+
+.CardsContainer {
+  width: 23%;
+  height: 200px;
+  max-width: 300px;
+  border: 1px solid var(--sidebar-metallic);
+  border-radius: 1rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 15px;
+  gap: 10px;
+  background: linear-gradient(
+    135deg,
+    var(--sidebar-metallic),
+    var(--sidebar-metallic-dark),
+    var(--sidebar-metallic)
+  );
+  position: relative;
+  transition: transform 0.2s ease;
+
+  & svg {
+    color: var(--metallic-light);
+    width: auto;
+    height: 20px;
+  }
+
+  &::before {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(var(--glow-violet), transparent 70%);
+    left: 0;
+    top: 0;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+
+  &:hover::before {
+    opacity: 0.2;
+  }
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.valueText {
+  font-family: var(--font-jet);
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--glow-violet);
+}
+
+.contentText {
+  color: var(--metallic-light);
+  font-family: var(--font-satochi);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+@include m.mobile-and-tablet-portrait {
+  .CardsContainer {
+    width: 47%;
+  }
+
+  .contentText {
+    font-size: 0.9rem;
+  }
+}

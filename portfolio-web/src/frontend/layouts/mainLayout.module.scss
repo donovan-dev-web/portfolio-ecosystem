@@ -5,7 +5,6 @@
   z-index: 1;
   display: flex;
   height: 100dvh;
-  overflow: hidden;
 }
 
 .mainLayout {
@@ -13,10 +12,6 @@
   flex-direction: column;
   width: 100%;
   margin: 20px 20px 20px 320px;
-  height: calc(100dvh - 40px);
-  overflow-y: auto;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth;
 }
 
 @include m.mobile-and-tablet-portrait {
