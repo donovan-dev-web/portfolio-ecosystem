@@ -10,11 +10,11 @@ declare global {
   };
 }
 
-if (!process.env.MONGO_URI) {
-  throw new Error('MONGO_URI must be defined in .env');
+if (!process.env.MONGODB_URI) {
+  throw new Error('MONGODB_URI must be defined in .env');
 }
 
-const MONGO_URI: string = process.env.MONGO_URI;
+const MONGODB_URI: string = process.env.MONGODB_URI;
 
 // Initialise le cache si pas déjà présent
 if (!global.mongoose) {
@@ -28,7 +28,7 @@ export async function connectDB(): Promise<mongoose.Connection> {
 
   if (!global.mongoose.promise) {
     global.mongoose.promise = mongoose
-      .connect(MONGO_URI)
+      .connect(MONGODB_URI)
       .then((m) => m.connection);
   }
 
