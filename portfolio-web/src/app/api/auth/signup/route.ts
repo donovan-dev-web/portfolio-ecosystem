@@ -11,14 +11,15 @@ import { connectDB } from '@/backend/database/mongoose';
  * @openapi
  */
 export async function POST(request: NextRequest) {
-  const message = 'La création utilisateur est actuellement bloquer';
-  return NextResponse.json({ message }, { status: 400 });
   /*
+  const message = 'La création utilisateur est actuellement bloquer';
+  return NextResponse.json({ message }, { status: 400 });*/
+
   await connectDB();
   const body = await request.json();
   const data = SignupBody.parse(body); // validation Zod
 
   const message = await signupService(data.email, data.password);
 
-  return NextResponse.json({ message }, { status: 201 });*/
+  return NextResponse.json({ message }, { status: 201 });
 }
