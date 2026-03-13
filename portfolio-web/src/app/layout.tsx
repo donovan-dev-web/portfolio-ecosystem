@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import localFonts from 'next/font/local';
 import { JetBrains_Mono } from 'next/font/google';
-
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 import { MainLayout } from '@/frontend/layouts/MainLayout';
 
 import './globals.css';
@@ -190,11 +191,15 @@ export default function RootLayout({
   ];
   return (
     <html lang="fr">
-      <body className={`${satochiFonts.variable} ${jetBrains.variable}`}>
+      <head>
+        <SpeedInsights />
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body className={`${satochiFonts.variable} ${jetBrains.variable}`}>
         <MainLayout>{children}</MainLayout>
       </body>
     </html>
