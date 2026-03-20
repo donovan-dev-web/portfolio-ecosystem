@@ -4,7 +4,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -12,16 +13,21 @@
 }
 
 .modalContent {
-  background: #fff;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(8, 11, 22, 0.96);
   width: 90%;
   max-width: 900px;
-  border-radius: 0.5rem;
+  border-radius: 24px;
   padding: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
   max-height: 90vh;
   overflow-y: auto;
+  color: #f6f6f6;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
 }
 
 .modalHeader {
@@ -41,9 +47,10 @@
     font-size: 1.5rem;
     cursor: pointer;
     font-weight: bold;
+    color: rgba(255, 255, 255, 0.78);
 
     &:hover {
-      color: #ef4444; /* rouge clair au hover */
+      color: #ff9d9d;
     }
   }
 }
@@ -55,21 +62,22 @@
 
   button {
     flex: 1;
-    padding: 0.5rem 0;
-    background: #e5e7eb; /* gris clair */
+    padding: 0.85rem 0;
+    background: rgba(255, 255, 255, 0.06);
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 14px;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.76);
     transition: all 0.2s;
 
     &.active {
-      background: #4f46e5;
+      background: linear-gradient(135deg, #1f7ae0, #34c7d8);
       color: #fff;
     }
 
     &:hover:not(.active) {
-      background: #d1d5db;
+      background: rgba(255, 255, 255, 0.1);
     }
   }
 }
@@ -84,16 +92,23 @@
   textarea,
   select {
     width: 100%;
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    border: 1px solid #d1d5db;
+    padding: 0.85rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
     font-size: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    color: #f6f6f6;
 
     &:focus {
       outline: none;
-      border-color: #4f46e5;
-      box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.3);
+      border-color: #34c7d8;
+      box-shadow: 0 0 0 2px rgba(52, 199, 216, 0.24);
     }
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(255, 255, 255, 0.45);
   }
 
   textarea {
@@ -109,9 +124,9 @@
   gap: 0.5rem;
 
   button {
-    padding: 0.5rem 1rem;
-    border-radius: 0.375rem;
-    font-weight: 500;
+    padding: 0.8rem 1.1rem;
+    border-radius: 14px;
+    font-weight: 700;
     cursor: pointer;
     border: none;
     transition: all 0.2s;
@@ -122,31 +137,48 @@
     }
 
     &.nextBtn {
-      background: #4f46e5;
+      background: linear-gradient(135deg, #1f7ae0, #34c7d8);
       color: #fff;
 
       &:hover {
-        background: #4338ca;
+        filter: brightness(1.05);
       }
     }
 
     &.cancelBtn {
-      background: #e5e7eb;
-      color: #111827;
-
-      &:hover {
-        background: #d1d5db;
-      }
-    }
-
-    &.submitBtn {
-      background: #10b981; /* vert */
+      background: rgba(255, 255, 255, 0.09);
       color: #fff;
 
       &:hover {
-        background: #059669;
+        background: rgba(255, 255, 255, 0.13);
       }
     }
+
+    &.submitBtn,
+    &.saveBtn {
+      background: rgba(48, 188, 110, 0.18);
+      color: #83f0b6;
+    }
+
+    &.submitBtn:hover,
+    &.saveBtn:hover {
+      background: rgba(48, 188, 110, 0.24);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .modalContent {
+    width: calc(100% - 24px);
+    padding: 1.25rem;
+  }
+
+  .modalTabs {
+    flex-direction: column;
+  }
+
+  .modalFooter {
+    flex-direction: column;
   }
 }
 

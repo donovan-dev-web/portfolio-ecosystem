@@ -2,7 +2,8 @@ import axios from 'axios'
 import { storage } from '../utils/storage'
 
 export const api = axios.create({
-  baseURL: 'https://donovan-dev-web.vercel.app/api',
+  // baseURL: 'https://donovan-dev-web.vercel.app/api',
+  baseURL: 'http://localhost:3000/api',
 })
 
 // 🔹 Interceptor pour inclure le token

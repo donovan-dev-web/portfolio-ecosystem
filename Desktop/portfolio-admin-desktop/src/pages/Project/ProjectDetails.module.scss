@@ -1,4 +1,102 @@
+.page {
+  display: grid;
+  gap: 24px;
+  padding: 32px;
+  color: #f6f6f6;
+}
+
 .header {
-  margin-bottom: 20px;
-  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.title {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.heroPanel,
+.galleryPanel {
+  display: grid;
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(8, 11, 22, 0.88);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.coverImage {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.heroContent {
+  display: grid;
+  gap: 10px;
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+.galleryPanel h3 {
+  margin: 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.emptyState,
+.loading {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 900px) {
+  .page {
+    padding: 20px;
+  }
+
+  .header {
+    display: grid;
+  }
 }

@@ -6,8 +6,14 @@ import style from './messages.module.scss'
 import { Trash2 } from 'lucide-react'
 
 export const Messages: React.FC = () => {
-  const { messages, pagination, loading, fetchMessages, markAsRead, deleteMessage } =
-    useMessages()
+  const {
+    messages,
+    pagination,
+    loading,
+    fetchMessages,
+    markAsRead,
+    deleteMessage,
+  } = useMessages()
   const [currentPage, setCurrentPage] = useState(1)
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const navigate = useNavigate()
@@ -39,13 +45,25 @@ export const Messages: React.FC = () => {
   }
 
   return (
-    <div className={style.messagesPage}>
-      <h1 className={style.title}>Messages</h1>
+    <section className={style.messagesPage}>
+      <div className={style.header}>
+        <div>
+          <h1 className={style.title}>Messages</h1>
+          <p className={style.subtitle}>
+            Consulte les demandes recues, marque-les comme lues et navigue entre
+            les pages depuis une interface unifiee.
+          </p>
+        </div>
+        <div className={style.statsBadge}>
+          <span>Total</span>
+          <strong>{pagination.total}</strong>
+        </div>
+      </div>
 
       {loading ? (
         <p className={style.loading}>Chargement...</p>
       ) : (
-        <>
+        <div className={style.panel}>
           <table className={style.table}>
             <thead>
               <tr>
@@ -111,8 +129,8 @@ export const Messages: React.FC = () => {
               ),
             )}
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </section>
   )
 }

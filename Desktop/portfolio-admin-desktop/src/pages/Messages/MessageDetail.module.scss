@@ -1,85 +1,137 @@
-/* src/pages/Messages/MessageDetail.module.scss */
 .messageDetailPage {
-  padding: 20px;
-  max-width: 800px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+  display: grid;
+  gap: 24px;
+  padding: 32px;
+  color: #f6f6f6;
+}
 
-  .topButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+}
 
-    button,
-    a {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      color: #fff;
-      font-weight: bold;
-    }
+.title {
+  margin: 0;
+  font-size: 2.2rem;
+}
 
-    .backButton {
-      background-color: #555;
-    }
+.subtitle {
+  margin: 8px 0 0;
+  max-width: 700px;
+  color: rgba(255, 255, 255, 0.75);
+}
 
-    .replyButton {
-      background-color: #007bff;
-    }
+.topButtons,
+.bottomButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.messageContent {
+  display: grid;
+  gap: 16px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(8, 11, 22, 0.88);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+}
+
+.statusRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.statusBadge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.read {
+  background: rgba(48, 188, 110, 0.18);
+  color: #83f0b6;
+}
+
+.unread {
+  background: rgba(52, 199, 216, 0.16);
+  color: #84ebf6;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.045);
+
+  strong {
+    color: rgba(255, 255, 255, 0.72);
   }
 
-  .messageContent {
-    background-color: #f8f8f8;
+  p,
+  span {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+.backButton,
+.replyButton,
+.secondaryButton,
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.backButton,
+.secondaryButton {
+  background: rgba(255, 255, 255, 0.09);
+  color: #fff;
+}
+
+.replyButton,
+.primaryButton {
+  background: linear-gradient(135deg, #1f7ae0, #34c7d8);
+  color: #fff;
+}
+
+.loading {
+  padding: 32px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+@media (max-width: 900px) {
+  .messageDetailPage {
     padding: 20px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    h2 {
-      margin-bottom: 15px;
-    }
-
-    .field {
-      margin-bottom: 12px;
-
-      strong {
-        display: inline-block;
-        width: 120px;
-      }
-
-      p {
-        display: inline-block;
-        margin: 0;
-      }
-    }
   }
 
-  .bottomButtons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-
-    button {
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      background-color: #007bff;
-      color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-
-      &:disabled {
-        background-color: #ccc;
-        cursor: not-allowed;
-      }
-    }
-  }
-
-  .loading {
-    text-align: center;
-    padding: 50px;
-    font-size: 18px;
-    color: #555;
+  .header {
+    display: grid;
   }
 }

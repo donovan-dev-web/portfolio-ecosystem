@@ -83,7 +83,9 @@ export function Project() {
     technologies: false,
     projectTypes: false,
   })
-  const [isDeletingTag, setIsDeletingTag] = useState<Record<TagSection, boolean>>({
+  const [isDeletingTag, setIsDeletingTag] = useState<
+    Record<TagSection, boolean>
+  >({
     languages: false,
     technologies: false,
     projectTypes: false,
@@ -186,7 +188,8 @@ export function Project() {
     try {
       if (section === 'languages') await updateLanguage(id, { name, icon })
       if (section === 'technologies') await updateTechnology(id, { name, icon })
-      if (section === 'projectTypes') await updateProjectType(id, { name, icon })
+      if (section === 'projectTypes')
+        await updateProjectType(id, { name, icon })
       cancelRename(section)
     } finally {
       setIsRenamingTag((prev) => ({ ...prev, [section]: false }))
@@ -265,7 +268,9 @@ export function Project() {
                     <button
                       type="button"
                       onClick={() => startRename(section, item)}
-                      disabled={isRenamingTag[section] || isDeletingTag[section]}
+                      disabled={
+                        isRenamingTag[section] || isDeletingTag[section]
+                      }
                     >
                       Renommer
                     </button>
@@ -273,7 +278,9 @@ export function Project() {
                       type="button"
                       className={style.deleteTagBtn}
                       onClick={() => handleDeleteTag(section, item)}
-                      disabled={isDeletingTag[section] || isRenamingTag[section]}
+                      disabled={
+                        isDeletingTag[section] || isRenamingTag[section]
+                      }
                       aria-label={`Supprimer ${item.name}`}
                       title="Supprimer"
                     >
@@ -314,8 +321,16 @@ export function Project() {
   )
 
   return (
-    <div className={style.container}>
-      <h1>Gestion des projets</h1>
+    <section className={style.container}>
+      <div className={style.header}>
+        <div>
+          <h1 className={style.title}>Gestion des projets</h1>
+          <p className={style.subtitle}>
+            Reordonne les projets, ouvre les fiches detaillees et gere l
+            ensemble des tags depuis une interface harmonisee.
+          </p>
+        </div>
+      </div>
 
       <div className={style.tabs}>
         <button
@@ -334,37 +349,33 @@ export function Project() {
 
       <div className={style.tabContent}>
         {activeTab === 'projects' && (
-          <>
-            {/* 🔹 Bouton Nouveau Projet */}
-            <div className={style.newProjectBtnWrapper}>
+          <div className={style.projectsPanel}>
+            <div className={style.toolbar}>
               <button
                 type="button"
                 className={style.newProjectBtn}
                 onClick={() => setIsModalOpen(true)}
               >
-                + Nouveau Projet
+                Nouveau projet
+              </button>
+              <button
+                type="button"
+                className={style.applyBtn}
+                onClick={handleApply}
+              >
+                Appliquer les modifications
               </button>
             </div>
 
-            {/* 🔹 Modal */}
             <ProjectModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
             />
 
-            {/* 🔹 Gallery avec Drag & Drop */}
             <DragDropContext onDragEnd={handleDragEnd}>
               <Gallery projects={localProjects} />
             </DragDropContext>
-
-            <button
-              type="button"
-              className={style.applyBtn}
-              onClick={handleApply}
-            >
-              Appliquer les modifications
-            </button>
-          </>
+          </div>
         )}
 
         {activeTab === 'tags' && (
@@ -383,6 +394,6 @@ export function Project() {
       </div>
 
       <ToastContainer position="top-right" autoClose={2000} />
-    </div>
+    </section>
   )
 }

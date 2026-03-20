@@ -48,7 +48,9 @@ export const Card = ({ project, dragHandleProps }: Props) => {
         <p>{project.shortDescription}</p>
       </div>
       <div className={style.CardsActions}>
-        <Link to={`/projects/${project._id}`}>Voir le projet</Link>
+        <Link to={`/projects/${project._id}`} className={style.viewLink}>
+          Voir le projet
+        </Link>
         <button
           type="button"
           className={style.deleteBtn}

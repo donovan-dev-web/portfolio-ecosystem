@@ -16,23 +16,53 @@ export const ProjectDetail = () => {
     fetchProject()
   }, [id])
 
-  if (!project) return <p>Chargement...</p>
+  if (!project) return <p className={style.loading}>Chargement...</p>
+
+  const cover =
+    typeof project.coverImage === 'string'
+      ? project.coverImage
+      : project.coverImage?.large || project.coverImage?.medium || project.coverImage?.small
+
+  const galleryItems = Array.isArray(project.gallery) ? project.gallery : []
 
   return (
-    <div>
+    <div className={style.page}>
       <div className={style.header}>
-        <h2>Détails du projet</h2>
-        {/* Ajouter un bouton de retour à la liste des projets */}
-        <Link to="/projects">← Retour à la liste</Link>
+        <div>
+          <h1 className={style.title}>Detail du projet</h1>
+          <p className={style.subtitle}>
+            Consulte les informations principales du projet et sa galerie.
+          </p>
+        </div>
+        <Link to="/projects" className={style.backLink}>
+          Retour a la liste
+        </Link>
       </div>
-      <h1>{project.title}</h1>
-      <p>{project.shortDescription}</p>
-      <div className="gallery">
-        {project.gallery.map((item: any, index: number) => (
-          <img key={index} src={item.desktopUrl} alt={item.alt} />
-        ))}
-      </div>
-      {/* Afficher aussi stack, presentation, liens GitHub et live si nécessaire */}
+
+      <section className={style.heroPanel}>
+        {cover && <img src={cover} alt={project.title} className={style.coverImage} />}
+        <div className={style.heroContent}>
+          <h2>{project.title}</h2>
+          <p>{project.shortDescription}</p>
+        </div>
+      </section>
+
+      <section className={style.galleryPanel}>
+        <h3>Galerie</h3>
+        {galleryItems.length > 0 ? (
+          <div className={style.gallery}>
+            {galleryItems.map((item: any, index: number) => (
+              <img
+                key={index}
+                src={item.desktop?.medium || item.desktop?.small || item.desktop?.large}
+                alt={item.alt || `${project.title} ${index + 1}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <p className={style.emptyState}>Aucune image de galerie pour ce projet.</p>
+        )}
+      </section>
     </div>
   )
 }

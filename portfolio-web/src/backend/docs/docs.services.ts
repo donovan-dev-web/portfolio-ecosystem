@@ -90,22 +90,22 @@ export const DocsServices = {
   },
 
   async handleCvDownload(docId: string) {
-    const [updatedDoc] = await Promise.allSettled([
-      DocsQueries.recordDownload(docId),
-      PushNotificationService.sendNotification(
-        'CV telecharge',
-        'Le CV a ete telecharge',
-        {
-          kind: 'cv',
-          docId,
-        }
-      ),
-    ]);
+    const updatedDoc = await DocsQueries.recordDownload(docId);
 
-    if (updatedDoc.status === 'fulfilled') {
-      return updatedDoc.value;
+    if (!updatedDoc) {
+      return null;
     }
 
-    return null;
+    await PushNotificationService.sendNotification(
+      'CV telecharge',
+      `Le CV a ete telecharge ${updatedDoc.downloadCount} fois`,
+      {
+        kind: 'cv',
+        docId,
+        downloadCount: updatedDoc.downloadCount,
+      }
+    );
+
+    return updatedDoc;
   },
 };

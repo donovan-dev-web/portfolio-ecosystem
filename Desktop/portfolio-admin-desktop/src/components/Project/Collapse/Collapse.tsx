@@ -12,10 +12,14 @@ export const Collapse = ({
   const [open, setOpen] = useState(false)
   return (
     <div className={style.collapse}>
-      <div className={style.header} onClick={() => setOpen(!open)}>
+      <button
+        type="button"
+        className={style.header}
+        onClick={() => setOpen(!open)}
+      >
         <h3>{title}</h3>
         <span>{open ? '-' : '+'}</span>
-      </div>
+      </button>
       {open && <div className={style.content}>{children}</div>}
     </div>
   )
