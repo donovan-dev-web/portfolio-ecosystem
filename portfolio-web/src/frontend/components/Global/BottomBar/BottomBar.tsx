@@ -38,6 +38,7 @@ export function BottomBar() {
                 href={tab.path}
                 className={`${styles.tabLink} ${isActive ? styles.active : ''}`}
                 aria-current={isActive ? 'page' : undefined}
+                aria-label={tab.label}
               >
                 {isActive && (
                   <span className={styles.tabLabel}>{tab.label}</span>

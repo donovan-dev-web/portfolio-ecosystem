@@ -29,8 +29,7 @@ import { Footer } from '@/frontend/components/Global/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
-  description:
-    'Portfolio de Donovan, développeur web fullstack spécialisé en React, Next.js et Node.js.',
+  description: 'Portfolio de Donovan, développeur web fullstack & Mobile',
 };
 
 export default function Home() {
