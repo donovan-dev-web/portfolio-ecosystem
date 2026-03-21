@@ -47,7 +47,11 @@ export const ImageService = {
 
     for (const [key, width] of Object.entries(SIZES)) {
       const resized = await sharp(buffer)
-        .resize({ width })
+        .resize({
+          width,
+          fit: 'inside',
+          withoutEnlargement: true,
+        })
         .webp({ quality: 85 })
         .toBuffer();
 

@@ -23,6 +23,13 @@ export const PresentationSchema = z.object({
 
 export const ProjectSchema = z
   .object({
+    slug: z
+      .string()
+      .min(1)
+      .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/)
+      .describe('Slug unique du projet')
+      .optional(),
+
     title: z.string().min(1).describe('Titre du projet'),
 
     order: z.number().describe('Position du projet dans la liste'),

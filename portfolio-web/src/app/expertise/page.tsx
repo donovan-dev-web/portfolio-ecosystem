@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import styles from './page.module.scss';
+import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
@@ -16,6 +17,8 @@ export default function ExpertisePage() {
     <>
       {/* HERO */}
       <section className={`${styles.sectionClass} ${styles.hero}`}>
+        <Badge icons={true} content="Mes compétences et mon parcours" />
+
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>
             Mon <strong>Expertise</strong> <br /> & Parcours

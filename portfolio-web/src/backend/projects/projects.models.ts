@@ -35,6 +35,13 @@ const presentationSchema = new Schema(
 
 const projectSchema = new Schema(
   {
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      index: true,
+    },
     title: { type: String, required: true },
     order: { type: Number, required: true, default: 0, index: true },
     projectType: {

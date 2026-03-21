@@ -21,6 +21,7 @@ export type PresentationType = {
 
 export type ProjectType = {
   _id?: string;
+  slug?: string;
   title: string;
   order: number;
   projectType: string;

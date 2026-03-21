@@ -20,22 +20,31 @@ interface Props {
 // 🔹 Utils pour redimensionner et convertir en WebP
 async function fileToWebP(
   file: File,
-  width: number,
-  height: number,
+  maxWidth: number,
+  maxHeight: number,
 ): Promise<File> {
   return new Promise((resolve, reject) => {
     const img = new Image()
-    img.src = URL.createObjectURL(file)
+    const objectUrl = URL.createObjectURL(file)
+    img.src = objectUrl
     img.onload = () => {
+      const ratio = Math.min(
+        maxWidth / img.width,
+        maxHeight / img.height,
+        1,
+      )
+      const targetWidth = Math.round(img.width * ratio)
+      const targetHeight = Math.round(img.height * ratio)
       const canvas = document.createElement('canvas')
-      canvas.width = width
-      canvas.height = height
+      canvas.width = targetWidth
+      canvas.height = targetHeight
       const ctx = canvas.getContext('2d')
       if (!ctx) return reject(new Error('Canvas error'))
-      ctx.drawImage(img, 0, 0, width, height)
+      ctx.drawImage(img, 0, 0, targetWidth, targetHeight)
       canvas.toBlob(
         (blob) => {
           if (!blob) return reject(new Error('Blob error'))
+          URL.revokeObjectURL(objectUrl)
           resolve(
             new File([blob], file.name.replace(/\.\w+$/, '.webp'), {
               type: 'image/webp',
@@ -46,7 +55,10 @@ async function fileToWebP(
         0.8,
       )
     }
-    img.onerror = reject
+    img.onerror = (error) => {
+      URL.revokeObjectURL(objectUrl)
+      reject(error)
+    }
   })
 }
 
@@ -215,6 +227,7 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
       })
       formData.append(`gallery[${i}][alt]`, item.alt)
     })
+    formData.append('galleryCount', String(data.gallery.length))
 
     // Autres champs
     formData.append('title', data.title)
@@ -223,14 +236,12 @@ export const ProjectModal = ({ isOpen, onClose }: Props) => {
     formData.append('githubUrl', data.githubUrl || '')
     formData.append('isLive', String(data.isLive))
     formData.append('liveUrl', data.liveUrl || '')
-    data.stack.forEach((s, i) => formData.append(`stack[${i}]`, s))
+    data.stack.forEach((s) => formData.append('stack[]', s))
     Object.entries(data.presentation).forEach(([key, value]) =>
       formData.append(`presentation[${key}]`, value),
     )
-    data.technologies.forEach((t, i) =>
-      formData.append(`technologies[${i}]`, t),
-    )
-    data.languages.forEach((l, i) => formData.append(`languages[${i}]`, l))
+    data.technologies.forEach((t) => formData.append('technologies[]', t))
+    data.languages.forEach((l) => formData.append('languages[]', l))
 
     return formData
   }

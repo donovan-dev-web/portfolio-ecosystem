@@ -7,6 +7,46 @@ import { ImageService } from '@/backend/config/image.service';
 
 export const runtime = 'nodejs';
 
+function getIndexedValues(formData: FormData, fieldName: string) {
+  const bracketValues = formData
+    .getAll(`${fieldName}[]`)
+    .filter((value): value is string => typeof value === 'string');
+
+  if (bracketValues.length > 0) {
+    return bracketValues;
+  }
+
+  const indexedValues = Array.from(formData.entries())
+    .filter(([key, value]) => {
+      return (
+        typeof value === 'string' &&
+        new RegExp(`^${fieldName}\\[(\\d+)\\]$`).test(key)
+      );
+    })
+    .sort(([keyA], [keyB]) => {
+      const indexA = Number(keyA.match(/\[(\d+)\]/)?.[1] || 0);
+      const indexB = Number(keyB.match(/\[(\d+)\]/)?.[1] || 0);
+      return indexA - indexB;
+    })
+    .map(([, value]) => value as string);
+
+  return indexedValues;
+}
+
+function getGalleryIndexes(formData: FormData) {
+  const indexes = new Set<number>();
+
+  for (const [key] of formData.entries()) {
+    const match = key.match(/^gallery\[(\d+)\]\[(desktop|mobile|alt)\]/);
+
+    if (match) {
+      indexes.add(Number(match[1]));
+    }
+  }
+
+  return Array.from(indexes).sort((a, b) => a - b);
+}
+
 /**
  * Récupérer tous les projets
  * @response 200:ProjectType[]
@@ -49,9 +89,9 @@ export async function POST(request: Request) {
 
   // 🔹 Traitement de la gallery
   const gallery: any[] = [];
-  const galleryCount = Number(formData.get('galleryCount') || 0);
+  const galleryIndexes = getGalleryIndexes(formData);
 
-  for (let i = 0; i < galleryCount; i++) {
+  for (const i of galleryIndexes) {
     const desktopSmall = formData.get(
       `gallery[${i}][desktop][small]`
     ) as File | null;
@@ -128,9 +168,9 @@ export async function POST(request: Request) {
   };
 
   // Stack & technologies
-  const stack = formData.getAll('stack[]') as string[];
-  const technologies = formData.getAll('technologies[]') as string[];
-  const languages = formData.getAll('languages[]') as string[];
+  const stack = getIndexedValues(formData, 'stack');
+  const technologies = getIndexedValues(formData, 'technologies');
+  const languages = getIndexedValues(formData, 'languages');
 
   // 🔹 Création du projet
   const created = await ProjectService.create({

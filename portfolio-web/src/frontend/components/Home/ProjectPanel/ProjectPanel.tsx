@@ -190,6 +190,7 @@ const getTopProjects = unstable_cache(
       languages?: unknown[];
       stack?: string[];
       githubUrl?: string;
+      slug?: string;
       order?: number;
     }>;
 
@@ -220,7 +221,7 @@ const getTopProjects = unstable_cache(
         tags,
         stack: project.stack || [],
         githubUrl: project.githubUrl || 'https://github.com',
-        href: project._id ? `/projects/${project._id}` : '/projects',
+        href: project.slug ? `/projects/${project.slug}` : '/projects',
       };
     });
   },
