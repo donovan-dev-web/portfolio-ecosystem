@@ -13,7 +13,7 @@ export default function MessagesStack() {
         contentStyle: { backgroundColor: 'transparent' },
       }}
     >
-      <Stack.Screen name="Messages" component={MessagesScreen} />
+      <Stack.Screen name="MessagesList" component={MessagesScreen} />
       <Stack.Screen name="MessageDetail" component={MessageDetailScreen} />
     </Stack.Navigator>
   )

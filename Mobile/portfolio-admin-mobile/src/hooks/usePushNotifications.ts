@@ -1,191 +1,187 @@
-import * as Device from "expo-device";
-import * as Notifications from "expo-notifications";
-import Constants from "expo-constants";
-import { Platform } from "react-native";
-import { useRouter } from "expo-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import * as Device from 'expo-device'
+import * as Notifications from 'expo-notifications'
+import Constants from 'expo-constants'
+import { Platform } from 'react-native'
+import { useCallback, useEffect, useRef, useState } from 'react'
+
+import { navigateFromNotification } from '@/navigation/navigationRef'
+import { markMessageAsRead } from '@/services/messagesService'
 
 interface PushNotificationState {
-  expoPushToken?: Notifications.ExpoPushToken;
-  notification?: Notifications.Notification;
+  expoPushToken?: Notifications.ExpoPushToken
+  notification?: Notifications.Notification
 }
 
-export const usePushNotifications = (): PushNotificationState => {
-
-  // handler global
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldPlaySound: false,
     shouldSetBadge: true,
-
-    // NOUVEAUX champs obligatoires
     shouldShowBanner: true,
     shouldShowList: true,
   }),
-});
+})
 
+export const usePushNotifications = (): PushNotificationState => {
   const [expoPushToken, setExpoPushToken] =
-    useState<Notifications.ExpoPushToken>();
+    useState<Notifications.ExpoPushToken>()
 
   const [notification, setNotification] =
-    useState<Notifications.Notification>();
+    useState<Notifications.Notification>()
 
   const notificationListener =
-    useRef<Notifications.EventSubscription | null>(null);
+    useRef<Notifications.EventSubscription | null>(null)
 
   const responseListener =
-    useRef<Notifications.EventSubscription | null>(null);
+    useRef<Notifications.EventSubscription | null>(null)
 
-  const isNavigatingRef = useRef(false);
-
-  const router = useRouter();
-
+  const isNavigatingRef = useRef(false)
 
   async function registerForPushNotificationsAsync():
     Promise<Notifications.ExpoPushToken | undefined> {
-
     if (!Device.isDevice) {
-      console.log("Doit être testé sur un vrai téléphone");
-      return;
+      console.log('Doit être testé sur un vrai téléphone')
+      return
     }
 
     const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
+      await Notifications.getPermissionsAsync()
 
-    let finalStatus = existingStatus;
+    let finalStatus = existingStatus
 
-    if (existingStatus !== "granted") {
+    if (existingStatus !== 'granted') {
       const { status } =
-        await Notifications.requestPermissionsAsync();
+        await Notifications.requestPermissionsAsync()
 
-      finalStatus = status;
+      finalStatus = status
     }
 
-    if (finalStatus !== "granted") {
-      console.log("Permission refusée");
-      return;
+    if (finalStatus !== 'granted') {
+      console.log('Permission refusée')
+      return
     }
 
     const projectId =
-      Constants.expoConfig?.extra?.eas?.projectId;
+      Constants.expoConfig?.extra?.eas?.projectId
 
     if (!projectId) {
-      console.error("projectId manquant dans app.json");
-      return;
+      console.error('projectId manquant dans app.json')
+      return
     }
 
     try {
-
       const token =
         await Notifications.getExpoPushTokenAsync({
           projectId,
-        });
+        })
 
-      if (Platform.OS === "android") {
-
+      if (Platform.OS === 'android') {
         await Notifications.setNotificationChannelAsync(
-          "default",
+          'default',
           {
-            name: "default",
+            name: 'default',
             importance:
               Notifications.AndroidImportance.MAX,
             vibrationPattern: [0, 250, 250, 250],
-            lightColor: "#FF231F7C",
-          }
-        );
+            lightColor: '#FF231F7C',
+          },
+        )
       }
 
-      return token;
-
+      return token
     } catch (error) {
-
-      console.error(
-        "Error getting push token:",
-        error
-      );
-
-      return;
+      console.error('Error getting push token:', error)
+      return
     }
   }
 
+  const configureNotificationCategories = useCallback(async () => {
+    await Notifications.setNotificationCategoryAsync('message-actions', [
+      {
+        identifier: 'VIEW_MESSAGE',
+        buttonTitle: 'Voir le message',
+        options: {
+          opensAppToForeground: true,
+        },
+      },
+      {
+        identifier: 'MARK_AS_READ',
+        buttonTitle: 'Marquer comme lu',
+        options: {
+          opensAppToForeground: false,
+        },
+      },
+    ])
+  }, [])
 
   const handleNotificationResponse = useCallback(
-    async (
-      response: Notifications.NotificationResponse
-    ) => {
-
-      if (isNavigatingRef.current) return;
+    async (response: Notifications.NotificationResponse) => {
+      if (isNavigatingRef.current) return
 
       const data =
-        response.notification.request.content.data as any;
+        response.notification.request.content.data as Record<string, any>
 
-      if (!data?.screen) return;
+      const actionIdentifier = response.actionIdentifier
 
-      isNavigatingRef.current = true;
+      if (actionIdentifier === 'MARK_AS_READ' && data?.messageId) {
+        try {
+          await markMessageAsRead(data.messageId)
+        } catch (error) {
+          console.error(
+            'Error marking message as read from notification:',
+            error,
+          )
+        }
+        return
+      }
+
+      isNavigatingRef.current = true
 
       try {
-
-        router.push({
-          pathname: data.screen,
-          params: data.params || {},
-        });
-
+        navigateFromNotification(data)
       } catch (error) {
-
-        console.error(
-          "Error handling notification tap:",
-          error
-        );
-
+        console.error('Error handling notification tap:', error)
       } finally {
-
         setTimeout(() => {
-
-          isNavigatingRef.current = false;
-
-        }, 1000);
+          isNavigatingRef.current = false
+        }, 1000)
       }
     },
-    [router]
-  );
-
+    [],
+  )
 
   useEffect(() => {
+    configureNotificationCategories()
 
-    registerForPushNotificationsAsync()
-      .then(token => {
-
-        if (token)
-          setExpoPushToken(token);
-
-      });
-
+    registerForPushNotificationsAsync().then((token) => {
+      if (token) {
+        setExpoPushToken(token)
+      }
+    })
 
     notificationListener.current =
-      Notifications.addNotificationReceivedListener(
-        notification => {
-
-          setNotification(notification);
-
-        });
-
+      Notifications.addNotificationReceivedListener((incoming) => {
+        setNotification(incoming)
+      })
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener(
-        handleNotificationResponse
-      );
+        handleNotificationResponse,
+      )
 
+    Notifications.getLastNotificationResponseAsync().then((response) => {
+      if (response) {
+        handleNotificationResponse(response)
+      }
+    })
 
     return () => {
-        notificationListener.current?.remove();
-        responseListener.current?.remove();
-    };
-
-  }, [handleNotificationResponse]);
-
+      notificationListener.current?.remove()
+      responseListener.current?.remove()
+    }
+  }, [configureNotificationCategories, handleNotificationResponse])
 
   return {
     expoPushToken,
     notification,
-  };
-};
+  }
+}

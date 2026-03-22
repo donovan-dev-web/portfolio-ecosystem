@@ -30,6 +30,9 @@ import type {
 } from '@/frontend/components/Project/ProjectsExplorer/projectsExplorer.types';
 import { slugifyProjectTitle } from '@/utils/projectSlug';
 
+export const revalidate = 300;
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: 'Projets Web, Mobile et Fullstack',
   description:
@@ -228,7 +231,7 @@ const getProjectsCatalog = unstable_cache(
     }));
   },
   ['projects-catalog-page'],
-  { revalidate: 300 }
+  { revalidate }
 );
 
 const getProjectsFilters = unstable_cache(
@@ -274,7 +277,27 @@ const getProjectsFilters = unstable_cache(
     };
   },
   ['projects-filters-page'],
-  { revalidate: 300 }
+  { revalidate }
+);
+
+const getProjectsPageData = unstable_cache(
+  async (): Promise<{
+    projects: ProjectsPageProject[];
+    filters: {
+      projectTypes: FilterOption[];
+      technologies: FilterOption[];
+      languages: FilterOption[];
+    };
+  }> => {
+    const [projects, filters] = await Promise.all([
+      getProjectsCatalog(),
+      getProjectsFilters(),
+    ]);
+
+    return { projects, filters };
+  },
+  ['projects-page-data'],
+  { revalidate }
 );
 
 export default async function ProjectsPage() {
@@ -286,10 +309,7 @@ export default async function ProjectsPage() {
   };
 
   try {
-    const [fromDb, fromFilters] = await Promise.all([
-      getProjectsCatalog(),
-      getProjectsFilters(),
-    ]);
+    const { projects: fromDb, filters: fromFilters } = await getProjectsPageData();
     if (fromDb.length > 0) {
       projects = fromDb;
     }

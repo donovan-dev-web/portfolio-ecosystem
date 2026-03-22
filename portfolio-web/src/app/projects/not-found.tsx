@@ -1,11 +1,98 @@
+import { Metadata } from 'next';
+import { ArrowLeft, FolderSearch, LayoutTemplate, Mail } from 'lucide-react';
+
 import styles from './notFound.module.scss';
-import Link from 'next/link';
+import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
+import { Footer } from '@/frontend/components/Global/Footer/Footer';
+import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
+import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
+
+export const metadata: Metadata = {
+  title: 'Projet introuvable',
+  description:
+    'Le projet demande est introuvable ou n est plus disponible dans le catalogue.',
+};
 
 export default function ProjectNotFoundPage() {
   return (
-    <section className={styles.sectionClass}>
-      <h1>PRojet Non trouvé</h1>
-      <Link href={'/'}>Retour a l'accueil</Link>
-    </section>
+    <>
+      <section className={`${styles.sectionClass} ${styles.hero}`}>
+        <Badge icons={true} content="Projet introuvable" />
+
+        <div className={styles.titleContainer}>
+          <h1 className={styles.title}>
+            Ce projet n'est <strong>plus disponible</strong>
+          </h1>
+        </div>
+
+        <p className={styles.subTitle}>
+          Le lien demande ne correspond a aucun projet public du catalogue, ou
+          bien l URL n'est plus valide. Vous pouvez revenir a la liste complete
+          ou decouvrir d'autres realisations.
+        </p>
+
+        <div className={styles.panelCtaHero}>
+          <PrimaryButton
+            icons={<ArrowLeft />}
+            content="Retour au catalogue"
+            NavigateTo="/projects"
+          />
+          <SecondaryButton content="Retour a l accueil" navigateTo="/" />
+        </div>
+      </section>
+
+      <section className={styles.sectionClass}>
+        <h2 className={styles.TitleHTwo}>Pendant que vous etes ici</h2>
+
+        <div className={styles.shortcutGrid}>
+          <article className={styles.shortcutCard}>
+            <FolderSearch />
+            <h3>Parcourir tous les projets</h3>
+            <p>
+              Retrouver les projets par type, technologies et langages avec les
+              filtres du catalogue.
+            </p>
+          </article>
+
+          <article className={styles.shortcutCard}>
+            <LayoutTemplate />
+            <h3>Voir le projet featured</h3>
+            <p>
+              Consultez le projet mis en avant pour avoir un apercu rapide de ma
+              facon de concevoir une interface complete.
+            </p>
+          </article>
+
+          <article className={styles.shortcutCard}>
+            <Mail />
+            <h3>Discuter de votre besoin</h3>
+            <p>
+              Si vous cherchiez une reference precise ou un cas d usage
+              similaire, nous pouvons en parler directement.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className={styles.sectionClass}>
+        <div className={styles.supportPanel}>
+          <h2 className={styles.supportTitle}>Autres chemins utiles</h2>
+          <p className={styles.subTitleTwo}>
+            Le catalogue continue d evoluer. En attendant, vous pouvez consulter
+            le projet featured, mon expertise ou me contacter pour obtenir une
+            demonstration plus ciblee.
+          </p>
+          <div className={styles.panelCtaHero}>
+            <SecondaryButton
+              content="Voir le featured"
+              navigateTo="/portfolio-projects"
+            />
+            <SecondaryButton content="Me contacter" navigateTo="/contact" />
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }

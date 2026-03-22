@@ -1,5 +1,3 @@
-// src/components/collapse/Collapse.tsx
-
 import { View, Text, Pressable } from 'react-native'
 import { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons'
@@ -15,10 +13,11 @@ export default function Collapse({ title, children }: Props) {
   return (
     <View
       style={{
-        marginBottom: 10,
+        marginBottom: 14,
         borderWidth: 1,
-        borderColor: '#333',
-        borderRadius: 10,
+        borderColor: 'rgba(255,255,255,0.08)',
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.045)',
       }}
     >
       <Pressable
@@ -26,24 +25,28 @@ export default function Collapse({ title, children }: Props) {
         style={{
           flexDirection: 'row',
           justifyContent: 'space-between',
-          padding: 15,
+          alignItems: 'center',
+          paddingHorizontal: 18,
+          paddingVertical: 16,
         }}
       >
-        <Text style={{ color: '#fff', fontWeight: '600' }}>{title}</Text>
+        <Text style={{ color: '#fff', fontWeight: '700', fontSize: 15 }}>
+          {title}
+        </Text>
 
         <Ionicons
           name={open ? 'chevron-up' : 'chevron-down'}
           size={18}
-          color="#888"
+          color="#b7afd7"
         />
       </Pressable>
 
       {open && (
         <View
           style={{
-            padding: 15,
+            padding: 18,
             borderTopWidth: 1,
-            borderTopColor: '#333',
+            borderTopColor: 'rgba(255,255,255,0.08)',
           }}
         >
           {children}

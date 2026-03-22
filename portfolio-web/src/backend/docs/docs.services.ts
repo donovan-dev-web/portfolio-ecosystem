@@ -100,6 +100,7 @@ export const DocsServices = {
       'CV telecharge',
       `Le CV a ete telecharge ${updatedDoc.downloadCount} fois`,
       {
+        notificationType: 'document',
         kind: 'cv',
         docId,
         downloadCount: updatedDoc.downloadCount,

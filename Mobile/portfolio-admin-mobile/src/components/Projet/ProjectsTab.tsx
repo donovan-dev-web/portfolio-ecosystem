@@ -1,6 +1,4 @@
-// src/components/project/ProjectsTab.tsx
-
-import { View } from 'react-native'
+import { Text, View } from 'react-native'
 import { useState, useEffect } from 'react'
 import DragList, { DragListRenderItemInfo } from 'react-native-draglist'
 
@@ -45,6 +43,37 @@ export default function ProjectsTab() {
 
   return (
     <View style={{ flex: 1, width: '100%' }}>
+      <View
+        style={{
+          marginBottom: 18,
+          padding: 18,
+          borderRadius: 20,
+          borderWidth: 1,
+          borderColor: 'rgba(255,255,255,0.08)',
+          backgroundColor: 'rgba(255,255,255,0.045)',
+        }}
+      >
+        <Text
+          style={{
+            color: '#fff',
+            fontSize: 20,
+            fontWeight: '700',
+            marginBottom: 6,
+          }}
+        >
+          Catalogue projets
+        </Text>
+        <Text
+          style={{
+            color: '#b8b8c6',
+            lineHeight: 20,
+          }}
+        >
+          Reorganise l’ordre d’affichage, consulte le detail d’un projet et
+          supprime les entrees qui ne doivent plus apparaitre.
+        </Text>
+      </View>
+
       <DragList
         data={localProjects}
         keyExtractor={(item: { _id: any }) => item._id}

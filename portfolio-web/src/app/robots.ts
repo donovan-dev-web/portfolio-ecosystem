@@ -6,10 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
+        disallow: ['/api/', '/api-docs', '/admin/', '/_next/', '/openapi.json'],
       },
     ],
-
+    host: 'https://donovan-dev-web.vercel.app',
     sitemap: 'https://donovan-dev-web.vercel.app/sitemap.xml',
   };
 }

@@ -6,7 +6,7 @@ import { ImageService } from '@/backend/config/image.service';
 
 /**
  * Récupérer un projet par ID
- * @response 200:ProjectType:Projet trouvé
+ * @response 200:ProjectRecordType:Projet trouve
  * @response 404:Projet non trouvé
  * @openapi
  */
@@ -27,8 +27,8 @@ export async function GET(
 
 /**
  * Mettre à jour un projet
- * @body ProjectType
- * @response 200:ProjectType:Projet mis à jour
+ * @body ProjectRecordType
+ * @response 200:ProjectRecordType:Projet mis a jour
  * @response 404:Projet non trouvé
  * @openapi
  */

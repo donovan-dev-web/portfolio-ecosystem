@@ -1,5 +1,5 @@
 // src/navigation/types.ts
 export type RootStackParamList = {
-  Messages: undefined
+  MessagesList: undefined
   MessageDetail: { id: string }
 }

@@ -1,0 +1,217 @@
+@use '../../frontend/style/mixins' as m;
+
+.sectionClass {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.hero {
+  min-height: 100dvh;
+}
+
+.titleContainer {
+  width: 80%;
+  animation: gradient-change 2s linear infinite alternate;
+  background: linear-gradient(
+    to right in oklch,
+    var(--＠color-1),
+    var(--＠color-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+.title {
+  text-align: center;
+  font-size: 4rem;
+  font-family: var(--font-satochi);
+  font-weight: 700;
+  line-height: 4rem;
+  color: var(--foreground);
+  -webkit-text-fill-color: var(--foreground);
+}
+
+.title strong {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@property --＠color-1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.6 0.28 285);
+}
+
+@property --＠color-2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.55 0.25 250);
+}
+
+@keyframes gradient-change {
+  to {
+    --＠color-1: oklch(0.55 0.25 250);
+    --＠color-2: oklch(0.6 0.28 285);
+  }
+}
+
+.subTitle {
+  width: 80%;
+  text-align: center;
+  font-family: var(--font-satochi);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.9rem;
+  color: var(--sidebar-metallic-bright);
+}
+
+.subTitleTwo {
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-satochi);
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.9rem;
+  color: var(--sidebar-metallic-bright);
+}
+
+.panelCtaHero {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.TitleHTwo {
+  text-align: left;
+  font-family: var(--font-satochi);
+  font-weight: 700;
+  width: 90%;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.shortcutGrid {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.shortcutCard,
+.supportPanel {
+  border-radius: 1.2rem;
+  border: 1px solid var(--glow-violet);
+  background: linear-gradient(
+    135deg,
+    rgba(24, 24, 31, 0.9),
+    rgba(38, 38, 46, 0.82),
+    rgba(18, 18, 25, 0.92)
+  );
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.shortcutCard {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  & svg {
+    width: 22px;
+    height: 22px;
+    color: var(--glow-violet);
+  }
+
+  & h3 {
+    margin: 0;
+    font-family: var(--font-satochi);
+    font-size: 1.35rem;
+  }
+
+  & p {
+    margin: 0;
+    color: var(--sidebar-metallic-bright);
+    line-height: 1.7rem;
+  }
+}
+
+.supportPanel {
+  width: min(90%, 900px);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.supportTitle {
+  margin: 0;
+  font-family: var(--font-satochi);
+  font-size: 2rem;
+}
+
+@include m.mobile-and-tablet-portrait {
+  .sectionClass {
+    gap: 20px;
+    padding-bottom: 70px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 110px;
+  }
+
+  .titleContainer {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+  }
+
+  .subTitle,
+  .subTitleTwo {
+    width: 92%;
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+
+  .panelCtaHero {
+    width: 92%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .TitleHTwo {
+    width: 92%;
+    font-size: 1.7rem;
+  }
+
+  .shortcutGrid {
+    width: 92%;
+    grid-template-columns: 1fr;
+  }
+
+  .supportPanel {
+    width: 92%;
+    padding: 22px;
+  }
+
+  .supportTitle {
+    font-size: 1.55rem;
+  }
+}

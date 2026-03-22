@@ -2,7 +2,7 @@ export type DocKind = 'cv';
 
 export type DocType = {
   _id?: string;
-  kind: DocKind;
+  kind: 'cv';
   name: string;
   url: string;
   pathname: string;

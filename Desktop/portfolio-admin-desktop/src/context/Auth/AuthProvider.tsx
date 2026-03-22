@@ -18,7 +18,7 @@ export function AuthProvider({ children }: Props) {
     const response = await authService.login(email, password)
 
     const loggedUser: User = {
-      id: response.id,
+      id: response.userId,
       email: response.email,
       token: response.token,
     }

@@ -187,9 +187,14 @@
 .copyright {
   border-top: 1px solid var(--sidebar-metallic);
   width: 100%;
-  text-align: center;
   margin: 15px auto;
   padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  text-align: center;
   // Media Queries Mobile
   @media screen and (max-width: 768px) {
     margin: 15px auto 100px auto;

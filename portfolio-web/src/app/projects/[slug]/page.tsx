@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import { unstable_cache } from 'next/cache';
 import {
   ArrowLeft,
   Blocks,
@@ -25,6 +26,9 @@ import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { ProjectGalleryTabs } from '@/frontend/components/Project/ProjectGalleryTabs/ProjectGalleryTabs';
+
+export const revalidate = 300;
+export const dynamicParams = true;
 
 type ProjectTag = {
   name: string;
@@ -106,9 +110,7 @@ function toImageVariants(value: unknown): ImageVariants {
   };
 }
 
-async function getProjectDetails(
-  slug: string
-): Promise<ProjectDetailsData | null> {
+async function getProjectDetailsRaw(slug: string): Promise<ProjectDetailsData | null> {
   await connectDB();
 
   const project = await ProjectService.getBySlug(slug);
@@ -195,13 +197,47 @@ async function getProjectDetails(
   };
 }
 
+const getProjectDetailsCached = unstable_cache(
+  async (slug: string) => getProjectDetailsRaw(slug),
+  ['project-details-page'],
+  { revalidate }
+);
+
+const getProjectSlugs = unstable_cache(
+  async () => {
+    await connectDB();
+    const projects = await ProjectService.getAll();
+
+    return projects
+      .map((project) => {
+        const normalized = JSON.parse(JSON.stringify(project)) as {
+          slug?: string;
+        };
+
+        return normalized.slug;
+      })
+      .filter((slug): slug is string => Boolean(slug));
+  },
+  ['project-detail-slugs'],
+  { revalidate }
+);
+
+export async function generateStaticParams() {
+  try {
+    const slugs = await getProjectSlugs();
+    return slugs.map((slug) => ({ slug }));
+  } catch {
+    return [];
+  }
+}
+
 export async function generateMetadata({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = await getProjectDetails(slug);
+  const project = await getProjectDetailsCached(slug);
 
   if (!project) {
     return {
@@ -236,7 +272,7 @@ export default async function ProjectDetailsPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = await getProjectDetails(slug);
+  const project = await getProjectDetailsCached(slug);
 
   if (!project || slug !== project.slug) {
     notFound();

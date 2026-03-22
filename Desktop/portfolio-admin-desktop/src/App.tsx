@@ -47,7 +47,7 @@ function App() {
         <Routes>
           <Route element={<MainLayout />}>
             <Route index element={<Home />} />
-            <Route path="home/:section?" element={<Home />} />
+            <Route path="home" element={<Home />} />
             <Route element={<ProjectProviderWrapper />}>
               <Route path="projects/" element={<Project />} />
               <Route path="projects/:id" element={<ProjectDetail />} />
@@ -56,7 +56,7 @@ function App() {
               <Route path="messages/" element={<Messages />} />
               <Route path="messages/:id" element={<MessageDetail />} />
             </Route>
-            <Route path="documents/:section?" element={<MyDocuments />} />
+            <Route path="documents" element={<MyDocuments />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

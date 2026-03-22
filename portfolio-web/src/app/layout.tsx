@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import localFonts from 'next/font/local';
 import { JetBrains_Mono } from 'next/font/google';
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from '@vercel/analytics/next';
 import { MainLayout } from '@/frontend/layouts/MainLayout';
+import { CookieConsentManager } from '@/frontend/components/Global/CookieConsent/CookieConsentManager';
 
 import './globals.css';
 import '@/frontend/style/main.scss';
@@ -192,8 +191,6 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <SpeedInsights />
-        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -201,6 +198,7 @@ export default function RootLayout({
       </head>
       <body className={`${satochiFonts.variable} ${jetBrains.variable}`}>
         <MainLayout>{children}</MainLayout>
+        <CookieConsentManager />
       </body>
     </html>
   );

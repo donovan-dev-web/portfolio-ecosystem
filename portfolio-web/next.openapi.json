@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation",
+    "title": "Portfolio Ecosystem API",
     "version": "1.0.0",
-    "description": "This is the OpenAPI specification for your project."
+    "description": "Documentation OpenAPI de l API du portfolio de Donovan Chartrain : projets, messages, documents, tags, authentification et notifications."
   },
   "servers": [
     {
       "url": "https://donovan-dev-web.vercel.app/api",
-      "description": "api severless du portoflio de developpeur web"
+      "description": "API serverless du portfolio public et des interfaces d administration"
     }
   ],
   "components": {

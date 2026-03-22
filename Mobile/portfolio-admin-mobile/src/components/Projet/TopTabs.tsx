@@ -1,5 +1,3 @@
-// src/components/tabs/TopTabs.tsx
-
 import { View, Text, Pressable } from 'react-native'
 import { useState } from 'react'
 
@@ -25,9 +23,15 @@ export default function TopTabs({ tabs, onChange }: Props) {
     <View
       style={{
         flexDirection: 'row',
-        marginTop: 30,
-        borderBottomWidth: 1,
-        borderBottomColor: '#333',
+        alignSelf: 'flex-start',
+        gap: 12,
+        marginTop: 24,
+        marginBottom: 20,
+        padding: 6,
+        borderRadius: 18,
+        backgroundColor: 'rgba(255,255,255,0.05)',
+        borderWidth: 1,
+        borderColor: 'rgba(255,255,255,0.08)',
       }}
     >
       {tabs.map((tab) => {
@@ -39,15 +43,22 @@ export default function TopTabs({ tabs, onChange }: Props) {
             onPress={() => handlePress(tab.key)}
             style={{
               paddingVertical: 12,
-              paddingHorizontal: 20,
-              borderBottomWidth: 2,
-              borderBottomColor: isActive ? '#725bef' : 'transparent',
+              paddingHorizontal: 18,
+              borderRadius: 14,
+              backgroundColor: isActive
+                ? 'rgba(114, 91, 239, 0.18)'
+                : 'transparent',
+              borderWidth: 1,
+              borderColor: isActive
+                ? 'rgba(114, 91, 239, 0.45)'
+                : 'transparent',
             }}
           >
             <Text
               style={{
-                color: isActive ? '#725bef' : '#888',
-                fontWeight: '600',
+                color: isActive ? '#f5f2ff' : '#a4a4b5',
+                fontWeight: '700',
+                fontSize: 14,
               }}
             >
               {tab.title}

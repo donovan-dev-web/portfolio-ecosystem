@@ -13,6 +13,7 @@ export type MessageContextType = {
   fetchMessages: (page?: number) => Promise<void>
   fetchMessageById: (id: string) => Promise<Message>
   markAsRead: (id: string) => Promise<void>
+  deleteMessage: (id: string) => Promise<void>
 }
 
 export const MessageContext = createContext<MessageContextType>({
@@ -26,4 +27,5 @@ export const MessageContext = createContext<MessageContextType>({
     throw new Error('fetchMessageById not implemented')
   },
   markAsRead: async () => {},
+  deleteMessage: async () => {},
 })

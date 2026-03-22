@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { PrimaryButton } from '../Button/primaryButton/PrimaryButton';
 import { Mail, Github, Linkedin, AtSign } from 'lucide-react';
 import { ReactNode } from 'react';
+import { CookiePreferencesButton } from '../CookieConsent/CookiePreferencesButton';
 
 export function Footer() {
   type SocialItem = {
@@ -88,21 +89,26 @@ export function Footer() {
               <h3>Liens utiles</h3>
               <ul className={styles.listLink}>
                 <li className={styles.listItemsLink}>
-                  <Link href={'/'}>Telecharger mon CV</Link>
+                  <a href="/api/docs" download>
+                    Telecharger mon CV
+                  </a>
                 </li>
                 <li className={styles.listItemsLink}>
-                  <Link href={'/projects'}>Mentions légales</Link>
+                  <Link href={'/legal'}>Mentions legales</Link>
                 </li>
                 <li className={styles.listItemsLink}>
-                  <Link href={'/expertise'}>Sitemap</Link>
+                  <Link href={'/sitemap.xml'}>Sitemap</Link>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div className={styles.copyright}>
-          © 2026 Donovan Chartrain — Tous droits réservés — Développeur Web
-          Fullstack & Mobile
+          <span>
+            © 2026 Donovan Chartrain — Tous droits réservés — Développeur Web
+            Fullstack & Mobile
+          </span>
+          <CookiePreferencesButton />
         </div>
       </div>
     </footer>

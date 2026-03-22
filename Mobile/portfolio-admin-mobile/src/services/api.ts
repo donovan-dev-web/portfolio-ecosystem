@@ -2,11 +2,10 @@
 
 import axios from 'axios'
 import { storage } from '@/utils/storage'
-
-const BASE_URL = 'https://donovan-dev-web.vercel.app/api'
+import { API_BASE_URL } from '@/utils/apiBaseUrl'
 
 export const api = axios.create({
-  baseURL: BASE_URL,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },

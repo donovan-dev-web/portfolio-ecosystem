@@ -1,6 +1,7 @@
 import { Linking, Text, View } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import HomeScreen from '@/screens/HomeScreen'
+import DocumentsScreen from '@/screens/DocumentsScreen'
 import ProjectsStack from './ProjectsStack'
 import MessagesStack from './MessagesStack'
 import { Ionicons, AntDesign } from '@expo/vector-icons'
@@ -33,6 +34,11 @@ export default function BottomTabs() {
       name: 'Messages',
       icon: <AntDesign name="message" />,
       component: MessagesStack,
+    },
+    {
+      name: 'Documents',
+      icon: <Ionicons name="document-text-outline" />,
+      component: DocumentsScreen,
     },
     {
       name: 'Website',

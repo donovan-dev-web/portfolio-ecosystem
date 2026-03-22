@@ -1,54 +1,42 @@
-import { useParams, useNavigate } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
-import { useEffect, useCallback } from 'react'
-
-import { Hero } from './sections/Hero'
-import { About } from './sections/About'
-import { Contact } from './sections/Contact'
-import { useSectionScroll } from '../../hooks/useSectionScroll'
-
-// stable (idéalement hors composant)
-const sections = {
-  hero: Hero,
-  about: About,
-  contact: Contact,
-} as const
-
-const order = ['hero', 'about', 'contact'] as const
-
-type SectionKey = (typeof order)[number]
+import style from './home.module.scss'
+import { LoginBlock } from '../../components/Home/LoginBlock'
+import { UserAdminPanel } from '../../components/Home/UserAdminPanel'
+import { useAuth } from '../../context/Auth/useAuth'
 
 export function Home() {
-  const { section } = useParams<{ section?: SectionKey }>()
-  const navigate = useNavigate()
-
-  const current: SectionKey = section ?? 'hero'
-  const SectionComponent = sections[current]
-
-  const onSectionChange = useCallback(
-    (next: SectionKey) => {
-      navigate(`/home/${next}`)
-    },
-    [navigate],
-  )
-
-  // scroll + clavier
-  useSectionScroll({
-    order: [...order],
-    current,
-    onChange: onSectionChange,
-  })
-
-  // sécurité si URL invalide
-  useEffect(() => {
-    if (!sections[current]) {
-      navigate('/home/hero', { replace: true })
-    }
-  }, [current, navigate])
+  const { user, logout } = useAuth()
 
   return (
-    <AnimatePresence mode="wait">
-      <SectionComponent key={current} />
-    </AnimatePresence>
+    <section className={style.page}>
+      <div className={style.hero}>
+        {user ? (
+          <div className={style.userCard}>
+            <h1>Administration du portfolio</h1>
+            <p className={style.userSubtitle}>
+              Vous etes connecte en tant que <strong>{user.email}</strong>.
+              Vous pouvez gerer les utilisateurs et securiser l acces au
+              back-office.
+            </p>
+
+            <button className={style.logoutButton} onClick={logout}>
+              Se deconnecter
+            </button>
+
+            <UserAdminPanel />
+          </div>
+        ) : (
+          <div className={style.loginPanel}>
+            <div className={style.loginIntro}>
+              <h1>Connexion au back-office</h1>
+              <p>
+                Connectez-vous pour acceder a l administration du portfolio, a
+                la gestion des utilisateurs et aux differents outils de pilotage.
+              </p>
+            </div>
+            <LoginBlock />
+          </div>
+        )}
+      </div>
+    </section>
   )
 }

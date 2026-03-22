@@ -11,11 +11,25 @@ import { connectDB } from '@/backend/database/mongoose';
  * @openapi
  */
 export async function POST(request: NextRequest) {
-  await connectDB();
-  const body = await request.json();
-  const data = LoginBody.parse(body);
+  try {
+    await connectDB();
+    const body = await request.json();
+    const data = LoginBody.parse(body);
 
-  const result = await loginService(data.email, data.password);
+    const result = await loginService(data.email, data.password);
 
-  return NextResponse.json(result, { status: 200 });
+    return NextResponse.json(result, { status: 200 });
+  } catch (error: any) {
+    if (error.message === 'InvalidCredentials') {
+      return NextResponse.json(
+        { message: 'Identifiants invalides' },
+        { status: 401 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: 'Impossible de se connecter', error: error.message },
+      { status: 400 }
+    );
+  }
 }

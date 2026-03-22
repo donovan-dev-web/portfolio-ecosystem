@@ -7,7 +7,8 @@ export const PushNotificationService = {
   async sendNotification(
     title: string,
     body: string,
-    data: Record<string, any> = {}
+    data: Record<string, any> = {},
+    options: { categoryId?: string } = {}
   ) {
     const tokensDocs = await PushTokenServices.getAllTokens();
 
@@ -29,6 +30,7 @@ export const PushNotificationService = {
       title,
       body,
       data,
+      ...(options.categoryId ? { categoryId: options.categoryId } : {}),
     }));
 
     const chunks = expo.chunkPushNotifications(messages);

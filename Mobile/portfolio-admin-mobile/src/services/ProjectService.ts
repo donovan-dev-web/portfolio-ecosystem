@@ -33,3 +33,8 @@ export const reorderProjects = async (
   const res = await api.put('/projects/reorder', updates)
   return res.data
 }
+
+export const deleteProject = async (id: string) => {
+  const res = await api.delete(`/projects/${id}`)
+  return res.data
+}

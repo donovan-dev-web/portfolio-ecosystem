@@ -35,6 +35,10 @@ export const getMessageById = async (id: string): Promise<Message> => {
 
 export const markMessageAsRead = async (id: string): Promise<Message> => {
   console.log('markAsRead called with:', id)
-  const res = await api.put(`/messages/${id}/read`)
+  const res = await api.put(`/messages/${id}`)
   return res.data
+}
+
+export const deleteMessage = async (id: string): Promise<void> => {
+  await api.delete(`/messages/${id}`)
 }

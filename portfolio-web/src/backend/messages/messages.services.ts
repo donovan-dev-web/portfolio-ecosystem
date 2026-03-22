@@ -17,7 +17,11 @@ export const MessagesServices = {
       'Nouveau message',
       `Message de ${created.name}`,
       {
+        notificationType: 'message',
         messageId: created._id.toString(),
+      },
+      {
+        categoryId: 'message-actions',
       }
     );
 

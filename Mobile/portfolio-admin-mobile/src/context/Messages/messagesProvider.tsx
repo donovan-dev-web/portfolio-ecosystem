@@ -5,6 +5,7 @@ import {
   getMessageById,
   markMessageAsRead,
   Message,
+  deleteMessage as deleteMessageService,
 } from '../../services/messagesService'
 
 type Props = { children: React.ReactNode }
@@ -56,6 +57,19 @@ export const MessagesProvider: React.FC<Props> = ({ children }) => {
     }
   }, [])
 
+  const deleteMessage = useCallback(async (id: string) => {
+    try {
+      await deleteMessageService(id)
+      setMessages((prev) => prev.filter((msg) => msg._id !== id))
+      setPagination((prev) => ({
+        ...prev,
+        total: Math.max(0, prev.total - 1),
+      }))
+    } catch (error) {
+      console.error('Erreur deleteMessage:', error)
+    }
+  }, [])
+
   return (
     <MessageContext.Provider
       value={{
@@ -65,6 +79,7 @@ export const MessagesProvider: React.FC<Props> = ({ children }) => {
         fetchMessages,
         fetchMessageById,
         markAsRead,
+        deleteMessage,
       }}
     >
       {children}

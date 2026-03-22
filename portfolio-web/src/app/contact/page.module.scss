@@ -1,0 +1,292 @@
+@use '../../frontend/style/mixins' as m;
+
+.sectionClass {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.hero {
+  min-height: 100dvh;
+}
+
+.titleContainer {
+  width: 80%;
+  animation: gradient-change 2s linear infinite alternate;
+  background: linear-gradient(
+    to right in oklch,
+    var(--＠color-1),
+    var(--＠color-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 30px;
+}
+
+.title {
+  text-align: center;
+  font-size: 4rem;
+  font-family: var(--font-satochi);
+  font-weight: 700;
+  line-height: 4rem;
+  color: var(--foreground);
+  -webkit-text-fill-color: var(--foreground);
+}
+
+.title strong {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@property --＠color-1 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.6 0.28 285);
+}
+
+@property --＠color-2 {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: oklch(0.55 0.25 250);
+}
+
+@keyframes gradient-change {
+  to {
+    --＠color-1: oklch(0.55 0.25 250);
+    --＠color-2: oklch(0.6 0.28 285);
+  }
+}
+
+.subTitle {
+  width: 80%;
+  text-align: center;
+  font-family: var(--font-satochi);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--sidebar-metallic-bright);
+  line-height: 1.9rem;
+}
+
+.subTitle strong,
+.subTitleTwo strong {
+  font-weight: 700;
+  font-size: 1rem;
+  font-family: var(--font-jet);
+  color: var(--foreground);
+}
+
+.subTitleTwo {
+  width: 90%;
+  text-align: left;
+  font-family: var(--font-satochi);
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: var(--sidebar-metallic-bright);
+  line-height: 1.9rem;
+}
+
+.panelCtaHero {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.TitleHTwo {
+  text-align: left;
+  font-family: var(--font-satochi);
+  font-weight: 700;
+  width: 90%;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.reasonsGrid,
+.contactInfoPanel {
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.reasonCard,
+.contactCards,
+.formIntroCard {
+  border: 1px solid var(--glow-violet);
+  border-radius: 1.2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(24, 24, 31, 0.9),
+    rgba(38, 38, 46, 0.82),
+    rgba(18, 18, 25, 0.92)
+  );
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+}
+
+.reasonCard {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  & h3 {
+    margin: 0;
+    font-family: var(--font-satochi);
+    font-size: 1.35rem;
+  }
+
+  & p {
+    margin: 0;
+    color: var(--sidebar-metallic-bright);
+    line-height: 1.7rem;
+  }
+}
+
+.contactCards {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--foreground);
+    font-family: var(--font-jet);
+  }
+
+  & svg {
+    width: 18px;
+    height: 18px;
+    color: var(--glow-violet);
+  }
+
+  & > span {
+    color: var(--sidebar-metallic-bright);
+    line-height: 1.6rem;
+  }
+}
+
+.formLayout {
+  width: 90%;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.formIntroCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 110px;
+}
+
+.formIntroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  border-radius: 999px;
+  border: 1px solid var(--sidebar-metallic-light);
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--foreground);
+  font-family: var(--font-jet);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+
+  & svg {
+    width: 16px;
+    height: 16px;
+    color: var(--glow-violet);
+  }
+}
+
+.formTitle {
+  margin: 0;
+  font-family: var(--font-satochi);
+  font-size: 2rem;
+}
+
+.formHints {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 18px;
+  color: var(--sidebar-metallic-bright);
+
+  & li {
+    line-height: 1.7rem;
+  }
+}
+
+@include m.mobile-and-tablet-portrait {
+  .sectionClass {
+    gap: 20px;
+    padding-bottom: 70px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 110px;
+  }
+
+  .titleContainer {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    line-height: 2.3rem;
+  }
+
+  .subTitle,
+  .subTitleTwo {
+    width: 92%;
+    font-size: 1rem;
+    line-height: 1.6rem;
+  }
+
+  .panelCtaHero {
+    width: 92%;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .TitleHTwo {
+    width: 92%;
+    font-size: 1.7rem;
+  }
+
+  .reasonsGrid,
+  .contactInfoPanel,
+  .formLayout {
+    width: 92%;
+    grid-template-columns: 1fr;
+  }
+
+  .formIntroCard {
+    position: static;
+    top: auto;
+    padding: 20px;
+  }
+
+  .formTitle {
+    font-size: 1.7rem;
+  }
+}

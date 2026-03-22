@@ -29,28 +29,13 @@ export async function GET() {
       );
     }
 
-    const fileResponse = await fetch(doc.url, { cache: 'no-store' });
-
-    if (!fileResponse.ok) {
-      return NextResponse.json(
-        { message: 'Impossible de recuperer le document' },
-        { status: 502 }
-      );
-    }
-
-    const pdfBuffer = await fileResponse.arrayBuffer();
-
     await DocsServices.handleCvDownload(doc._id.toString());
 
-    return new NextResponse(pdfBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': doc.contentType,
-        'Content-Length': String(pdfBuffer.byteLength),
-        'Content-Disposition': buildContentDisposition(doc.name),
-        'Cache-Control': 'no-store',
-      },
-    });
+    const response = NextResponse.redirect(doc.url, 307);
+    response.headers.set('Cache-Control', 'no-store');
+    response.headers.set('Content-Disposition', buildContentDisposition(doc.name));
+
+    return response;
   } catch (error: any) {
     return NextResponse.json(
       { message: 'Impossible de recuperer le document', error: error.message },

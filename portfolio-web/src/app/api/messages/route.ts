@@ -7,7 +7,7 @@ import { connectDB } from '@/backend/database/mongoose';
  * Recupérer tous les messages
  * @param request page default = 1
  * @param request limit default = 20
- * @response 200:MessageType
+ * @response 200:PaginatedMessagesResponse:Liste paginee des messages
  * @response 401:unauthorized
  * @response 500:Erreur serveur Impossible de récupérer les messages
  * @openapi

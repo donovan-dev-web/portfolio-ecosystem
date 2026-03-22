@@ -49,7 +49,7 @@ function getGalleryIndexes(formData: FormData) {
 
 /**
  * Récupérer tous les projets
- * @response 200:ProjectType[]
+ * @response 200:ProjectRecordType[]:Liste des projets
  * @openapi
  */
 export async function GET() {
@@ -60,8 +60,8 @@ export async function GET() {
 
 /**
  * Créer un nouveau projet
- * @body ProjectType
- * @response 201:ProjectType
+ * @body ProjectRecordType
+ * @response 201:ProjectRecordType:Projet cree
  * @openapi
  */
 export async function POST(request: Request) {

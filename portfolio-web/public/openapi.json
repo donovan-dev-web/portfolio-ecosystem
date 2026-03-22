@@ -1,14 +1,14 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Documentation",
+    "title": "Portfolio Ecosystem API",
     "version": "1.0.0",
-    "description": "This is the OpenAPI specification for your project."
+    "description": "Documentation OpenAPI de l API du portfolio de Donovan Chartrain : projets, messages, documents, tags, authentification et notifications."
   },
   "servers": [
     {
-      "url": "http://localhost:3000/api",
-      "description": "Local development server"
+      "url": "https://donovan-dev-web.vercel.app/api",
+      "description": "API serverless du portfolio public et des interfaces d administration"
     }
   ],
   "components": {
@@ -58,6 +58,50 @@
           "password"
         ]
       },
+      "DocType": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "cv"
+            ]
+          },
+          "name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "pathname": {
+            "type": "string"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "downloadCount": {
+            "type": "number"
+          },
+          "lastDownloadedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "ProgrammingLanguageType": {
         "type": "object",
         "properties": {
@@ -86,6 +130,9 @@
       "MessageType": {
         "type": "object",
         "properties": {
+          "_id": {
+            "type": "string"
+          },
           "name": {
             "type": "string"
           },
@@ -130,8 +177,154 @@
           "icon"
         ]
       },
-      "ProjectType": {
-        "type": "object"
+      "ProjectRecordType": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "nullable": true
+          },
+          "slug": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": false
+          },
+          "order": {
+            "type": "number",
+            "nullable": false
+          },
+          "projectType": {
+            "type": "string",
+            "nullable": false
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": false
+          },
+          "languages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": false
+          },
+          "shortDescription": {
+            "type": "string",
+            "nullable": false
+          },
+          "coverImage": {
+            "type": "object",
+            "properties": {
+              "small": {
+                "type": "string"
+              },
+              "medium": {
+                "type": "string"
+              },
+              "large": {
+                "type": "string"
+              }
+            },
+            "nullable": false
+          },
+          "stack": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "presentation": {
+            "type": "object",
+            "properties": {
+              "description": {
+                "type": "string"
+              },
+              "context": {
+                "type": "string"
+              },
+              "objectives": {
+                "type": "string"
+              },
+              "skills": {
+                "type": "string"
+              },
+              "results": {
+                "type": "string"
+              },
+              "improvements": {
+                "type": "string"
+              }
+            },
+            "nullable": false
+          },
+          "gallery": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "desktop": {
+                  "type": "object",
+                  "properties": {
+                    "small": {
+                      "type": "string"
+                    },
+                    "medium": {
+                      "type": "string"
+                    },
+                    "large": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "mobile": {
+                  "type": "object",
+                  "properties": {
+                    "small": {
+                      "type": "string"
+                    },
+                    "medium": {
+                      "type": "string"
+                    },
+                    "large": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "alt": {
+                  "type": "string"
+                }
+              }
+            },
+            "nullable": true
+          },
+          "githubUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "isLive": {
+            "type": "boolean",
+            "nullable": true
+          },
+          "liveUrl": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          }
+        }
       },
       "TechnologySchema": {
         "type": "object",
@@ -414,6 +607,145 @@
         }
       }
     },
+    "/docs": {
+      "get": {
+        "operationId": "get-docs",
+        "summary": "Récupérer le CV au format PDF",
+        "description": "",
+        "tags": [
+          "Docs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/file:PDF du CV"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "post": {
+        "operationId": "post-docs",
+        "summary": "Ajouter le CV au format PDF",
+        "description": "",
+        "tags": [
+          "Docs"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-docs",
+        "summary": "Remplacer le CV existant",
+        "description": "",
+        "tags": [
+          "Docs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-docs",
+        "summary": "Supprimer le CV existant",
+        "description": "",
+        "tags": [
+          "Docs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Document supprimé"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/docs/meta": {
+      "get": {
+        "operationId": "get-docs-meta",
+        "summary": "Récupérer les métadonnées du CV sans télécharger le fichier",
+        "description": "",
+        "tags": [
+          "Docs"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DocType"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/languages": {
       "get": {
         "operationId": "get-languages",
@@ -579,7 +911,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/MessageType"
+                  "$ref": "#/components/schemas/PaginatedMessagesResponse:Liste paginee des messages"
                 }
               }
             }
@@ -776,6 +1108,110 @@
         }
       }
     },
+    "/project-types/{id}": {
+      "get": {
+        "operationId": "get-project-types-{id}",
+        "summary": "Récupérer un ProjectType par ID",
+        "description": "",
+        "tags": [
+          "Project-types"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectTypeType:ProjectType trouvé"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-project-types-{id}",
+        "summary": "Mettre à jour un ProjectType",
+        "description": "",
+        "tags": [
+          "Project-types"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectTypeSchema"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectTypeType:ProjectType mis à jour"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-project-types-{id}",
+        "summary": "Supprimer un ProjectType",
+        "description": "",
+        "tags": [
+          "Project-types"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message:ProjectType supprimé"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/projects": {
       "get": {
         "operationId": "get-projects",
@@ -791,10 +1227,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/ProjectType"
-                  }
+                  "$ref": "#/components/schemas/ProjectRecordType[]:Liste des projets"
                 }
               }
             }
@@ -819,7 +1252,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ProjectType"
+                "$ref": "#/components/schemas/ProjectRecordType"
               }
             }
           }
@@ -830,7 +1263,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProjectType"
+                  "$ref": "#/components/schemas/ProjectRecordType:Projet cree"
                 }
               }
             }
@@ -859,7 +1292,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ProjectType:Projet trouvé"
+                  "$ref": "#/components/schemas/ProjectRecordType:Projet trouve"
                 }
               }
             }

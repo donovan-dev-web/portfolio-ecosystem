@@ -1,16 +1,17 @@
-// src/screens/MessageDetailScreen.tsx
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  Linking,
   ActivityIndicator,
+  Linking,
+  Pressable,
   ScrollView,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native'
+import { Ionicons } from '@expo/vector-icons'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
+
 import { RootStackParamList } from '../navigation/types'
 import { MessageContext } from '../context/Messages/messagesContext'
 import { getMessageById, Message } from '../services/messagesService'
@@ -64,7 +65,7 @@ export const MessageDetailScreen: React.FC = () => {
   if (loading) {
     return (
       <View style={styles.loader}>
-        <ActivityIndicator size="large" />
+        <ActivityIndicator size="large" color="#725bef" />
       </View>
     )
   }
@@ -72,245 +73,288 @@ export const MessageDetailScreen: React.FC = () => {
   if (!message) {
     return (
       <View style={styles.loader}>
-        <Text>Message introuvable</Text>
+        <Text style={styles.notFoundText}>Message introuvable</Text>
       </View>
     )
   }
 
   return (
-    <View style={styles.container}>
-      {/* HEADER */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Text style={styles.backText}>← Retour</Text>
-        </TouchableOpacity>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+    >
+      <View style={styles.headerActions}>
+        <Pressable style={styles.backButton} onPress={() => navigation.goBack()}>
+          <Ionicons name="chevron-back" size={16} color="#d9d4ff" />
+          <Text style={styles.backText}>Retour aux messages</Text>
+        </Pressable>
 
-        <TouchableOpacity style={styles.replyButton} onPress={handleReply}>
-          <Text style={styles.replyText}>Répondre</Text>
-        </TouchableOpacity>
+        <Pressable style={styles.replyButton} onPress={handleReply}>
+          <Ionicons name="mail-outline" size={16} color="#dff7e8" />
+          <Text style={styles.replyText}>Repondre</Text>
+        </Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content}>
-        {/* CARD */}
-        <View style={styles.card}>
-          {/* Name + Status */}
-          <View style={styles.topRow}>
+      <View style={styles.heroCard}>
+        <View style={styles.heroTop}>
+          <View style={styles.identity}>
             <Text style={styles.name}>{message.name}</Text>
-
-            <View
-              style={[
-                styles.badge,
-                message.read ? styles.badgeRead : styles.badgeUnread,
-              ]}
-            >
-              <Text style={styles.badgeText}>
-                {message.read ? 'Lu' : 'Non lu'}
-              </Text>
-            </View>
+            <Text style={styles.email}>{message.email}</Text>
           </View>
 
-          {/* Email */}
-          <Text style={styles.label}>Email</Text>
-          <Text style={styles.value}>{message.email}</Text>
+          <View
+            style={[
+              styles.badge,
+              message.read ? styles.badgeRead : styles.badgeUnread,
+            ]}
+          >
+            <Text style={styles.badgeText}>
+              {message.read ? 'Lu' : 'Non lu'}
+            </Text>
+          </View>
+        </View>
 
-          {/* Phone */}
-          {message.phone && (
-            <>
-              <Text style={styles.label}>Téléphone</Text>
-              <Text style={styles.value}>{message.phone}</Text>
-            </>
-          )}
+        <Text style={styles.heroText}>
+          Message recu depuis le portfolio, avec acces direct aux informations
+          de contact et au contenu complet de l’echange.
+        </Text>
+      </View>
 
-          {/* Date Sent */}
-          <Text style={styles.label}>Date d'envoi</Text>
-          <Text style={styles.value}>
+      <View style={styles.metaCard}>
+        <View style={styles.metaItem}>
+          <Text style={styles.metaLabel}>Email</Text>
+          <Text style={styles.metaValue}>{message.email}</Text>
+        </View>
+
+        {message.phone ? (
+          <View style={styles.metaItem}>
+            <Text style={styles.metaLabel}>Telephone</Text>
+            <Text style={styles.metaValue}>{message.phone}</Text>
+          </View>
+        ) : null}
+
+        <View style={styles.metaItem}>
+          <Text style={styles.metaLabel}>Date d’envoi</Text>
+          <Text style={styles.metaValue}>
             {new Date(message.dateSent).toLocaleString()}
           </Text>
+        </View>
 
-          {/* Date Read */}
-          {message.dateRead && (
-            <>
-              <Text style={styles.label}>Date de lecture</Text>
-              <Text style={styles.value}>
-                {new Date(message.dateRead).toLocaleString()}
-              </Text>
-            </>
-          )}
-
-          {/* Content */}
-          <Text style={styles.label}>Message</Text>
-
-          <View style={styles.messageBox}>
-            <Text style={styles.messageText}>{message.content}</Text>
+        {message.dateRead ? (
+          <View style={styles.metaItem}>
+            <Text style={styles.metaLabel}>Date de lecture</Text>
+            <Text style={styles.metaValue}>
+              {new Date(message.dateRead).toLocaleString()}
+            </Text>
           </View>
-        </View>
+        ) : null}
+      </View>
 
-        {/* NAVIGATION */}
-        <View style={styles.navigation}>
-          <TouchableOpacity
-            style={[
-              styles.navButton,
-              currentIndex <= 0 && styles.navButtonDisabled,
-            ]}
-            disabled={currentIndex <= 0}
-            onPress={() => goToMessage(currentIndex - 1)}
-          >
-            <Text style={styles.navText}>← Précédent</Text>
-          </TouchableOpacity>
+      <View style={styles.messageCard}>
+        <Text style={styles.sectionTitle}>Message</Text>
+        <Text style={styles.messageText}>{message.content}</Text>
+      </View>
 
-          <TouchableOpacity
-            style={[
-              styles.navButton,
-              currentIndex >= messages.length - 1 && styles.navButtonDisabled,
-            ]}
-            disabled={currentIndex >= messages.length - 1}
-            onPress={() => goToMessage(currentIndex + 1)}
-          >
-            <Text style={styles.navText}>Suivant →</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-    </View>
+      <View style={styles.navigation}>
+        <Pressable
+          style={[
+            styles.navButton,
+            currentIndex <= 0 && styles.navButtonDisabled,
+          ]}
+          disabled={currentIndex <= 0}
+          onPress={() => goToMessage(currentIndex - 1)}
+        >
+          <Ionicons name="arrow-back" size={16} color="#f2f2f7" />
+          <Text style={styles.navText}>Precedent</Text>
+        </Pressable>
+
+        <Pressable
+          style={[
+            styles.navButton,
+            currentIndex >= messages.length - 1 && styles.navButtonDisabled,
+          ]}
+          disabled={currentIndex >= messages.length - 1}
+          onPress={() => goToMessage(currentIndex + 1)}
+        >
+          <Text style={styles.navText}>Suivant</Text>
+          <Ionicons name="arrow-forward" size={16} color="#f2f2f7" />
+        </Pressable>
+      </View>
+    </ScrollView>
   )
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'transparent',
-    marginTop: 30,
-    marginBottom: 30,
   },
-
+  content: {
+    padding: 20,
+    paddingBottom: 80,
+  },
   loader: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  header: {
+  notFoundText: {
+    color: '#fff',
+  },
+  headerActions: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: 16,
-    backgroundColor: 'transparent',
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
+    gap: 10,
+    marginBottom: 16,
   },
-
   backButton: {
-    padding: 8,
-  },
-
-  backText: {
-    fontSize: 16,
-    color: '#2563eb',
-    fontWeight: '500',
-  },
-
-  replyButton: {
-    backgroundColor: '#16a34a',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
     paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 6,
+    paddingVertical: 10,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
   },
-
+  backText: {
+    color: '#f2f2f7',
+    fontWeight: '700',
+  },
+  replyButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    borderRadius: 14,
+    backgroundColor: 'rgba(40, 167, 69, 0.16)',
+    borderWidth: 1,
+    borderColor: 'rgba(40, 167, 69, 0.26)',
+  },
   replyText: {
-    color: 'white',
-    fontWeight: '600',
+    color: '#dff7e8',
+    fontWeight: '700',
   },
-
-  content: {
-    padding: 16,
-  },
-
-  card: {
-    backgroundColor: 'white',
+  heroCard: {
+    marginBottom: 16,
     padding: 18,
-    borderRadius: 10,
-
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 6,
-    shadowOffset: { width: 0, height: 2 },
-
-    elevation: 3,
+    borderRadius: 22,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
   },
-
-  topRow: {
+  heroTop: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    gap: 12,
   },
-
+  identity: {
+    flex: 1,
+  },
   name: {
-    fontSize: 20,
-    fontWeight: '600',
+    color: '#fff',
+    fontSize: 24,
+    fontWeight: '700',
   },
-
-  badge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 6,
+  email: {
+    color: '#b8b8c6',
+    marginTop: 6,
   },
-
-  badgeRead: {
-    backgroundColor: '#9ca3af',
-  },
-
-  badgeUnread: {
-    backgroundColor: '#2563eb',
-  },
-
-  badgeText: {
-    color: 'white',
-    fontSize: 12,
-    fontWeight: '600',
-  },
-
-  label: {
-    marginTop: 12,
-    fontSize: 13,
-    color: '#6b7280',
-  },
-
-  value: {
-    fontSize: 16,
-    marginTop: 2,
-  },
-
-  messageBox: {
-    marginTop: 8,
-    backgroundColor: '#f9fafb',
-    padding: 14,
-    borderRadius: 8,
-  },
-
-  messageText: {
-    fontSize: 16,
+  heroText: {
+    marginTop: 14,
+    color: '#cfcfda',
     lineHeight: 22,
   },
-
+  badge: {
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    alignSelf: 'flex-start',
+  },
+  badgeRead: {
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  badgeUnread: {
+    backgroundColor: 'rgba(114, 91, 239, 0.18)',
+    borderWidth: 1,
+    borderColor: 'rgba(114, 91, 239, 0.34)',
+  },
+  badgeText: {
+    color: '#f4f2ff',
+    fontSize: 12,
+    fontWeight: '700',
+  },
+  metaCard: {
+    marginBottom: 16,
+    padding: 18,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
+  },
+  metaItem: {
+    paddingBottom: 12,
+    marginBottom: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(255,255,255,0.06)',
+  },
+  metaLabel: {
+    color: '#9a9ab0',
+    fontSize: 12,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    marginBottom: 4,
+  },
+  metaValue: {
+    color: '#f2f2f7',
+    lineHeight: 21,
+  },
+  messageCard: {
+    marginBottom: 18,
+    padding: 18,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
+  },
+  sectionTitle: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  messageText: {
+    color: '#d0d0da',
+    fontSize: 15,
+    lineHeight: 24,
+  },
   navigation: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    gap: 12,
   },
-
   navButton: {
-    backgroundColor: '#2563eb',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
     paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 6,
+    paddingVertical: 12,
+    borderRadius: 14,
+    backgroundColor: 'rgba(114, 91, 239, 0.18)',
+    borderWidth: 1,
+    borderColor: 'rgba(114, 91, 239, 0.34)',
   },
-
   navButtonDisabled: {
-    backgroundColor: '#9ca3af',
+    opacity: 0.45,
   },
-
   navText: {
-    color: 'white',
-    fontWeight: '600',
+    color: '#f2f2f7',
+    fontWeight: '700',
   },
 })

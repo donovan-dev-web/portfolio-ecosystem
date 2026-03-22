@@ -9,6 +9,7 @@ import {
   getLanguages,
   getProjectTypes,
   reorderProjects as reorderService,
+  deleteProject as deleteProjectService,
 } from '../../services/ProjectService'
 
 export const ProjectProvider = ({
@@ -80,6 +81,11 @@ export const ProjectProvider = ({
     }
   }
 
+  const deleteProject = async (projectId: string) => {
+    await deleteProjectService(projectId)
+    await refreshProjects()
+  }
+
   return (
     <ProjectContext.Provider
       value={{
@@ -90,6 +96,7 @@ export const ProjectProvider = ({
         loading,
         refreshProjects,
         reorderProjects,
+        deleteProject,
       }}
     >
       {children}
