@@ -10,10 +10,6 @@
   margin-bottom: 20px;
 }
 
-.hero {
-  min-height: 100dvh;
-}
-
 .titleContainer {
   width: 80%;
   animation: gradient-change 2s linear infinite alternate;
@@ -112,6 +108,8 @@
   width: 90%;
   border: 1px solid var(--glow-violet);
   border-radius: 1.4rem;
+  max-width: 300px;
+  aspect-ratio: 1, 1;
   padding: 18px;
   background: linear-gradient(
     135deg,
@@ -141,14 +139,15 @@
   gap: 16px;
 }
 
-.heroStats,
+.recruiterGrid,
 .ecosystemGrid,
-.recruiterGrid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
 .stackPanel {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.heroStats,
+.TypeTwo {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .heroStatCard,
@@ -314,7 +313,9 @@
 .caseStudyMediaRight {
   & img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    max-height: 600px;
     display: block;
     border-radius: 1rem;
     border: 1px solid var(--sidebar-metallic-light);

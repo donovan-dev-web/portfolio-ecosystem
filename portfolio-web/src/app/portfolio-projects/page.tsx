@@ -494,7 +494,7 @@ export default function PortfolioProjectsPage() {
           dialoguer plusieurs applications autour d un meme besoin.
         </p>
 
-        <div className={styles.recruiterGrid}>
+        <div className={`${styles.recruiterGrid} ${styles.TypeTwo}`}>
           <article className={styles.recruiterCard}>
             <FolderGit2 />
             <h3>Vision projet complete</h3>

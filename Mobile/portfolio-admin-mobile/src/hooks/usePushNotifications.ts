@@ -14,7 +14,7 @@ interface PushNotificationState {
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: true,
     shouldShowBanner: true,
     shouldShowList: true,
@@ -25,32 +25,30 @@ export const usePushNotifications = (): PushNotificationState => {
   const [expoPushToken, setExpoPushToken] =
     useState<Notifications.ExpoPushToken>()
 
-  const [notification, setNotification] =
-    useState<Notifications.Notification>()
+  const [notification, setNotification] = useState<Notifications.Notification>()
 
-  const notificationListener =
-    useRef<Notifications.EventSubscription | null>(null)
+  const notificationListener = useRef<Notifications.EventSubscription | null>(
+    null,
+  )
 
-  const responseListener =
-    useRef<Notifications.EventSubscription | null>(null)
+  const responseListener = useRef<Notifications.EventSubscription | null>(null)
 
   const isNavigatingRef = useRef(false)
 
-  async function registerForPushNotificationsAsync():
-    Promise<Notifications.ExpoPushToken | undefined> {
+  async function registerForPushNotificationsAsync(): Promise<
+    Notifications.ExpoPushToken | undefined
+  > {
     if (!Device.isDevice) {
       console.log('Doit être testé sur un vrai téléphone')
       return
     }
 
-    const { status: existingStatus } =
-      await Notifications.getPermissionsAsync()
+    const { status: existingStatus } = await Notifications.getPermissionsAsync()
 
     let finalStatus = existingStatus
 
     if (existingStatus !== 'granted') {
-      const { status } =
-        await Notifications.requestPermissionsAsync()
+      const { status } = await Notifications.requestPermissionsAsync()
 
       finalStatus = status
     }
@@ -60,8 +58,7 @@ export const usePushNotifications = (): PushNotificationState => {
       return
     }
 
-    const projectId =
-      Constants.expoConfig?.extra?.eas?.projectId
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId
 
     if (!projectId) {
       console.error('projectId manquant dans app.json')
@@ -69,22 +66,17 @@ export const usePushNotifications = (): PushNotificationState => {
     }
 
     try {
-      const token =
-        await Notifications.getExpoPushTokenAsync({
-          projectId,
-        })
+      const token = await Notifications.getExpoPushTokenAsync({
+        projectId,
+      })
 
       if (Platform.OS === 'android') {
-        await Notifications.setNotificationChannelAsync(
-          'default',
-          {
-            name: 'default',
-            importance:
-              Notifications.AndroidImportance.MAX,
-            vibrationPattern: [0, 250, 250, 250],
-            lightColor: '#FF231F7C',
-          },
-        )
+        await Notifications.setNotificationChannelAsync('default', {
+          name: 'default',
+          importance: Notifications.AndroidImportance.MAX,
+          vibrationPattern: [0, 250, 250, 250],
+          lightColor: '#FF231F7C',
+        })
       }
 
       return token
@@ -95,7 +87,7 @@ export const usePushNotifications = (): PushNotificationState => {
   }
 
   const configureNotificationCategories = useCallback(async () => {
-    await Notifications.setNotificationCategoryAsync('message-actions', [
+    await Notifications.setNotificationCategoryAsync('messageActions', [
       {
         identifier: 'VIEW_MESSAGE',
         buttonTitle: 'Voir le message',
@@ -117,8 +109,10 @@ export const usePushNotifications = (): PushNotificationState => {
     async (response: Notifications.NotificationResponse) => {
       if (isNavigatingRef.current) return
 
-      const data =
-        response.notification.request.content.data as Record<string, any>
+      const data = response.notification.request.content.data as Record<
+        string,
+        any
+      >
 
       const actionIdentifier = response.actionIdentifier
 

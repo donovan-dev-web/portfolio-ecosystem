@@ -1,12 +1,15 @@
 .container {
   width: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 7px;
   animation: bounce 2s ease infinite;
   margin-top: 20px;
+  scroll-behavior: smooth;
+  & a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+  }
 }
 
 .text {

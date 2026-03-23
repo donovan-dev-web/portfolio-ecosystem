@@ -21,7 +21,7 @@ export const MessagesServices = {
         messageId: created._id.toString(),
       },
       {
-        categoryId: 'message-actions',
+        categoryId: 'messageActions',
       }
     );
 

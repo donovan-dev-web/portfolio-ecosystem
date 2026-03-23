@@ -14,10 +14,10 @@ type TabItem = {
 };
 
 const tabs: TabItem[] = [
-  { label: 'Home', path: '/', icon: <House /> },
-  { label: 'Mes Projets', path: '/projects', icon: <FolderOpen /> },
+  { label: 'Accueil', path: '/', icon: <House /> },
+  { label: 'Projets', path: '/projects', icon: <FolderOpen /> },
   { label: 'Expertise', path: '/expertise', icon: <IdCard /> },
-  { label: 'Me contacter', path: '/contact', icon: <Mail /> },
+  { label: 'Contact', path: '/contact', icon: <Mail /> },
 ];
 
 export function BottomBar() {
@@ -44,6 +44,7 @@ export function BottomBar() {
                   <span className={styles.tabLabel}>{tab.label}</span>
                 )}
                 <span className={styles.tabIcon}>{tab.icon}</span>
+                <span className={styles.tabLabelBottom}>{tab.label}</span>
               </Link>
             </li>
           );

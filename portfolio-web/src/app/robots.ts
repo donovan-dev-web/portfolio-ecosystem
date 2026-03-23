@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/api-docs', '/admin/', '/_next/', '/openapi.json'],
+        disallow: ['/api/', '/api-docs', '/openapi.json'],
       },
     ],
     host: 'https://donovan-dev-web.vercel.app',

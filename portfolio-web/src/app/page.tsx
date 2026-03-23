@@ -70,12 +70,13 @@ export default function Home() {
           <Badge icons={false} content="Performance & UX" />
         </div>
         <div className={styles.CtaScroll}>
-          <CtaScroll />
+          <CtaScroll NavigateTo="#QuiSuisJeSection" />
         </div>
       </section>
       <section
         className={`${styles.sectionClass} ${styles.about}`}
         aria-label="Qui sius-je ?"
+        id="QuiSuisJeSection"
       >
         <h2 className={styles.TitleHTwo}>Qui suis-je ?</h2>
         <p className={styles.subTitleTwo}>
