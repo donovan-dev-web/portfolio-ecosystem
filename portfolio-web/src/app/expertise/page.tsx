@@ -5,6 +5,8 @@ import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
+import CarrouselBanner from '@/frontend/components/Global/CarrouselBanner/CarrouselBanner';
+
 import { Sparkles, AtSign, MapPin, Clock, Mail, Download } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -39,6 +41,7 @@ export default function ExpertisePage() {
           />
           <SecondaryButton navigateTo="/contact" content="Me Contacter" />
         </div>
+        <CarrouselBanner />
       </section>
       <section className={styles.sectionClass}>
         <h2 className={styles.TitleHTwo}>Profil</h2>

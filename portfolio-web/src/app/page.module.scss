@@ -19,14 +19,6 @@
   min-height: 100dvh;
 }
 
-.badgePanel {
-  display: flex;
-  width: 100%;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 50px;
-}
-
 .titleContainer {
   width: 80%;
   animation: gradient-change 2s linear infinite alternate;
@@ -154,13 +146,6 @@
   .panelCtaHero {
     flex-direction: column;
     gap: 10px;
-  }
-
-  .badgePanel {
-    margin-top: 0;
-    flex-wrap: wrap;
-    margin-top: 5px;
-    width: 100%;
   }
 }
 

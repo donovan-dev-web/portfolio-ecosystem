@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
+import CarrouselBanner from '../frontend/components/Global/CarrouselBanner/CarrouselBanner';
 import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
 import { CardTypeOne } from '@/frontend/components/Global/CardsTypeOne/CardsTypeOne';
@@ -62,12 +63,8 @@ export default function Home() {
           />
           <SecondaryButton navigateTo="/contact" content="Me Contacter" />
         </div>
-        <div className={styles.badgePanel}>
-          <Badge icons={false} content="Frontend" />
-          <Badge icons={false} content="Backend" />
-          <Badge icons={false} content="Mobile" />
-          <Badge icons={false} content="API & Bases de données" />
-          <Badge icons={false} content="Performance & UX" />
+        <div className={styles.CarrouselContainer}>
+          <CarrouselBanner />
         </div>
         <div className={styles.CtaScroll}>
           <CtaScroll NavigateTo="#QuiSuisJeSection" />
