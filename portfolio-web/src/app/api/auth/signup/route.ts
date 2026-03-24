@@ -6,7 +6,7 @@ import { connectDB } from '@/backend/database/mongoose';
 /**
  * Crée un nouvel utilisateur
  * @body SignupBody
- * @response 201:SignupResponse:Utilisateur créé avec succès
+ * @response 201:SignupResponse
  * @responseSet auth
  * @openapi
  */

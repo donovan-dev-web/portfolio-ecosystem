@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native'
+import { Text, View, ScrollView } from 'react-native'
 import { useState } from 'react'
 
 import TopTabs from '../components/Projet/TopTabs'
@@ -9,7 +9,7 @@ export default function ProjectsScreen() {
   const [activeTab, setActiveTab] = useState('projects')
 
   return (
-    <View
+    <ScrollView
       style={{
         flex: 1,
         width: '100%',
@@ -51,6 +51,6 @@ export default function ProjectsScreen() {
       {activeTab === 'projects' && <ProjectsTab />}
 
       {activeTab === 'tags' && <TagsTab />}
-    </View>
+    </ScrollView>
   )
 }

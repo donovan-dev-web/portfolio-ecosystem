@@ -12,8 +12,9 @@ import {
 
 /**
  * Recupere l etat d activation de la creation de compte
- * @response 200:SignupStatusResponse:Etat du signup
+ * @response 200:SignupStatusResponse
  * @response 401:Unauthorized
+ * @responseSet auth
  * @openapi
  */
 export async function GET(request: NextRequest) {
@@ -39,8 +40,9 @@ export async function GET(request: NextRequest) {
 /**
  * Met a jour l etat d activation de la creation de compte
  * @body SignupStatusResponse
- * @response 200:SignupStatusResponse:Etat du signup mis a jour
+ * @response 200:SignupStatusResponse
  * @response 401:Unauthorized
+ * @responseSet auth
  * @openapi
  */
 export async function PUT(request: NextRequest) {

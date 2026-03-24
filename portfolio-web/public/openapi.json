@@ -39,6 +39,60 @@
           "password"
         ]
       },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "description": "ID de l'utilisateur"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email de l'utilisateur"
+          },
+          "token": {
+            "type": "string",
+            "description": "JWT d'authentification"
+          }
+        },
+        "required": [
+          "userId",
+          "email",
+          "token"
+        ]
+      },
+      "ChangePasswordBody": {
+        "type": "object",
+        "properties": {
+          "oldPassword": {
+            "type": "string",
+            "minLength": 8,
+            "description": "Ancien mot de passe de l'utilisateur"
+          },
+          "newPassword": {
+            "type": "string",
+            "minLength": 8,
+            "description": "Nouveau mot de passe de l'utilisateur"
+          }
+        },
+        "required": [
+          "oldPassword",
+          "newPassword"
+        ]
+      },
+      "SignupResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "Message de confirmation"
+          }
+        },
+        "required": [
+          "message"
+        ]
+      },
       "SignupBody": {
         "type": "object",
         "properties": {
@@ -57,6 +111,68 @@
           "email",
           "password"
         ]
+      },
+      "SignupStatusResponse": {
+        "type": "object",
+        "properties": {
+          "signupEnabled": {
+            "type": "boolean",
+            "description": "Etat d activation de la route signup"
+          }
+        },
+        "required": [
+          "signupEnabled"
+        ]
+      },
+      "UpdateUserBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Nouvel email de l'utilisateur"
+          },
+          "password": {
+            "type": "string",
+            "minLength": 8,
+            "description": "Nouveau mot de passe optionnel"
+          }
+        },
+        "required": [
+          "email"
+        ]
+      },
+      "UserResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "ID de l'utilisateur"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "description": "Email de l'utilisateur"
+          },
+          "createdAt": {
+            "type": "string",
+            "description": "Date de creation"
+          },
+          "updatedAt": {
+            "type": "string",
+            "description": "Date de mise a jour"
+          }
+        },
+        "required": [
+          "id",
+          "email"
+        ]
+      },
+      "UsersListResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UserResponse"
+        }
       },
       "DocType": {
         "type": "object",
@@ -345,35 +461,6 @@
           "icon"
         ]
       },
-      "SignupResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "Message de confirmation"
-          }
-        },
-        "required": [
-          "message"
-        ]
-      },
-      "LoginResponse": {
-        "type": "object",
-        "properties": {
-          "userId": {
-            "type": "string",
-            "description": "ID de l'utilisateur"
-          },
-          "token": {
-            "type": "string",
-            "description": "JWT d'authentification"
-          }
-        },
-        "required": [
-          "userId",
-          "token"
-        ]
-      },
       "ProgrammingLanguageSchema": {
         "type": "object",
         "properties": {
@@ -543,7 +630,51 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LoginResponse:Connexion réussie"
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/password": {
+      "put": {
+        "operationId": "put-auth-password",
+        "summary": "Modifie le mot de passe de l utilisateur connecte",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePasswordBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
                 }
               }
             }
@@ -587,7 +718,196 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SignupResponse:Utilisateur créé avec succès"
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/signup-status": {
+      "get": {
+        "operationId": "get-auth-signup-status",
+        "summary": "Recupere l etat d activation de la creation de compte",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "put": {
+        "operationId": "put-auth-signup-status",
+        "summary": "Met a jour l etat d activation de la creation de compte",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupStatusResponse"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupStatusResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/users": {
+      "get": {
+        "operationId": "get-auth-users",
+        "summary": "Recupere la liste des utilisateurs",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsersListResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/auth/users/{id}": {
+      "put": {
+        "operationId": "put-auth-users-{id}",
+        "summary": "Met a jour un utilisateur",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "delete-auth-users-{id}",
+        "summary": "Supprime un utilisateur",
+        "description": "",
+        "tags": [
+          "Auth"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
                 }
               }
             }
@@ -1215,7 +1535,7 @@
     "/projects": {
       "get": {
         "operationId": "get-projects",
-        "summary": "Récupérer tous les projets",
+        "summary": "Public - Récupérer tous les projets",
         "description": "",
         "tags": [
           "Projects"
@@ -1242,7 +1562,7 @@
       },
       "post": {
         "operationId": "post-projects",
-        "summary": "Créer un nouveau projet",
+        "summary": "Admin - Créer un nouveau projet",
         "description": "",
         "tags": [
           "Projects"
@@ -1271,6 +1591,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "500": {
             "$ref": "#/components/responses/500"
           }
@@ -1280,7 +1606,7 @@
     "/projects/{id}": {
       "get": {
         "operationId": "get-projects-{id}",
-        "summary": "Récupérer un projet par ID",
+        "summary": "Public - Récupérer un projet par ID",
         "description": "",
         "tags": [
           "Projects"
@@ -1324,7 +1650,7 @@
       },
       "delete": {
         "operationId": "delete-projects-{id}",
-        "summary": "Supprimer un projet",
+        "summary": "Admin - Supprimer un projet",
         "description": "",
         "tags": [
           "Projects"
@@ -1337,6 +1663,12 @@
           "400": {
             "$ref": "#/components/responses/400"
           },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
+          },
           "500": {
             "$ref": "#/components/responses/500"
           }
@@ -1346,7 +1678,7 @@
     "/projects/reorder": {
       "put": {
         "operationId": "put-projects-reorder",
-        "summary": "Réorganiser les projets",
+        "summary": "Admin - Réorganiser les projets",
         "description": "",
         "tags": [
           "Projects"
@@ -1355,6 +1687,12 @@
         "responses": {
           "400": {
             "$ref": "#/components/responses/400"
+          },
+          "401": {
+            "$ref": "#/components/responses/401"
+          },
+          "403": {
+            "$ref": "#/components/responses/403"
           },
           "500": {
             "$ref": "#/components/responses/500"

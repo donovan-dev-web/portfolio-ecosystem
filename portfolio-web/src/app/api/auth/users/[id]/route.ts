@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 import { connectDB } from '@/backend/database/mongoose';
 import { requireAuth } from '@/backend/auth/auth.middleware';
-import { UpdateUserBody } from '@/backend/auth/auth.schema';
+import {
+  SignupResponse,
+  UpdateUserBody,
+  UserResponse,
+} from '@/backend/auth/auth.schema';
 import {
   deleteUserService,
   updateUserService,
@@ -11,9 +15,10 @@ import {
 /**
  * Met a jour un utilisateur
  * @body UpdateUserBody
- * @response 200:UserResponse:Utilisateur mis a jour
+ * @response 200:UserResponse
  * @response 401:Unauthorized
  * @response 404:Utilisateur introuvable
+ * @responseSet auth
  * @openapi
  */
 export async function PUT(
@@ -59,9 +64,10 @@ export async function PUT(
 
 /**
  * Supprime un utilisateur
- * @response 200:SignupResponse:Utilisateur supprime
+ * @response 200:SignupResponse
  * @response 401:Unauthorized
  * @response 404:Utilisateur introuvable
+ * @responseSet auth
  * @openapi
  */
 export async function DELETE(

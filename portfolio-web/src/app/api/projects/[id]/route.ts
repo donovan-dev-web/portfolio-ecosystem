@@ -5,9 +5,11 @@ import { connectDB } from '@/backend/database/mongoose';
 import { ImageService } from '@/backend/config/image.service';
 
 /**
- * Récupérer un projet par ID
+ * Public - Récupérer un projet par ID
+ * Endpoint public utilise par le site et les pages detail projet
  * @response 200:ProjectRecordType:Projet trouve
  * @response 404:Projet non trouvé
+ * @responseSet public
  * @openapi
  */
 export async function GET(
@@ -26,10 +28,12 @@ export async function GET(
 }
 
 /**
- * Mettre à jour un projet
+ * Admin - Mettre à jour un projet
+ * Endpoint protege par authentification Bearer pour modifier un projet existant
  * @body ProjectRecordType
  * @response 200:ProjectRecordType:Projet mis a jour
  * @response 404:Projet non trouvé
+ * @responseSet auth
  * @openapi
  */
 
@@ -108,9 +112,11 @@ export async function PUT(
 }
 
 /**
- * Supprimer un projet
+ * Admin - Supprimer un projet
+ * Endpoint protege par authentification Bearer pour supprimer un projet
  * @response 204:Projet supprimé
  * @response 404:Projet non trouvé
+ * @responseSet auth
  * @openapi
  */
 export async function DELETE(

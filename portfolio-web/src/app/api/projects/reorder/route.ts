@@ -3,9 +3,11 @@ import { ProjectService } from '@/backend/projects/projects.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 
 /**
- * Réorganiser les projets
+ * Admin - Réorganiser les projets
+ * Endpoint protege par authentification Bearer pour mettre a jour l ordre des projets
  * @body { id: string; order: number }[]
  * @response 200
+ * @responseSet auth
  * @openapi
  */
 export async function PUT(request: NextRequest) {

@@ -48,8 +48,10 @@ function getGalleryIndexes(formData: FormData) {
 }
 
 /**
- * Récupérer tous les projets
+ * Public - Récupérer tous les projets
+ * Endpoint public utilise par le site web pour afficher le catalogue de projets
  * @response 200:ProjectRecordType[]:Liste des projets
+ * @responseSet public
  * @openapi
  */
 export async function GET() {
@@ -59,9 +61,11 @@ export async function GET() {
 }
 
 /**
- * Créer un nouveau projet
+ * Admin - Créer un nouveau projet
+ * Endpoint protege par authentification Bearer pour l administration des projets
  * @body ProjectRecordType
  * @response 201:ProjectRecordType:Projet cree
+ * @responseSet auth
  * @openapi
  */
 export async function POST(request: Request) {

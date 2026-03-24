@@ -8,8 +8,9 @@ import { changePasswordService } from '@/backend/auth/auth.service';
 /**
  * Modifie le mot de passe de l utilisateur connecte
  * @body ChangePasswordBody
- * @response 200:SignupResponse:Mot de passe mis a jour
+ * @response 200:SignupResponse
  * @response 401:Unauthorized
+ * @responseSet auth
  * @openapi
  */
 export async function PUT(request: NextRequest) {
