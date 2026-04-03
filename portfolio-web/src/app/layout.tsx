@@ -85,7 +85,7 @@ export const metadata: Metadata = {
 
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'Portfolio Donovan — Développeur Web',
@@ -165,7 +165,8 @@ export default function RootLayout({
       '@id': 'https://donovan-dev-web.vercel.app/#website',
       url: 'https://donovan-dev-web.vercel.app/',
       name: 'Portfolio Donovan',
-      description: 'Portfolio de Donovan Chartrain, développeur web fullstack et mobile.',
+      description:
+        'Portfolio de Donovan Chartrain, développeur web fullstack et mobile.',
       publisher: {
         '@id': 'https://donovan-dev-web.vercel.app/#person',
       },
