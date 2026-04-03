@@ -39,28 +39,28 @@ function validateValues(values: ContactFormValues): ContactFormErrors {
   if (!trimmedName) {
     errors.name = 'Le nom est requis.';
   } else if (trimmedName.length > 100) {
-    errors.name = 'Le nom doit contenir au maximum 100 caracteres.';
+    errors.name = 'Le nom doit contenir au maximum 100 caractères.';
   }
 
   if (!trimmedEmail) {
-    errors.email = 'L email est requis.';
+    errors.email = 'L’email est requis.';
   } else if (!isValidEmail(trimmedEmail)) {
     errors.email = 'Veuillez renseigner une adresse email valide.';
   }
 
   if (trimmedPhone.length > 28) {
-    errors.phone = 'Le numero de telephone doit contenir 28 caracteres maximum.';
+    errors.phone = 'Le numéro de téléphone doit contenir 28 caractères maximum.';
   }
 
   if (!trimmedContent) {
     errors.content = 'Le message est requis.';
   } else if (trimmedContent.length > 2000) {
-    errors.content = 'Le message doit contenir au maximum 2000 caracteres.';
+    errors.content = 'Le message doit contenir au maximum 2 000 caractères.';
   }
 
   if (!values.consent) {
     errors.consent =
-      'Vous devez accepter les mentions legales pour envoyer le formulaire.';
+      'Vous devez accepter les mentions légales pour envoyer le formulaire.';
   }
 
   return errors;
@@ -130,7 +130,7 @@ export function ContactForm() {
         throw new Error(
           payload?.error ||
             payload?.message ||
-            'Une erreur est survenue lors de l envoi du message.'
+            'Une erreur est survenue lors de l’envoi du message.'
         );
       }
 
@@ -139,14 +139,14 @@ export function ContactForm() {
       setSubmitState({
         kind: 'success',
         message:
-          'Votre message a bien ete envoye. Je vous recontacterai des que possible pour poursuivre l echange.',
+          'Votre message a bien été envoyé. Je vous recontacterai dès que possible pour poursuivre l’échange.',
       });
     } catch (error: any) {
       setSubmitState({
         kind: 'error',
         message:
           error?.message ||
-          'Impossible d envoyer le message pour le moment. Veuillez reessayer.',
+          'Impossible d’envoyer le message pour le moment. Veuillez réessayer.',
       });
     } finally {
       setIsSubmitting(false);
@@ -163,7 +163,7 @@ export function ContactForm() {
             name="name"
             value={values.name}
             onChange={(event) => handleChange('name', event.target.value)}
-            placeholder="Nom et prenom"
+            placeholder="Nom et prénom"
             autoComplete="name"
             aria-invalid={Boolean(errors.name)}
             aria-describedby={errors.name ? 'contact-name-error' : undefined}
@@ -196,13 +196,13 @@ export function ContactForm() {
       </div>
 
       <label className={styles.field}>
-        <span>Telephone</span>
+        <span>Téléphone</span>
         <input
             type="tel"
             name="phone"
             value={values.phone}
             onChange={(event) => handleChange('phone', event.target.value)}
-            placeholder="Telephone professionnel ou mobile"
+            placeholder="Téléphone professionnel ou mobile"
             autoComplete="tel"
             aria-invalid={Boolean(errors.phone)}
             aria-describedby={errors.phone ? 'contact-phone-error' : undefined}
@@ -220,7 +220,7 @@ export function ContactForm() {
           name="content"
           value={values.content}
           onChange={(event) => handleChange('content', event.target.value)}
-          placeholder="Presentez le poste, le contexte de l equipe, les technologies utilisees ou les attentes liees au recrutement."
+          placeholder="Présentez le poste, le contexte de l’équipe, les technologies utilisées ou les attentes liées au recrutement."
           rows={8}
           aria-invalid={Boolean(errors.content)}
           aria-describedby={
@@ -234,7 +234,7 @@ export function ContactForm() {
             </small>
           ) : (
             <small id="contact-content-help" className={styles.fieldHelp}>
-              Quelques informations sur le poste, l environnement et les missions suffisent pour initier un premier echange.
+              Quelques informations sur le poste, l’environnement et les missions suffisent pour initier un premier échange.
             </small>
           )}
           <small
@@ -242,7 +242,7 @@ export function ContactForm() {
               charactersLeft < 120 ? styles.counterWarning : styles.counter
             }
           >
-            {charactersLeft} caracteres restants
+            {charactersLeft} caractères restants
           </small>
         </div>
       </label>
@@ -260,9 +260,9 @@ export function ContactForm() {
             }
           />
           <span>
-            J accepte les{' '}
-            <Link href="/legal">mentions legales</Link>{' '}
-            concernant le traitement de mes donnees dans le cadre de cette prise
+            J’accepte les{' '}
+            <Link href="/legal">mentions légales</Link>{' '}
+            concernant le traitement de mes données dans le cadre de cette prise
             de contact.
           </span>
         </label>
@@ -272,7 +272,7 @@ export function ContactForm() {
           </small>
         ) : (
           <small id="contact-consent-help" className={styles.fieldHelp}>
-            Vos informations sont utilisees uniquement pour repondre a votre message.
+            Vos informations sont utilisées uniquement pour répondre à votre message.
           </small>
         )}
       </div>

@@ -9,16 +9,16 @@ import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryBu
 import { ContactForm } from '@/frontend/components/Contact/ContactForm/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contact - Developpeur Web en recherche de CDI',
+  title: 'Contact - Développeur web en recherche de CDI',
   description:
-    'Contactez Donovan Chartrain, developpeur web fullstack & mobile, pour echanger autour d un poste en CDI en agence web, agence de communication ou ESN.',
+    'Contactez Donovan Chartrain, développeur web fullstack et mobile, pour échanger autour d’un poste en CDI en agence web, agence de communication ou ESN.',
 };
 
 export default function ContactPage() {
   return (
     <>
       <section className={`${styles.sectionClass} ${styles.hero}`}>
-        <Badge icons={true} content="Contact & disponibilite" />
+        <Badge icons={true} content="Contact & disponibilité" />
 
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>
@@ -28,12 +28,12 @@ export default function ContactPage() {
         </div>
 
         <p className={styles.subTitle}>
-          <strong>Developpeur Web Fullstack & Mobile</strong>, je suis
-          actuellement a la recherche d un <strong>poste en CDI</strong>,
-          principalement au sein d une <strong>agence web</strong>, d une
-          <strong> agence de communication</strong> ou d une <strong>ESN</strong>.
-          Si mon profil correspond a vos besoins, nous pouvons echanger
-          rapidement autour d une opportunite.
+          <strong>Développeur web fullstack et mobile</strong>, je suis
+          actuellement à la recherche d’un <strong>poste en CDI</strong>,
+          principalement au sein d’une <strong>agence web</strong>, d’une
+          <strong> agence de communication</strong> ou d’une{' '}
+          <strong>ESN</strong>. Si mon profil correspond à vos besoins, nous
+          pouvons échanger rapidement autour d’une opportunité.
         </p>
 
         <div className={styles.panelCtaHero}>
@@ -43,7 +43,7 @@ export default function ContactPage() {
             NavigateTo="/projects"
           />
           <SecondaryButton
-            content="Decouvrir mon expertise"
+            content="Découvrir mon expertise"
             navigateTo="/expertise"
           />
         </div>
@@ -52,28 +52,29 @@ export default function ContactPage() {
       <section className={styles.sectionClass}>
         <h2 className={styles.TitleHTwo}>Pourquoi me contacter ?</h2>
         <p className={styles.subTitleTwo}>
-          Cette page a ete pensee avant tout pour faciliter une prise de contact
-          avec des <strong>recruteurs</strong>, des <strong>responsables
-          techniques</strong> ou des <strong>dirigeants d agence</strong> a la
-          recherche d un developpeur capable d intervenir sur des projets web
-          modernes, bien structures et soignes dans leur execution.
+          Cette page a été pensée avant tout pour faciliter une prise de contact
+          avec des <strong>recruteurs</strong>, des{' '}
+          <strong>responsables techniques</strong> ou des{' '}
+          <strong>dirigeants d’agence</strong> à la recherche d’un développeur
+          capable d’intervenir sur des projets web modernes, bien structurés et
+          soignés dans leur exécution.
         </p>
 
         <div className={styles.reasonsGrid}>
           <article className={styles.reasonCard}>
             <h3>Profil polyvalent</h3>
             <p>
-              Front-end, back-end, logique metier, interfaces responsive et
-              integration produit avec une attention particuliere portee a la
-              qualite percue.
+              Front-end, back-end, logique métier, interfaces responsive et
+              intégration produit, avec une attention particulière portée à la
+              qualité perçue.
             </p>
           </article>
 
           <article className={styles.reasonCard}>
-            <h3>Bonne adequation agence</h3>
+            <h3>Bonne adéquation avec les agences</h3>
             <p>
-              Un profil adapte aux environnements ou il faut allier
-              developpement, autonomie, sens du design et capacite a produire
+              Un profil adapté aux environnements où il faut allier
+              développement, autonomie, sens du design et capacité à produire
               proprement pour plusieurs clients ou produits.
             </p>
           </article>
@@ -81,8 +82,8 @@ export default function ContactPage() {
           <article className={styles.reasonCard}>
             <h3>Recherche active en CDI</h3>
             <p>
-              Disponible pour echanger autour d un poste de developpeur web au
-              sein d une agence de communication, d une agence web ou d une ESN.
+              Disponible pour échanger autour d’un poste de développeur web au
+              sein d’une agence de communication, d’une agence web ou d’une ESN.
             </p>
           </article>
         </div>
@@ -94,21 +95,21 @@ export default function ContactPage() {
         <div className={styles.contactInfoPanel}>
           <div className={styles.contactCards}>
             <div>
-              <AtSign /> <span>Email</span>
+              <AtSign /> <span>Contact</span>
             </div>
-            <span>donovan.chartrain@gmail.com</span>
+            <span>donovan.chartrain@gmail.com | 06 43 88 39 60</span>
           </div>
           <div className={styles.contactCards}>
             <div>
               <MapPin /> <span>Localisation</span>
             </div>
-            <span>Bedoin, Vaucluse, France</span>
+            <span>Bédoin, Vaucluse, France</span>
           </div>
           <div className={styles.contactCards}>
             <div>
-              <Clock /> <span>Disponibilite</span>
+              <Clock /> <span>Disponibilité</span>
             </div>
-            <span>Retour general sous 24 a 48h</span>
+            <span>Retour général sous 24 à 48 h</span>
           </div>
         </div>
       </section>
@@ -124,16 +125,21 @@ export default function ContactPage() {
             <h2 className={styles.formTitle}>Entrons en contact</h2>
 
             <p className={styles.subTitleTwo}>
-              Si vous recrutez un <strong>developpeur web</strong> pour renforcer
-              une equipe, faire evoluer un produit ou accompagner des projets
-              clients, vous pouvez m envoyer un message directement via ce
-              formulaire.
+              Si vous recrutez un <strong>développeur web</strong> pour
+              renforcer une équipe, faire évoluer un produit ou accompagner des
+              projets clients, vous pouvez m’envoyer un message directement via
+              ce formulaire.
             </p>
 
             <ul className={styles.formHints}>
-              <li>Precisez l intitule du poste ou le type d opportunite.</li>
-              <li>Indiquez le contexte de l equipe, de l agence ou du projet.</li>
-              <li>Ajoutez vos coordonnees pour que je puisse vous recontacter rapidement.</li>
+              <li>Précisez l’intitulé du poste ou le type d’opportunité.</li>
+              <li>
+                Indiquez le contexte de l’équipe, de l’agence ou du projet.
+              </li>
+              <li>
+                Ajoutez vos coordonnées pour que je puisse vous recontacter
+                rapidement.
+              </li>
             </ul>
           </div>
 

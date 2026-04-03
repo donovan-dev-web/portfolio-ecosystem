@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Développeur web fullstack & mobile avec 3 ans d'expérience. Création d'applications web performantes avec React, Next.js, Node.js et React Native.",
+    "Développeur web fullstack et mobile avec 3 ans d'expérience. Création d'applications web et mobiles performantes avec React, Angular, dotNet, Node.js, Laravel et React Native.",
 
   applicationName: 'Portfolio Donovan',
 
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
     title: 'Donovan — Développeur Web Fullstack & Mobile',
 
     description:
-      'Portfolio de Donovan, développeur web & mobile spécialisé en React, Next.js et applications fullstack.',
+      'Portfolio de Donovan, développeur web et mobile spécialisé en React, React Native et applications fullstack.',
 
     images: [
       {
@@ -97,8 +97,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Donovan — Développeur Web Fullstack & Mobile',
     description:
-      'Portfolio de Donovan, développeur web fullstack spécialisé en React, Next.js et Node.js.',
-    images: ['/og-image.jpg'],
+      'Portfolio de Donovan, développeur web et mobile spécialisé en React, React Native et applications fullstack.',
+    images: ['/og-image.png'],
   },
 
   icons: {
@@ -123,16 +123,16 @@ export default function RootLayout({
     {
       '@context': 'https://schema.org',
       '@type': 'Person',
-      '@id': 'https://donovan-dev-web.vercel.app//#person',
-      name: 'Donovan',
+      '@id': 'https://donovan-dev-web.vercel.app/#person',
+      name: 'Donovan Chartrain',
       url: 'https://donovan-dev-web.vercel.app/',
-      image: 'https://donovan-dev-web.vercel.app//avatar.jpg',
+      image: 'https://donovan-dev-web.vercel.app/images/PhotoProfil.png',
       jobTitle: 'Développeur Web Fullstack & Mobile',
       description:
         "Développeur web fullstack spécialisé en React, Next.js, Node.js et développement d'applications web modernes et performantes.",
       sameAs: [
         'https://github.com/donovan-dev-web',
-        'https://www.linkedin.com/in/tonprofil',
+        'https://www.linkedin.com/in/donovan-chartrain-dev-web',
       ],
       knowsAbout: [
         'JavaScript',
@@ -145,7 +145,12 @@ export default function RootLayout({
         'Web Development',
         'API Development',
         'MongoDB',
-        'Firebase',
+        'SQL',
+        'Git',
+        'Agile Methodologies',
+        'Angular',
+        'dotNet',
+        'Laravel',
       ],
       address: {
         '@type': 'PostalAddress',
@@ -160,7 +165,7 @@ export default function RootLayout({
       '@id': 'https://donovan-dev-web.vercel.app/#website',
       url: 'https://donovan-dev-web.vercel.app/',
       name: 'Portfolio Donovan',
-      description: 'Portfolio de Donovan, développeur web fullstack & mobile.',
+      description: 'Portfolio de Donovan Chartrain, développeur web fullstack et mobile.',
       publisher: {
         '@id': 'https://donovan-dev-web.vercel.app/#person',
       },

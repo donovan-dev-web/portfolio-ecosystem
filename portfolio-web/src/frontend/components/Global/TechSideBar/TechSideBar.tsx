@@ -33,7 +33,7 @@ type SocialItem = {
 const navItems: NavItem[] = [
   {
     path: '/',
-    label: 'Home',
+    label: 'Accueil',
     code: '01',
     icon: <House />,
   },
@@ -59,13 +59,13 @@ const navItems: NavItem[] = [
 
 const socialIcons: SocialItem[] = [
   {
-    path: 'https://github.com',
-    label: 'Github',
+    path: 'https://github.com/donovan-dev-web',
+    label: 'GitHub',
     icon: <Github />,
   },
   {
-    path: 'https://linkedin.com',
-    label: 'Linkedin',
+    path: 'https://linkedin.com/in/donovan-chartrain-dev-web',
+    label: 'LinkedIn',
     icon: <Linkedin />,
   },
   {

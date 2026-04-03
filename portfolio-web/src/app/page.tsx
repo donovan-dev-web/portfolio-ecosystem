@@ -30,7 +30,7 @@ import { Footer } from '@/frontend/components/Global/Footer/Footer';
 
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
-  description: 'Portfolio de Donovan, développeur web fullstack & Mobile',
+  description: 'Portfolio de Donovan, développeur web fullstack et mobile.',
 };
 
 export default function Home() {
@@ -43,7 +43,7 @@ export default function Home() {
         <Badge icons={true} content="Disponible pour de nouveaux projets" />
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>
-            Developpeur <strong>Web</strong> <br /> Fullstack & Mobile
+            Développeur <strong>Web</strong> <br /> Fullstack & Mobile
           </h1>
         </div>
         <p className={styles.subTitle}>
@@ -61,7 +61,7 @@ export default function Home() {
             content="Voir mes projets"
             NavigateTo="/projects"
           />
-          <SecondaryButton navigateTo="/contact" content="Me Contacter" />
+          <SecondaryButton navigateTo="/contact" content="Me contacter" />
         </div>
         <div className={styles.CarrouselContainer}>
           <CarrouselBanner />
@@ -72,7 +72,7 @@ export default function Home() {
       </section>
       <section
         className={`${styles.sectionClass} ${styles.about}`}
-        aria-label="Qui sius-je ?"
+        aria-label="Qui suis-je ?"
         id="QuiSuisJeSection"
       >
         <h2 className={styles.TitleHTwo}>Qui suis-je ?</h2>
@@ -118,7 +118,7 @@ export default function Home() {
             icons={<Database />}
             title={'Backend & API'}
             content={
-              'Conception d’API RESTfull, gestion de la logique métier et bases de données (SQL/NoSQL) pour des applications robustes et évolutives.'
+              'Conception d’API RESTful, gestion de la logique métier et bases de données (SQL/NoSQL) pour des applications robustes et évolutives.'
             }
           />
           <CardTypeTwo
@@ -132,7 +132,7 @@ export default function Home() {
             icons={<ListTree />}
             title={'Performance & Méthodologie'}
             content={
-              'Performance optimisé, méthodlogie Agile, clean architecture'
+              'Performance optimisée, méthodologie Agile et architecture propre.'
             }
           />
         </div>
@@ -146,7 +146,7 @@ export default function Home() {
         className={`${styles.sectionClass} ${styles.projects}`}
         aria-label="Mes projets"
       >
-        <h2 className={styles.TitleHTwo}>Realisations recentes</h2>
+        <h2 className={styles.TitleHTwo}>Réalisations récentes</h2>
         <p className={styles.subTitleTwo}>
           Quelques projets représentatifs de mon travail en{' '}
           <strong>développement web et mobile</strong>, réalisés en contexte
@@ -309,7 +309,7 @@ export default function Home() {
         </div>
         <PrimaryButton
           icons={<Mail />}
-          content="Contacter moi"
+          content="Me contacter"
           NavigateTo="/contact"
         />
       </section>

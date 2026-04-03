@@ -167,22 +167,22 @@ async function getProjectDetailsRaw(slug: string): Promise<ProjectDetailsData | 
       description:
         normalized.presentation?.description ||
         normalized.shortDescription ||
-        'Description detaillee non disponible.',
+        'Description détaillée non disponible.',
       context:
         normalized.presentation?.context ||
-        'Contexte non renseigne pour ce projet.',
+        'Contexte non renseigné pour ce projet.',
       objectives:
         normalized.presentation?.objectives ||
-        'Objectifs non renseignes pour ce projet.',
+        'Objectifs non renseignés pour ce projet.',
       skills:
         normalized.presentation?.skills ||
-        'Competences non renseignees pour ce projet.',
+        'Compétences non renseignées pour ce projet.',
       results:
         normalized.presentation?.results ||
-        'Resultats non renseignes pour ce projet.',
+        'Résultats non renseignés pour ce projet.',
       improvements:
         normalized.presentation?.improvements ||
-        'Pistes d amelioration non renseignees pour ce projet.',
+        'Pistes d’amélioration non renseignées pour ce projet.',
     },
     gallery: Array.isArray(normalized.gallery)
       ? normalized.gallery.map((item, index) => ({
@@ -242,7 +242,7 @@ export async function generateMetadata({
   if (!project) {
     return {
       title: 'Projet introuvable',
-      description: 'La page projet demandee est introuvable.',
+      description: 'La page projet demandée est introuvable.',
     };
   }
 

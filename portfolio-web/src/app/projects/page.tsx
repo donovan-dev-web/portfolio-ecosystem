@@ -36,14 +36,14 @@ export const dynamic = 'force-static';
 export const metadata: Metadata = {
   title: 'Projets Web, Mobile et Fullstack',
   description:
-    'Selection de projets web, mobile et fullstack realises par Donovan Chartrain avec filtres par type, technologies et langages.',
+    'Sélection de projets web, mobile et fullstack réalisés par Donovan Chartrain, avec filtres par type, technologies et langages.',
   alternates: {
     canonical: '/projects',
   },
   openGraph: {
     title: 'Projets Web, Mobile et Fullstack',
     description:
-      'Decouvrez les projets web, mobile et fullstack de Donovan Chartrain.',
+      'Découvrez les projets web, mobile et fullstack de Donovan Chartrain.',
     url: '/projects',
     type: 'website',
   },
@@ -51,13 +51,13 @@ export const metadata: Metadata = {
 
 const MANUAL_FEATURED_PROJECT = {
   id: 'portfolio-projects',
-  title: 'Portfolio Ecosysteme',
+  title: 'Portfolio Écosystème',
   shortDescription:
-    'Projet vitrine centralisant le site public, un backend API, une application desktop Electron et une application mobile React Native pour administrer l ensemble.',
+    'Projet vitrine centralisant le site public, un backend API, une application desktop Electron et une application mobile React Native pour administrer l’ensemble.',
   coverImage: {
-    small: 'https://placehold.co/640x360?text=Portfolio+Ecosysteme',
-    medium: 'https://placehold.co/960x540?text=Portfolio+Ecosysteme',
-    large: 'https://placehold.co/1440x810?text=Portfolio+Ecosysteme',
+    small: '/images/Mockup.webp',
+    medium: '/images/Mockup.webp',
+    large: '/images/Mockup.webp',
   },
   projectType: { name: 'Fullstack', icon: null },
   technologies: [
@@ -74,11 +74,11 @@ const MANUAL_FEATURED_PROJECT = {
 const FALLBACK_PROJECTS: ProjectsPageProject[] = [
   {
     id: 'fallback-fullstack',
-    title: 'Application Fullstack de demonstration',
+    title: 'Application fullstack de démonstration',
     shortDescription:
-      'Carte de secours pour garder une page projets complete meme en cas d indisponibilite temporaire du backend.',
+      'Carte de secours pour conserver une page projets complète même en cas d’indisponibilité temporaire du backend.',
     editorialDescription:
-      'Projet de demonstration presente ici comme article de secours. Il sert a conserver une lecture editoriale de la page avec plus de contexte, une intention produit claire et une mise en avant des choix techniques majeurs.',
+      'Projet de démonstration présenté ici comme article de secours. Il sert à conserver une lecture éditoriale de la page, avec plus de contexte, une intention produit claire et une mise en avant des choix techniques majeurs.',
     coverImage: {
       small: 'https://placehold.co/640x360?text=Project+Fallback+1',
       medium: 'https://placehold.co/960x540?text=Project+Fallback+1',
@@ -95,11 +95,11 @@ const FALLBACK_PROJECTS: ProjectsPageProject[] = [
   },
   {
     id: 'fallback-mobile',
-    title: 'Application mobile de demonstration',
+    title: 'Application mobile de démonstration',
     shortDescription:
-      'Exemple de projet mobile avec administration distante, notifications et ecrans metier.',
+      'Exemple de projet mobile avec administration distante, notifications et écrans métier.',
     editorialDescription:
-      'Exemple de projet mobile presente sous une forme plus narrative afin d illustrer le besoin utilisateur, les contraintes de realisation et l integration des briques techniques dans un parcours produit coherent.',
+      'Exemple de projet mobile présenté sous une forme plus narrative afin d’illustrer le besoin utilisateur, les contraintes de réalisation et l’intégration des briques techniques dans un parcours produit cohérent.',
     coverImage: {
       small: 'https://placehold.co/640x360?text=Project+Fallback+2',
       medium: 'https://placehold.co/960x540?text=Project+Fallback+2',
@@ -218,7 +218,7 @@ const getProjectsCatalog = unstable_cache(
       editorialDescription:
         project.presentation?.description ||
         project.shortDescription ||
-        'Presentation detaillee non disponible pour ce projet.',
+        'Présentation détaillée non disponible pour ce projet.',
       coverImage: toCoverImage(project.coverImage),
       projectType: toTagItem(project.projectType),
       technologies: toTagList(project.technologies, 4),
@@ -309,13 +309,14 @@ export default async function ProjectsPage() {
   };
 
   try {
-    const { projects: fromDb, filters: fromFilters } = await getProjectsPageData();
+    const { projects: fromDb, filters: fromFilters } =
+      await getProjectsPageData();
     if (fromDb.length > 0) {
       projects = fromDb;
     }
     filters = fromFilters;
   } catch {
-    // fallback manuel
+    // Fallback manuel
   }
 
   const hydratedProjects = projects.map((project) => ({
@@ -368,7 +369,7 @@ export default async function ProjectsPage() {
           </div>
           <div className={styles.heroStatCard}>
             <strong>Sites & applications</strong>
-            <span>du site vitrine aux applications dynamique</span>
+            <span>du site vitrine aux applications dynamiques</span>
           </div>
           <div className={styles.heroStatCard}>
             <strong>Approche complète</strong>

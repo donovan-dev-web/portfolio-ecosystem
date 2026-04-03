@@ -56,11 +56,11 @@ export function CookieConsentManager() {
       {bannerVisible ? (
         <div className={styles.banner} role="dialog" aria-live="polite">
           <div className={styles.bannerContent}>
-            <p className={styles.bannerTitle}>Cookies et mesure d audience</p>
+            <p className={styles.bannerTitle}>Cookies et mesure d’audience</p>
             <p className={styles.bannerText}>
-              Ce site peut utiliser des outils de mesure d audience Vercel pour
-              analyser les performances et la frequentation. Vous pouvez accepter
-              ou refuser ces traceurs. Les cookies strictement necessaires au
+              Ce site peut utiliser des outils de mesure d’audience Vercel pour
+              analyser les performances et la fréquentation. Vous pouvez accepter
+              ou refuser ces traceurs. Les cookies strictement nécessaires au
               fonctionnement du site restent actifs.
             </p>
             <div className={styles.bannerActions}>
@@ -79,7 +79,7 @@ export function CookieConsentManager() {
                 Accepter
               </button>
               <Link href="/legal" className={styles.linkButton}>
-                Mentions legales
+                Mentions légales
               </Link>
             </div>
           </div>

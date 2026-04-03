@@ -14,13 +14,13 @@ export function Footer() {
 
   const socialIcons: SocialItem[] = [
     {
-      path: 'https://github.com',
-      label: 'Github',
+      path: 'https://github.com/donovan-dev-web',
+      label: 'GitHub',
       icon: <Github />,
     },
     {
-      path: 'https://linkedin.com',
-      label: 'Linkedin',
+      path: 'https://linkedin.com/in/donovan-chartrain-dev-web',
+      label: 'LinkedIn',
       icon: <Linkedin />,
     },
     {
@@ -34,7 +34,7 @@ export function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.bandeauRs}>
-          <span>Rejoignez moi sur les réseaux !</span>
+          <span>Rejoignez-moi sur les réseaux !</span>
           <div className={styles.techSidebarSocial}>
             <ul className={styles.techSidebarSocialList}>
               {socialIcons.map((item) => (
@@ -62,7 +62,7 @@ export function Footer() {
             <div className={styles.titleLink}>
               <PrimaryButton
                 icons={<Mail />}
-                content="Contacter moi"
+                content="Me contacter"
                 NavigateTo="/contact"
               />
             </div>
@@ -78,7 +78,7 @@ export function Footer() {
                   <Link href={'/projects'}>Mes Projets</Link>
                 </li>
                 <li className={styles.listItemsLink}>
-                  <Link href={'/expertise'}>Expertise & compétence</Link>
+                  <Link href={'/expertise'}>Expertise & compétences</Link>
                 </li>
                 <li className={styles.listItemsLink}>
                   <Link href={'/contact'}>Me contacter</Link>
@@ -90,11 +90,11 @@ export function Footer() {
               <ul className={styles.listLink}>
                 <li className={styles.listItemsLink}>
                   <a href="/api/docs" download>
-                    Telecharger mon CV
+                    Télécharger mon CV
                   </a>
                 </li>
                 <li className={styles.listItemsLink}>
-                  <Link href={'/legal'}>Mentions legales</Link>
+                  <Link href={'/legal'}>Mentions légales</Link>
                 </li>
                 <li className={styles.listItemsLink}>
                   <Link href={'/sitemap.xml'}>Sitemap</Link>

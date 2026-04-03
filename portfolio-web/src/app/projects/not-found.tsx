@@ -10,7 +10,7 @@ import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryBu
 export const metadata: Metadata = {
   title: 'Projet introuvable',
   description:
-    'Le projet demande est introuvable ou n est plus disponible dans le catalogue.',
+    'Le projet demandé est introuvable ou n’est plus disponible dans le catalogue.',
 };
 
 export default function ProjectNotFoundPage() {
@@ -26,9 +26,9 @@ export default function ProjectNotFoundPage() {
         </div>
 
         <p className={styles.subTitle}>
-          Le lien demande ne correspond a aucun projet public du catalogue, ou
-          bien l URL n'est plus valide. Vous pouvez revenir a la liste complete
-          ou decouvrir d'autres realisations.
+          Le lien demandé ne correspond à aucun projet public du catalogue, ou
+          bien l’URL n’est plus valide. Vous pouvez revenir à la liste complète
+          ou découvrir d’autres réalisations.
         </p>
 
         <div className={styles.panelCtaHero}>
@@ -37,29 +37,29 @@ export default function ProjectNotFoundPage() {
             content="Retour au catalogue"
             NavigateTo="/projects"
           />
-          <SecondaryButton content="Retour a l accueil" navigateTo="/" />
+          <SecondaryButton content="Retour à l’accueil" navigateTo="/" />
         </div>
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Pendant que vous etes ici</h2>
+        <h2 className={styles.TitleHTwo}>Pendant que vous êtes ici</h2>
 
         <div className={styles.shortcutGrid}>
           <article className={styles.shortcutCard}>
             <FolderSearch />
             <h3>Parcourir tous les projets</h3>
             <p>
-              Retrouver les projets par type, technologies et langages avec les
+              Retrouvez les projets par type, technologies et langages avec les
               filtres du catalogue.
             </p>
           </article>
 
           <article className={styles.shortcutCard}>
             <LayoutTemplate />
-            <h3>Voir le projet featured</h3>
+            <h3>Voir le projet mis en avant</h3>
             <p>
-              Consultez le projet mis en avant pour avoir un apercu rapide de ma
-              facon de concevoir une interface complete.
+              Consultez le projet mis en avant pour avoir un aperçu rapide de ma
+              façon de concevoir une interface complète.
             </p>
           </article>
 
@@ -67,7 +67,7 @@ export default function ProjectNotFoundPage() {
             <Mail />
             <h3>Discuter de votre besoin</h3>
             <p>
-              Si vous cherchiez une reference precise ou un cas d usage
+              Si vous cherchiez une référence précise ou un cas d’usage
               similaire, nous pouvons en parler directement.
             </p>
           </article>
@@ -78,13 +78,13 @@ export default function ProjectNotFoundPage() {
         <div className={styles.supportPanel}>
           <h2 className={styles.supportTitle}>Autres chemins utiles</h2>
           <p className={styles.subTitleTwo}>
-            Le catalogue continue d evoluer. En attendant, vous pouvez consulter
-            le projet featured, mon expertise ou me contacter pour obtenir une
-            demonstration plus ciblee.
+            Le catalogue continue d’évoluer. En attendant, vous pouvez consulter
+            le projet mis en avant, mon expertise ou me contacter pour obtenir une
+            démonstration plus ciblée.
           </p>
           <div className={styles.panelCtaHero}>
             <SecondaryButton
-              content="Voir le featured"
+              content="Voir le projet mis en avant"
               navigateTo="/portfolio-projects"
             />
             <SecondaryButton content="Me contacter" navigateTo="/contact" />

@@ -100,7 +100,7 @@ export function ProjectsExplorer({
             <details className={styles.dropdownPanel}>
               <summary className={styles.dropdownSummary}>
                 {selectedTechs.length > 0
-                  ? `${selectedTechs.length} techno(s) selectionnee(s)`
+                  ? `${selectedTechs.length} techno(s) sélectionnée(s)`
                   : 'Choisir des technologies'}
               </summary>
               <div className={styles.dropdownList}>
@@ -127,7 +127,7 @@ export function ProjectsExplorer({
             <details className={styles.dropdownPanel}>
               <summary className={styles.dropdownSummary}>
                 {selectedLanguages.length > 0
-                  ? `${selectedLanguages.length} langage(s) selectionne(s)`
+                  ? `${selectedLanguages.length} langage(s) sélectionné(s)`
                   : 'Choisir des langages'}
               </summary>
               <div className={styles.dropdownList}>
@@ -152,7 +152,7 @@ export function ProjectsExplorer({
 
         <div className={styles.filterActions}>
           <button type="button" className={styles.resetButton} onClick={resetFilters}>
-            Reset les filtres
+            Réinitialiser les filtres
           </button>
         </div>
       </div>
@@ -263,7 +263,7 @@ export function ProjectsExplorer({
                     <>
                       <div className={styles.metaBlock}>
                         <TabletSmartphone />
-                        <span>{project.projectType?.name || 'Non renseigne'}</span>
+                        <span>{project.projectType?.name || 'Non renseigné'}</span>
                       </div>
                       <div className={styles.metaBlock}>
                         <Blocks />
@@ -297,7 +297,7 @@ export function ProjectsExplorer({
                   {project.stack.length ? (
                     project.stack.map((item) => <span key={item}>{item}</span>)
                   ) : (
-                    <span>Stack non renseignee</span>
+                    <span>Stack non renseignée</span>
                   )}
                 </div>
 
@@ -314,7 +314,7 @@ export function ProjectsExplorer({
                       className={styles.externalLink}
                     >
                       <Github />
-                      Github
+                      GitHub
                     </Link>
                   ) : null}
                   {project.isLive ? (
@@ -335,9 +335,9 @@ export function ProjectsExplorer({
         </div>
       ) : (
         <div className={styles.emptyState}>
-          <h3>Aucun projet ne correspond a ces filtres</h3>
+          <h3>Aucun projet ne correspond à ces filtres</h3>
           <p>
-            Essaie une autre combinaison ou utilise le bouton de reinitialisation
+            Essaie une autre combinaison ou utilise le bouton de réinitialisation
             pour afficher de nouveau tout le catalogue.
           </p>
         </div>

@@ -122,6 +122,30 @@
   display: flex;
 }
 
+.profileTabs {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+.profileImg {
+  width: 200px;
+  height: 200px;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--glow-violet);
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
 .profileText {
   display: flex;
   flex-direction: column;

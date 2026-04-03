@@ -7,41 +7,41 @@ import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryBu
 import { LegalTabs } from '@/frontend/components/Legal/LegalTabs/LegalTabs';
 
 export const metadata: Metadata = {
-  title: 'Mentions legales',
+  title: 'Mentions légales',
   description:
-    'Consultez les mentions legales et la politique de confidentialite du portfolio de Donovan Chartrain.',
+    'Consultez les mentions légales et la politique de confidentialité du portfolio de Donovan Chartrain.',
 };
 
 export default function LegalPage() {
   return (
     <>
       <section className={`${styles.sectionClass} ${styles.hero}`}>
-        <Badge icons={true} content="Informations legales" />
+        <Badge icons={true} content="Informations légales" />
 
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>
-            <strong>Mentions</strong> legales
+            <strong>Mentions</strong> légales
           </h1>
         </div>
 
         <p className={styles.subTitle}>
-          Retrouvez ici les principales informations legales du portfolio, ainsi
-          qu un onglet dedie a la politique de confidentialite relative au
-          formulaire de contact et a la gestion des cookies.
+          Retrouvez ici les principales informations légales du portfolio, ainsi
+          qu’un onglet dédié à la politique de confidentialité relative au
+          formulaire de contact et à la gestion des cookies.
         </p>
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Informations legales</h2>
+        <h2 className={styles.TitleHTwo}>Informations légales</h2>
         <LegalTabs />
       </section>
 
       <section className={styles.sectionClass}>
         <div className={styles.contactPanel}>
-          <h2 className={styles.contactTitle}>Une question concernant vos donnees ?</h2>
+          <h2 className={styles.contactTitle}>Une question concernant vos données ?</h2>
           <p className={styles.subTitleTwo}>
-            Pour toute demande relative a vos informations personnelles ou a
-            l utilisation du formulaire de contact, vous pouvez me joindre
+            Pour toute demande relative à vos informations personnelles ou à
+            l’utilisation du formulaire de contact, vous pouvez me joindre
             directement par email.
           </p>
           <SecondaryButton content="Me contacter" navigateTo="/contact" />

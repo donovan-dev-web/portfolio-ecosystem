@@ -28,16 +28,16 @@ import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 
 export const metadata: Metadata = {
-  title: 'Portfolio Ecosysteme - Projet principal',
+  title: 'Portfolio Écosystème - Projet principal',
   description:
-    'Case study complete du projet principal de Donovan Chartrain : site public Next.js, backend API, application desktop Electron, application mobile React Native, conception produit, design, SEO et administration multi-supports.',
+    'Étude de cas complète du projet principal de Donovan Chartrain : site public Next.js, backend API, application desktop Electron, application mobile React Native, conception produit, design, SEO et administration multi-supports.',
   alternates: {
     canonical: '/portfolio-projects',
   },
   openGraph: {
-    title: 'Portfolio Ecosysteme - Projet principal',
+    title: 'Portfolio Écosystème - Projet principal',
     description:
-      'Une presentation complete du projet principal : architecture, interfaces, administration, mobile, desktop, SEO et logique produit.',
+      'Une présentation complète du projet principal : architecture, interfaces, administration, mobile, desktop, SEO et logique produit.',
     url: '/portfolio-projects',
     type: 'article',
   },
@@ -47,45 +47,45 @@ const ecosystemParts = [
   {
     icon: <Globe />,
     title: 'Site public web',
-    text: 'Une vitrine publique en Next.js orientee SEO, pages editoriales, presentation des projets, contact et conversion.',
+    text: 'Une vitrine publique en Next.js orientée SEO, avec des pages éditoriales, une présentation des projets, un contact et des objectifs de conversion.',
   },
   {
     icon: <Database />,
     title: 'Backend API',
-    text: 'Une couche backend structuree autour des projets, messages, documents, tags, authentification et notifications push.',
+    text: 'Une couche backend structurée autour des projets, des messages, des documents, des tags, de l’authentification et des notifications push.',
   },
   {
     icon: <AppWindow />,
     title: 'Application desktop',
-    text: 'Un back-office Electron / React pour piloter les contenus, consulter les messages et administrer les ressources avec plus de confort.',
+    text: 'Un back-office Electron / React pour piloter les contenus, consulter les messages et administrer les ressources avec davantage de confort.',
   },
   {
     icon: <Smartphone />,
     title: 'Application mobile',
-    text: 'Une application React Native / Expo pour garder une vision mobile du projet et permettre certains usages d administration en situation nomade.',
+    text: 'Une application React Native / Expo pour garder une vision mobile du projet et permettre certains usages d’administration en situation nomade.',
   },
 ];
 
 const featurePoints = [
   {
     icon: <PanelsTopLeft />,
-    title: 'Experience multi-interface',
-    text: 'Le projet relie une surface publique, un back-office desktop et une application mobile autour d une meme base fonctionnelle.',
+    title: 'Expérience multi-interface',
+    text: 'Le projet relie une surface publique, un back-office desktop et une application mobile autour d’une même base fonctionnelle.',
   },
   {
     icon: <Workflow />,
-    title: 'Architecture coherente',
-    text: 'Les modeles metier, les contenus et les flux sont organises de facon homogene pour eviter les duplications et maintenir une logique claire.',
+    title: 'Architecture cohérente',
+    text: 'Les modèles métier, les contenus et les flux sont organisés de façon homogène pour éviter les duplications et maintenir une logique claire.',
   },
   {
     icon: <BellRing />,
-    title: 'Evenements et feedback',
-    text: 'Les notifications push permettent de remonter certains evenements importants comme les nouveaux messages ou les telechargements du CV.',
+    title: 'Événements et feedback',
+    text: 'Les notifications push permettent de faire remonter certains événements importants, comme les nouveaux messages ou les téléchargements du CV.',
   },
   {
     icon: <ShieldCheck />,
     title: 'Prise en compte produit',
-    text: 'Consentement cookies, mentions legales, gestion documentaire, administration des donnees et separation entre usages publics et prives.',
+    text: 'Consentement aux cookies, mentions légales, gestion documentaire, administration des données et séparation entre usages publics et privés.',
   },
 ];
 
@@ -119,48 +119,46 @@ const detailedSections = [
   {
     id: 'web',
     badge: 'Surface publique',
-    title: 'Plateforme web : vitrine, contenu et conversion',
+    title: 'Plateforme web : vitrine, contenus et conversion',
     icon: <Globe />,
-    image:
-      'https://placehold.co/1280x820?text=Mockup+Web+Desktop+%2B+Navigation+publique',
+    image: '/images/WebPortfolio.webp',
     intro:
-      'La partie web publique a pour objectif de presenter le profil, l expertise et les projets de maniere claire, professionnelle et exploitable par des recruteurs techniques comme non techniques.',
+      'La partie web publique a pour objectif de présenter le profil, l’expertise et les projets de manière claire, professionnelle et exploitable par des recruteurs techniques comme non techniques.',
     blocks: [
       {
-        title: 'Front-end et experience utilisateur',
-        text: 'Le front est concu avec Next.js et React autour d une logique editoriale : hero, pages de contenu, catalogue projets, fiches detaillees, page contact, legal et parcours de navigation coherents. Le travail porte autant sur la structure du contenu que sur la qualite visuelle, la lisibilite et l experience responsive.',
+        title: 'Front-end et expérience utilisateur',
+        text: 'Le front est conçu avec Next.js et React autour d’une logique éditoriale : hero, pages de contenu, catalogue de projets, fiches détaillées, page de contact, mentions légales et parcours de navigation cohérents. Le travail porte autant sur la structure du contenu que sur la qualité visuelle, la lisibilité et l’expérience responsive.',
       },
       {
         title: 'Design, UI et perception produit',
-        text: 'L interface a ete pensee comme une vraie identite de portfolio, avec une direction visuelle coherente, des sections rythmees, une hierarchie typographique claire et des composants reutilisables. L objectif est de donner une perception professionnelle et non celle d un simple template assemble.',
+        text: 'L’interface a été pensée comme une véritable identité de portfolio, avec une direction visuelle cohérente, des sections rythmées, une hiérarchie typographique claire et des composants réutilisables. L’objectif est de donner une perception professionnelle, et non celle d’un simple template assemblé.',
       },
       {
-        title: 'SEO et accesibilite',
-        text: 'Les pages publiques integrent titres, descriptions, URLs propres, sitemap, robots, metadata Open Graph, pages detaillees pre-rendues et contenus structurees pour aider le crawl et l indexation. Le site prend aussi en compte les mentions legales, la confidentialite et le consentement cookies.',
+        title: 'SEO et accessibilité',
+        text: 'Les pages publiques intègrent des titres, des descriptions, des URL propres, un sitemap, des règles robots, des métadonnées Open Graph, des pages détaillées pré-rendues et des contenus structurés pour faciliter le crawl et l’indexation. Le site prend aussi en compte les mentions légales, la confidentialité et le consentement aux cookies.',
       },
     ],
   },
   {
     id: 'backend',
-    badge: 'Couche metier',
-    title: 'Backend API : structure, donnees et logique metier',
+    badge: 'Couche métier',
+    title: 'Backend API : structure, données et logique métier',
     icon: <Server />,
-    image:
-      'https://placehold.co/1280x820?text=Schema+API+%2B+Base+de+donnees+%2B+Endpoints',
+    image: '/images/API_Docs.webp',
     intro:
-      'La couche backend permet de transformer le portfolio en produit administrable. Elle gere les donnees, la validation, les ressources, l authentification et certains comportements applicatifs comme les notifications.',
+      'La couche backend permet de transformer le portfolio en produit administrable. Elle gère les données, la validation, les ressources, l’authentification et certains comportements applicatifs, comme les notifications.',
     blocks: [
       {
-        title: 'Organisation et modelisation',
-        text: 'Le backend est structure par domaines fonctionnels : projets, messages, documents, tags, authentification et push tokens. Chaque domaine repose sur une separation claire entre modeles, requetes, schemas de validation, services metier et typage TypeScript.',
+        title: 'Organisation et modélisation',
+        text: 'Le backend est structuré par domaines fonctionnels : projets, messages, documents, tags, authentification et push tokens. Chaque domaine repose sur une séparation claire entre modèles, requêtes, schémas de validation, services métier et typage TypeScript.',
       },
       {
         title: 'Administration et stockage',
-        text: 'Les projets, images, CV et metadonnees sont geres via l API puis stockes entre MongoDB et Vercel Blob. Cela permet de manipuler des contenus reelement dynamiques tout en gardant une presentation publique stable et optimisee.',
+        text: 'Les projets, images, CV et métadonnées sont gérés via l’API puis stockés entre MongoDB et Vercel Blob. Cela permet de manipuler des contenus réellement dynamiques tout en gardant une présentation publique stable et optimisée.',
       },
       {
         title: 'Documentation et exposition technique',
-        text: 'L API dispose aussi d une documentation accessible publiquement, ce qui permet de montrer la facon dont les endpoints sont exposes, organises et penses pour des usages desktop, mobile ou d administration.',
+        text: 'L’API dispose aussi d’une documentation accessible publiquement, ce qui permet de montrer la façon dont les endpoints sont exposés, organisés et pensés pour des usages desktop, mobile ou d’administration.',
       },
     ],
     cta: {
@@ -171,24 +169,23 @@ const detailedSections = [
   {
     id: 'desktop',
     badge: 'Back-office desktop',
-    title: 'Application desktop : administration et confort d usage',
+    title: 'Application desktop : administration et confort d’usage',
     icon: <AppWindow />,
-    image:
-      'https://placehold.co/1280x820?text=Mockup+Application+Desktop+Admin',
+    image: '/images/Admin_D.webp',
     intro:
-      'La version desktop montre la capacite a concevoir un outil interne plus operationnel, avec une experience d administration plus dense et plus confortable que sur mobile.',
+      'La version desktop montre la capacité à concevoir un outil interne plus opérationnel, avec une expérience d’administration plus dense et plus confortable que sur mobile.',
     blocks: [
       {
         title: 'Pilotage des contenus',
-        text: 'L application desktop permet de gerer les projets, les tags, les messages recus et les documents. Elle repond a un vrai besoin d administration, avec des ecrans orientes consultation, edition, suppression et mise a jour.',
+        text: 'L’application desktop permet de gérer les projets, les tags, les messages reçus et les documents. Elle répond à un vrai besoin d’administration, avec des écrans orientés consultation, édition, suppression et mise à jour.',
       },
       {
         title: 'Logique produit et ergonomie',
-        text: 'Le desktop n est pas seulement une duplication du site. C est une interface de travail, plus adaptee a la productivite, a la gestion fine des donnees et a certains parcours d edition plus complets.',
+        text: 'Le desktop n’est pas seulement une duplication du site. C’est une interface de travail, plus adaptée à la productivité, à la gestion fine des données et à certains parcours d’édition plus complets.',
       },
       {
         title: 'Electron, React et Vite',
-        text: 'Cette partie du projet illustre ma capacite a etendre une logique web vers un environnement desktop, tout en conservant une coherence d architecture, de composants et de services API.',
+        text: 'Cette partie du projet illustre ma capacité à étendre une logique web vers un environnement desktop, tout en conservant une cohérence d’architecture, de composants et de services API.',
       },
     ],
   },
@@ -197,21 +194,21 @@ const detailedSections = [
     badge: 'Usage mobile',
     title: 'Application mobile : consultation et administration nomade',
     icon: <Smartphone />,
-    image: 'https://placehold.co/880x1280?text=Mockup+Application+Mobile+Admin',
+    image: '/images/Admin_M.webp',
     intro:
-      'La partie mobile prolonge le projet dans un contexte d usage different : consultation rapide, administration mobile et reception d informations en situation de mobilite.',
+      'La partie mobile prolonge le projet dans un contexte d’usage différent : consultation rapide, administration mobile et réception d’informations en situation de mobilité.',
     blocks: [
       {
         title: 'React Native et Expo',
-        text: 'L application mobile a ete pensee comme une extension logique de l ecosysteme. Elle montre la capacite a adapter les parcours, les composants et la navigation a des usages plus compacts et plus mobiles.',
+        text: 'L’application mobile a été pensée comme une extension logique de l’écosystème. Elle montre la capacité à adapter les parcours, les composants et la navigation à des usages plus compacts et plus mobiles.',
       },
       {
-        title: 'Notifications et contexte temps reel',
-        text: 'L integration des notifications push permet de transformer la relation au projet : un evenement important peut etre remonte sans passer par le site ou l application desktop.',
+        title: 'Notifications et contexte temps réel',
+        text: 'L’intégration des notifications push permet de transformer la relation au projet : un événement important peut être remonté sans passer par le site ou l’application desktop.',
       },
       {
         title: 'Vision cross-platform',
-        text: 'Cette partie souligne une capacite a concevoir un meme produit sur plusieurs surfaces, avec des priorites differenciees selon le support et le contexte utilisateur.',
+        text: 'Cette partie souligne une capacité à concevoir un même produit sur plusieurs surfaces, avec des priorités différenciées selon le support et le contexte utilisateur.',
       },
     ],
   },
@@ -221,22 +218,22 @@ const transversalAreas = [
   {
     icon: <Palette />,
     title: 'Conception et direction visuelle',
-    text: 'Le projet a demande un vrai travail de cadrage visuel, de composants, d identite graphique et de coherence entre les differentes surfaces.',
+    text: 'Le projet a demandé un vrai travail de cadrage visuel, de composants, d’identité graphique et de cohérence entre les différentes surfaces.',
   },
   {
     icon: <Search />,
-    title: 'SEO et visibilite',
-    text: 'Le site public a ete pense comme un outil de visibilite professionnelle avec pages crawlables, slugs propres, sitemap, metadata et contenus utiles au recrutement.',
+    title: 'SEO et visibilité',
+    text: 'Le site public a été pensé comme un outil de visibilité professionnelle, avec des pages crawlables, des slugs propres, un sitemap, des métadonnées et des contenus utiles au recrutement.',
   },
   {
     icon: <Layers3 />,
     title: 'Conception produit',
-    text: 'Au-dela de la technique, le projet repose sur une logique d usage : presentation publique, administration interne, reception de messages et evolution continue des contenus.',
+    text: 'Au-delà de la technique, le projet repose sur une logique d’usage : présentation publique, administration interne, réception de messages et évolution continue des contenus.',
   },
   {
     icon: <MonitorSmartphone />,
-    title: 'Cohesion multi-support',
-    text: 'Le meme sujet a ete decliné sur web, desktop et mobile, avec une adaptation de l experience plutot qu une simple repetition des interfaces.',
+    title: 'Cohésion multi-support',
+    text: 'Le même sujet a été décliné sur web, desktop et mobile, avec une adaptation de l’expérience plutôt qu’une simple répétition des interfaces.',
   },
 ];
 
@@ -248,14 +245,14 @@ export default function PortfolioProjectsPage() {
 
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>
-            Portfolio <strong>Ecosysteme</strong>
+            Portfolio <strong>Écosystème</strong>
           </h1>
         </div>
 
         <p className={styles.subTitle}>
-          Ce projet est la piece centrale de mon portfolio. Il illustre ma
-          capacite a concevoir un <strong>ecosysteme complet</strong> autour d
-          une meme base fonctionnelle : <strong>site public</strong>,
+          Ce projet est la pièce centrale de mon portfolio. <br /> Il illustre
+          ma capacité à concevoir un <strong>écosystème complet</strong> autour
+          d’une même base fonctionnelle :<br /> <strong>site public</strong>,
           <strong> backend API</strong>, <strong>application desktop</strong> et{' '}
           <strong>application mobile</strong>.
         </p>
@@ -271,7 +268,7 @@ export default function PortfolioProjectsPage() {
 
         <div className={styles.heroVisualPanel}>
           <img
-            src="https://placehold.co/300x300?text=Mockup+Web+%2B+Desktop+%2B+Mobile+du+Portfolio"
+            src="/images/Mockup.webp"
             alt="Mockup global des interfaces web, desktop et mobile du projet portfolio"
             className={styles.heroVisual}
           />
@@ -283,12 +280,12 @@ export default function PortfolioProjectsPage() {
             <span>web public, backend, desktop et mobile</span>
           </div>
           <div className={styles.heroStatCard}>
-            <strong>1 logique metier unifiee</strong>
+            <strong>1 logique métier unifiée</strong>
             <span>contenus, messages, documents et administration</span>
           </div>
           <div className={styles.heroStatCard}>
             <strong>Vision fullstack</strong>
-            <span>interface, donnees, APIs, distribution et usage</span>
+            <span>interface, données, APIs, distribution et usage</span>
           </div>
         </div>
       </section>
@@ -297,25 +294,25 @@ export default function PortfolioProjectsPage() {
         <h2 className={styles.TitleHTwo}>Vision du projet</h2>
 
         <p className={styles.subTitleTwo}>
-          L objectif n etait pas seulement de creer un portfolio esthetique,
+          L’objectif n’était pas seulement de créer un portfolio esthétique,
           mais de construire un <strong>produit complet</strong> capable de
-          presenter mon profil, centraliser mes contenus, administrer les
-          donnees et creer un lien direct entre{' '}
-          <strong>visibilite publique</strong> et{' '}
+          présenter mon profil, centraliser mes contenus, administrer les
+          données et créer un lien direct entre{' '}
+          <strong>visibilité publique</strong> et{' '}
           <strong>pilotage interne</strong>.
         </p>
 
         <p className={styles.subTitleTwo}>
-          Pour un recruteur, ce projet montre concretement ma capacite a penser
-          un sujet comme un <strong>ecosysteme logiciel</strong> : conception de
-          l interface publique, structuration des APIs, modelisation des
-          donnees, outils d administration et prise en compte des usages sur
+          Pour un recruteur, ce projet montre concrètement ma capacité à penser
+          un sujet comme un <strong>écosystème logiciel</strong> : conception de
+          l’interface publique, structuration des APIs, modélisation des
+          données, outils d’administration et prise en compte des usages sur
           plusieurs environnements.
         </p>
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Les briques de l ecosysteme</h2>
+        <h2 className={styles.TitleHTwo}>Les briques de l’écosystème</h2>
 
         <div className={styles.ecosystemGrid}>
           {ecosystemParts.map((part) => (
@@ -329,7 +326,7 @@ export default function PortfolioProjectsPage() {
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Ce que ce projet demontre</h2>
+        <h2 className={styles.TitleHTwo}>Ce que ce projet démontre</h2>
 
         <ul className={styles.workList}>
           {featurePoints.map((point) => (
@@ -339,7 +336,7 @@ export default function PortfolioProjectsPage() {
               <div className={styles.workListGlowUp}>
                 <div className={styles.workListGlowUpItems}>
                   {point.icon}
-                  <span>Application concrete dans un produit reel</span>
+                  <span>Application concrète dans un produit réel</span>
                 </div>
               </div>
             </li>
@@ -352,46 +349,46 @@ export default function PortfolioProjectsPage() {
 
         <div className={styles.editorialPanel}>
           <article className={styles.editorialBlock}>
-            <h3>Presentation publique</h3>
+            <h3>Présentation publique</h3>
             <p>
-              Le site public met en avant le profil, l expertise, les projets,
-              le contact, le CV et les aspects SEO. Il est pense pour une
+              Le site public met en avant le profil, l’expertise, les projets,
+              le contact, le CV et les aspects SEO. Il est pensé pour une
               consultation fluide, responsive et exploitable par les moteurs de
               recherche.
             </p>
           </article>
 
           <article className={styles.editorialBlock}>
-            <h3>Administration centralisee</h3>
+            <h3>Administration centralisée</h3>
             <p>
-              Les contenus ne sont pas figes. Les projets, documents, tags et
-              messages sont geres via des outils d administration relies a une
-              API commune et a une base de donnees MongoDB.
+              Les contenus ne sont pas figés. Les projets, documents, tags et
+              messages sont gérés via des outils d’administration reliés à une
+              API commune et à une base de données MongoDB.
             </p>
           </article>
 
           <article className={styles.editorialBlock}>
             <h3>Usage desktop et mobile</h3>
             <p>
-              Le back-office ne se limite pas a un seul support. Une application
+              Le back-office ne se limite pas à un seul support. Une application
               desktop Electron et une application mobile React Native permettent
-              d administrer les contenus selon le contexte d usage.
+              d’administrer les contenus selon le contexte d’usage.
             </p>
           </article>
 
           <article className={styles.editorialBlock}>
-            <h3>Evenements et notifications</h3>
+            <h3>Événements et notifications</h3>
             <p>
-              Le projet integre une logique de notifications push pour remonter
-              certains evenements importants, comme la reception d un message ou
-              le telechargement du CV.
+              Le projet intègre une logique de notifications push pour faire
+              remonter certains événements importants, comme la réception d’un
+              message ou le téléchargement du CV.
             </p>
           </article>
         </div>
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Lecture detaillee du projet</h2>
+        <h2 className={styles.TitleHTwo}>Lecture détaillée du projet</h2>
 
         <div className={styles.caseStudyFlow}>
           {detailedSections.map((section, index) => (
@@ -445,9 +442,9 @@ export default function PortfolioProjectsPage() {
 
         <p className={styles.subTitleTwo}>
           Ce projet ne repose pas uniquement sur la technique. Il mobilise aussi
-          des competences de <strong>conception</strong>, de{' '}
-          <strong>design</strong>, d <strong>organisation de contenu</strong> et
-          de <strong>positionnement SEO</strong>. L objectif etait de faire de
+          des compétences de <strong>conception</strong>, de{' '}
+          <strong>design</strong>, d’<strong>organisation de contenu</strong> et
+          de <strong>positionnement SEO</strong>. L’objectif était de faire de
           ce portfolio un outil professionnel, lisible, utile et convaincant.
         </p>
 
@@ -483,42 +480,42 @@ export default function PortfolioProjectsPage() {
       </section>
 
       <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Interet pour un recruteur</h2>
+        <h2 className={styles.TitleHTwo}>Intérêt pour un recruteur</h2>
 
         <p className={styles.subTitleTwo}>
-          Ce projet est interessant dans une logique de recrutement car il ne
-          montre pas seulement ma capacite a integrer une interface. Il montre
-          aussi que je sais construire un <strong>produit coherent</strong>,
-          penser les <strong>flux de donnees</strong>, organiser un backend,
-          creer des <strong>surfaces d administration</strong> et faire
-          dialoguer plusieurs applications autour d un meme besoin.
+          Ce projet est intéressant dans une logique de recrutement, car il ne
+          montre pas seulement ma capacité à intégrer une interface. Il montre
+          aussi que je sais construire un <strong>produit cohérent</strong>,
+          penser les <strong>flux de données</strong>, organiser un backend,
+          créer des <strong>surfaces d’administration</strong> et faire
+          dialoguer plusieurs applications autour d’un même besoin.
         </p>
 
         <div className={`${styles.recruiterGrid} ${styles.TypeTwo}`}>
           <article className={styles.recruiterCard}>
             <FolderGit2 />
-            <h3>Vision projet complete</h3>
+            <h3>Vision projet complète</h3>
             <p>
-              De la vitrine publique jusqu aux outils internes, avec une logique
-              de produit et pas seulement de pages isolees.
+              De la vitrine publique jusqu’aux outils internes, avec une logique
+              de produit et pas seulement de pages isolées.
             </p>
           </article>
 
           <article className={styles.recruiterCard}>
             <Workflow />
-            <h3>Capacite d orchestration</h3>
+            <h3>Capacité d’orchestration</h3>
             <p>
-              Organisation des composants, des routes API, de la base de donnees
+              Organisation des composants, des routes API, de la base de données
               et des parcours multi-supports.
             </p>
           </article>
 
           <article className={styles.recruiterCard}>
             <Mail />
-            <h3>Orientation usage reel</h3>
+            <h3>Orientation usage réel</h3>
             <p>
-              Gestion de messages, documents, notifications, SEO, legal et
-              consentement dans un cadre concret.
+              Gestion de messages, documents, notifications, SEO, aspects légaux
+              et consentement dans un cadre concret.
             </p>
           </article>
         </div>
@@ -530,10 +527,10 @@ export default function PortfolioProjectsPage() {
         </h2>
 
         <p className={styles.subTitleTwo}>
-          Si vous recherchez un developpeur web capable de prendre en charge un
-          sujet dans sa globalite, de l interface jusqu a la logique metier et
-          aux outils d administration, ce projet donne un apercu concret de ma
-          facon de travailler.
+          Si vous recherchez un développeur web capable de prendre en charge un
+          sujet dans sa globalité, de l’interface jusqu’à la logique métier et
+          aux outils d’administration, ce projet donne un aperçu concret de ma
+          façon de travailler.
         </p>
 
         <div className={styles.panelCtaHero}>

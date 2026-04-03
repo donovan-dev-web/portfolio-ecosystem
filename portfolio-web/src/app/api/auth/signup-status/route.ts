@@ -31,7 +31,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: 'Impossible de recuperer le statut du signup', error: error.message },
+      { message: 'Impossible de récupérer le statut de l’inscription', error: error.message },
       { status: 500 }
     );
   }
@@ -62,7 +62,7 @@ export async function PUT(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: 'Impossible de mettre a jour le statut du signup', error: error.message },
+      { message: 'Impossible de mettre à jour le statut de l’inscription', error: error.message },
       { status: 400 }
     );
   }

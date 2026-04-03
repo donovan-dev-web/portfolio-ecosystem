@@ -37,9 +37,9 @@ const MANUAL_FEATURED_PROJECT = {
   shortDescription:
     'Écosystème complet comprenant une application web fullstack (Next.js), un backend API, une application desktop sous Electron et une application mobile React Native pour l’administration.',
   coverImage: {
-    small: 'https://placehold.co/480x270?text=Portfolio+Project+Small',
-    medium: 'https://placehold.co/768x432?text=Portfolio+Project+Medium',
-    large: 'https://placehold.co/1280x720?text=Portfolio+Project+Large',
+    small: '/images/Mockup.webp',
+    medium: '/images/Mockup.webp',
+    large: '/images/Mockup.webp',
   },
   tags: {
     projectTypes: [
@@ -62,7 +62,7 @@ const MANUAL_FALLBACK_PROJECTS: HomeProject[] = [
     id: 'fallback-1',
     title: 'Projet Fallback 1',
     shortDescription:
-      'Projet de secours affiche quand la base ou l API n est pas disponible.',
+      'Projet de secours affiché quand la base ou l’API n’est pas disponible.',
     coverImage: {
       small: 'https://placehold.co/480x270?text=Fallback+1+Small',
       medium: 'https://placehold.co/768x432?text=Fallback+1+Medium',
@@ -81,7 +81,7 @@ const MANUAL_FALLBACK_PROJECTS: HomeProject[] = [
     id: 'fallback-2',
     title: 'Projet Fallback 2',
     shortDescription:
-      'Deuxieme carte de secours, utile pour garder la section complete.',
+      'Deuxième carte de secours, utile pour conserver la section complète.',
     coverImage: {
       small: 'https://placehold.co/480x270?text=Fallback+2+Small',
       medium: 'https://placehold.co/768x432?text=Fallback+2+Medium',
@@ -100,7 +100,7 @@ const MANUAL_FALLBACK_PROJECTS: HomeProject[] = [
     id: 'fallback-3',
     title: 'Projet Fallback 3',
     shortDescription:
-      'Troisieme carte de secours, remplace automatiquement si le backend repond.',
+      'Troisième carte de secours, remplacée automatiquement si le backend répond.',
     coverImage: {
       small: 'https://placehold.co/480x270?text=Fallback+3+Small',
       medium: 'https://placehold.co/768x432?text=Fallback+3+Medium',
@@ -194,7 +194,7 @@ const getTopProjects = unstable_cache(
       order?: number;
     }>;
 
-    // 🔹 Trier par order croissant
+    // Trier par ordre croissant
     normalized.sort((a, b) => {
       const orderA =
         typeof a.order === 'number' ? a.order : Number.MAX_SAFE_INTEGER;
@@ -241,7 +241,7 @@ export default async function ProjectPanel() {
       dataSource = 'backend';
     }
   } catch {
-    // Fallback manuel en cas d erreur DB / backend.
+    // Fallback manuel en cas d’erreur DB / backend.
   }
 
   return (
@@ -262,7 +262,7 @@ export default async function ProjectPanel() {
             src={MANUAL_FEATURED_PROJECT.coverImage.small}
             srcSet={`${MANUAL_FEATURED_PROJECT.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECT.coverImage.large} 1280w`}
             sizes="(max-width: 768px) 100vw, 33vw"
-            alt={`Cover ${MANUAL_FEATURED_PROJECT.title}`}
+            alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECT.title}`}
           />
         </div>
         <div className={styles.ProjectDescription}>
@@ -312,7 +312,7 @@ export default async function ProjectPanel() {
               ? MANUAL_FEATURED_PROJECT.stack.map((stack) => (
                   <span key={stack}> {stack} </span>
                 ))
-              : 'Non renseignee'}
+              : 'Non renseignée'}
           </p>
         </div>
         <div className={styles.ProjectCTA}>
@@ -324,16 +324,16 @@ export default async function ProjectPanel() {
               className={styles.GithubLink}
             >
               <Github />
-              Voir Github
+              Voir GitHub
             </Link>
           ) : (
-            <p>Code source: non disponible</p>
+            <p>Code source : non disponible</p>
           )}
           <Link
             href={MANUAL_FEATURED_PROJECT.href}
             className={styles.ProjectLink}
           >
-            <ExternalLink /> Voir le detail
+            <ExternalLink /> Voir le détail
           </Link>
         </div>
       </article>
@@ -345,7 +345,7 @@ export default async function ProjectPanel() {
                 src={project.coverImage.small}
                 srcSet={`${project.coverImage.medium} 768w, ${project.coverImage.large} 1280w`}
                 sizes="(max-width: 768px) 100vw, 33vw"
-                alt={`Cover ${project.title}`}
+                alt={`Aperçu du projet ${project.title}`}
               />
             </div>
             <div className={styles.TopData}>
@@ -356,7 +356,7 @@ export default async function ProjectPanel() {
                   ? project.stack.map((stack) => (
                       <span key={stack}> {stack} </span>
                     ))
-                  : 'Non renseignee'}
+                  : 'Non renseignée'}
               </p>
             </div>
             <div className={styles.TopLink}>
@@ -367,7 +367,7 @@ export default async function ProjectPanel() {
                 className={styles.GithubLink}
               >
                 <Github />
-                Code Source
+                Code source
               </Link>
               <Link href={project.href} className={styles.ProjectLink}>
                 <ExternalLink />

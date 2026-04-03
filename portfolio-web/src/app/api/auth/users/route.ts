@@ -6,7 +6,7 @@ import { UsersListResponse } from '@/backend/auth/auth.schema';
 import { listUsersService } from '@/backend/auth/auth.service';
 
 /**
- * Recupere la liste des utilisateurs
+ * Récupère la liste des utilisateurs
  * @response 200:UsersListResponse
  * @response 401:Unauthorized
  * @responseSet auth
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { message: 'Impossible de recuperer les utilisateurs', error: error.message },
+      { message: 'Impossible de récupérer les utilisateurs', error: error.message },
       { status: 500 }
     );
   }

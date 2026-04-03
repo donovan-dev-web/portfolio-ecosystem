@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 
 import styles from './projectGalleryTabs.module.scss';
 import type { ImageVariants } from '@/backend/projects/projects.types';
@@ -64,27 +65,38 @@ export function ProjectGalleryTabs({
           return (
             <figure key={`${mode}-${index}`} className={styles.galleryItem}>
               {mode === 'desktop' ? (
-                <img
-                  src={variants.medium}
-                  srcSet={`${variants.small} 640w, ${variants.medium} 960w, ${variants.large} 1440w`}
-                  sizes="(max-width: 900px) 100vw, 90vw"
+                <Image
+                  src={variants.large}
                   alt={item.alt}
+                  width={1920}
+                  height={1080}
+                  sizes="100vw"
+                  className={styles.galleryImage}
+                  quality={100}
+                  unoptimized
+                  priority={index === 0}
                 />
               ) : (
                 <div className={styles.mobileMockupFrame}>
                   <div className={styles.mobileScreen}>
-                    <img
-                      src={variants.medium}
-                      srcSet={`${variants.small} 640w, ${variants.medium} 960w, ${variants.large} 1440w`}
-                      sizes="(max-width: 900px) 70vw, 360px"
+                    <Image
+                      src={variants.large}
                       alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 75vw, 420px"
+                      className={styles.mobileScreenImage}
+                      quality={100}
+                      unoptimized
+                      priority={index === 0}
                     />
                   </div>
-                  <img
+                  <Image
                     src="/images/Mockup_Mobile.webp"
-                    alt="Mockup Mobile pour presenter l'interface responsive"
-                    aria-hidden="true"
+                    alt=""
+                    width={420}
+                    height={877}
                     className={styles.mobileMockupOverlay}
+                    aria-hidden="true"
                   />
                 </div>
               )}

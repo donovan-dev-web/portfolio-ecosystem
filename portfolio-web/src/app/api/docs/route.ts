@@ -38,7 +38,7 @@ export async function GET() {
     return response;
   } catch (error: any) {
     return NextResponse.json(
-      { message: 'Impossible de recuperer le document', error: error.message },
+      { message: 'Impossible de récupérer le document', error: error.message },
       { status: 500 }
     );
   }

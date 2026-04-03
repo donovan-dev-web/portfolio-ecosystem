@@ -11,7 +11,7 @@ import { Sparkles, AtSign, MapPin, Clock, Mail, Download } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
-  description: 'Portfolio de Donovan, développeur web fullstack & Mobile',
+  description: 'Portfolio de Donovan, développeur web fullstack et mobile.',
 };
 
 export default function ExpertisePage() {
@@ -39,7 +39,7 @@ export default function ExpertisePage() {
             content="Voir mes projets"
             NavigateTo="/projects"
           />
-          <SecondaryButton navigateTo="/contact" content="Me Contacter" />
+          <SecondaryButton navigateTo="/contact" content="Me contacter" />
         </div>
         <CarrouselBanner />
       </section>
@@ -47,29 +47,39 @@ export default function ExpertisePage() {
         <h2 className={styles.TitleHTwo}>Profil</h2>
 
         <div className={styles.profileContainer}>
-          <div className={styles.profileText}>
-            <p className={styles.subTitleTwo}>
-              Je m'appelle <strong>Donovan Chartrain</strong>, développeur
-              <strong> web fullstack & mobile</strong> avec{' '}
-              <strong>3 ans d’expérience en entreprise</strong> et plus de{' '}
-              <strong>10 ans dans la création visuelle et la 3D</strong>.
-            </p>
+          <div className={styles.profileTabs}>
+            <div className={styles.profileImg}>
+              <img
+                src="/images/PhotoProfil.png"
+                alt="Photo de profil de Donovan Chartrain"
+                width={200}
+                height={200}
+              />
+            </div>
+            <div className={styles.profileText}>
+              <p className={styles.subTitleTwo}>
+                Je m'appelle <strong>Donovan Chartrain</strong>, développeur
+                <strong> web fullstack & mobile</strong> avec{' '}
+                <strong>3 ans d’expérience en entreprise</strong> et plus de{' '}
+                <strong>10 ans dans la création visuelle et la 3D</strong>.
+              </p>
 
-            <p className={styles.subTitleTwo}>
-              Mon parcours atypique me permet aujourd’hui de concevoir des
-              <strong> applications complètes</strong>, en prenant en compte à
-              la fois les <strong>contraintes techniques</strong>, les
-              <strong> enjeux métiers</strong> et l’
-              <strong>expérience utilisateur</strong>.
-            </p>
+              <p className={styles.subTitleTwo}>
+                Mon parcours atypique me permet aujourd’hui de concevoir des
+                <strong> applications complètes</strong>, en prenant en compte à
+                la fois les <strong>contraintes techniques</strong>, les
+                <strong> enjeux métiers</strong> et l’
+                <strong>expérience utilisateur</strong>.
+              </p>
 
-            <p className={styles.subTitleTwo}>
-              Je m’intéresse particulièrement aux projets où il est nécessaire
-              de combiner <strong>développement</strong>,{' '}
-              <strong>design</strong> et
-              <strong> logique produit</strong>, avec une approche orientée
-              <strong> performance</strong> et <strong>maintenabilité</strong>.
-            </p>
+              <p className={styles.subTitleTwo}>
+                Je m’intéresse particulièrement aux projets où il est nécessaire
+                de combiner <strong>développement</strong>,{' '}
+                <strong>design</strong> et
+                <strong> logique produit</strong>, avec une approche orientée
+                <strong> performance</strong> et <strong>maintenabilité</strong>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -110,6 +120,16 @@ export default function ExpertisePage() {
         </p>
 
         <div className={styles.timeline}>
+          {/* FORMATION */}
+
+          <div className={`${styles.timelineItem} ${styles.left}`}>
+            <div className={`${styles.timelineContent} ${styles.formation}`}>
+              <span className={styles.badge}>Diplôme</span>
+              <span className={styles.date}>2026</span>
+              <h3>Formation Développeur Web</h3>
+              <p>Diplôme de développeur informatique de niveau 5 (bac +2)</p>
+            </div>
+          </div>
           {/* EXPERIENCE */}
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
@@ -206,7 +226,7 @@ export default function ExpertisePage() {
             <div className={`${styles.timelineContent} ${styles.formation}`}>
               <span className={styles.badge}>Formation</span>
               <span className={styles.date}>2013 – 2015</span>
-              <h3>BEP & BAC PRO Maintenance industrielle</h3>
+              <h3>BEP & Bac Pro Maintenance industrielle</h3>
               <p>Lycée François Rabelais</p>
             </div>
           </div>
@@ -224,19 +244,22 @@ export default function ExpertisePage() {
         <div className={styles.skillsPanel}>
           <div>
             <h3>Langages</h3>
-            <p>JavaScript, TypeScript, HTML, CSS</p>
+            <p>JavaScript, TypeScript, HTML, CSS, PHP, C#</p>
           </div>
 
           <div>
             <h3>Frameworks</h3>
-            <p>React, Next.js, Angular, Express, React Native</p>
+            <p>
+              React, Next.js, Angular, Express, React Native, Angular,
+              Inertia.js, Laravel, DotNet
+            </p>
           </div>
 
           <div>
             <h3>Données & sécurité</h3>
             <p>
-              MongoDB, Firebase, authentification, gestion des accès, bonnes
-              pratiques OWASP
+              MongoDB, MySQL, PostgreSQL, authentification, gestion des accès,
+              bonnes pratiques OWASP
             </p>
           </div>
 
@@ -244,7 +267,7 @@ export default function ExpertisePage() {
             <h3>Outils & méthodologie</h3>
             <p>
               Git, Docker, Figma, Agile, architecture applicative, gestion de
-              projet
+              projet, SEA / SEO, accessibilité, performance web
             </p>
           </div>
         </div>
@@ -318,7 +341,7 @@ export default function ExpertisePage() {
             </p>
             <div className={styles.workListGlowUp}>
               <div className={styles.workListGlowUpItems}>
-                <span>Vision long terme</span>
+                <span>Vision à long terme</span>
               </div>
               <div className={styles.workListGlowUpItems}>
                 <span>Adaptabilité</span>
@@ -385,7 +408,7 @@ export default function ExpertisePage() {
             <div>
               <Clock /> <span>Disponibilité</span>
             </div>
-            <span>Réponse sous 24-48h</span>
+            <span>Réponse sous 24 à 48 h</span>
           </div>
         </div>
         <div className={styles.CTAButton}>
@@ -395,7 +418,7 @@ export default function ExpertisePage() {
           </a>
           <PrimaryButton
             icons={<Mail />}
-            content="Contacter moi"
+            content="Me contacter"
             NavigateTo="/contact"
           />
         </div>

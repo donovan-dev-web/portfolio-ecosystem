@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
 
     if (!doc) {
       return NextResponse.json(
-        { message: 'Document non trouve' },
+        { message: 'Document non trouvé' },
         { status: 404 }
       );
     }
@@ -32,7 +32,7 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json(
       {
-        message: 'Impossible de recuperer les metadonnees du document',
+        message: 'Impossible de récupérer les métadonnées du document',
         error: error.message,
       },
       { status: 500 }
