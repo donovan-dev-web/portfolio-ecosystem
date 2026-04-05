@@ -67,7 +67,7 @@ const MANUAL_FEATURED_PROJECT = {
   ],
   languages: [{ name: 'TypeScript', icon: null }],
   stack: ['Next.js', 'MongoDB', 'React Native', 'Electron'],
-  githubUrl: 'https://github.com',
+  githubUrl: 'https://github.com/donovan-dev-web/portfolio-ecosystem',
   href: '/portfolio-projects',
 };
 

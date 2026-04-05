@@ -119,87 +119,96 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = [
-    {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      '@id': 'https://donovan-dev-web.vercel.app/#person',
-      name: 'Donovan Chartrain',
-      url: 'https://donovan-dev-web.vercel.app/',
-      image: 'https://donovan-dev-web.vercel.app/images/PhotoProfil.png',
-      jobTitle: 'Développeur Web Fullstack & Mobile',
-      description:
-        "Développeur web fullstack spécialisé en React, Next.js, Node.js et développement d'applications web modernes et performantes.",
-      sameAs: [
-        'https://github.com/donovan-dev-web',
-        'https://www.linkedin.com/in/donovan-chartrain-dev-web',
-      ],
-      knowsAbout: [
-        'JavaScript',
-        'TypeScript',
-        'React',
-        'Next.js',
-        'Node.js',
-        'React Native',
-        'Fullstack Development',
-        'Web Development',
-        'API Development',
-        'MongoDB',
-        'SQL',
-        'Git',
-        'Agile Methodologies',
-        'Angular',
-        'dotNet',
-        'Laravel',
-      ],
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'FR',
-        addressRegion: "Provence-Alpes-Côte d'Azur",
-      },
-    },
-
-    {
-      '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      '@id': 'https://donovan-dev-web.vercel.app/#website',
-      url: 'https://donovan-dev-web.vercel.app/',
-      name: 'Portfolio Donovan',
-      description:
-        'Portfolio de Donovan Chartrain, développeur web fullstack et mobile.',
-      publisher: {
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Person',
         '@id': 'https://donovan-dev-web.vercel.app/#person',
+        name: 'Donovan Chartrain',
+        url: 'https://donovan-dev-web.vercel.app/',
+        image: 'https://donovan-dev-web.vercel.app/images/PhotoProfil.png',
+        jobTitle: 'Développeur Web Fullstack & Mobile',
+        description:
+          "Développeur web fullstack spécialisé en React, Next.js, Node.js et développement d'applications modernes.",
+        sameAs: [
+          'https://github.com/donovan-dev-web',
+          'https://www.linkedin.com/in/donovan-chartrain-dev-web',
+        ],
+        knowsAbout: [
+          'JavaScript',
+          'TypeScript',
+          'React',
+          'Next.js',
+          'Node.js',
+          'React Native',
+          'MongoDB',
+          'SQL',
+          'Angular',
+          '.NET',
+          'Laravel',
+        ],
+        address: {
+          '@type': 'PostalAddress',
+          addressCountry: 'FR',
+          addressRegion: "Provence-Alpes-Côte d'Azur",
+        },
+        hasOccupation: {
+          '@type': 'Occupation',
+          name: 'Développeur Web Fullstack',
+        },
       },
-      inLanguage: 'fr-FR',
-    },
 
-    {
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      '@id': 'https://donovan-dev-web.vercel.app/#service',
-      name: 'Développement Web & Mobile',
-      provider: {
-        '@id': 'https://donovan-dev-web.vercel.app/#person',
+      {
+        '@type': 'WebSite',
+        '@id': 'https://donovan-dev-web.vercel.app/#website',
+        url: 'https://donovan-dev-web.vercel.app/',
+        name: 'Portfolio Donovan',
+        inLanguage: 'fr-FR',
+        publisher: {
+          '@id': 'https://donovan-dev-web.vercel.app/#person',
+        },
       },
-      areaServed: {
-        '@type': 'Country',
-        name: 'France',
+
+      {
+        '@type': 'WebPage',
+        '@id': 'https://donovan-dev-web.vercel.app/#homepage',
+        url: 'https://donovan-dev-web.vercel.app/',
+        name: 'Portfolio Donovan',
+        isPartOf: {
+          '@id': 'https://donovan-dev-web.vercel.app/#website',
+        },
+        about: {
+          '@id': 'https://donovan-dev-web.vercel.app/#person',
+        },
       },
-      serviceType: [
-        'Développement web',
-        'Développement fullstack',
-        "Développement d'applications web",
-        'Développement mobile',
-        'Création de sites web',
-      ],
-    },
-  ];
+
+      {
+        '@type': 'Service',
+        '@id': 'https://donovan-dev-web.vercel.app/#service',
+        name: 'Développement Web & Mobile',
+        provider: {
+          '@id': 'https://donovan-dev-web.vercel.app/#person',
+        },
+        areaServed: {
+          '@type': 'Country',
+          name: 'France',
+        },
+        serviceType: [
+          'Développement web',
+          'Développement fullstack',
+          "Développement d'applications web",
+          'Développement mobile',
+        ],
+      },
+    ],
+  };
   return (
     <html lang="fr">
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 0) }}
         />
       </head>
       <body className={`${satochiFonts.variable} ${jetBrains.variable}`}>
