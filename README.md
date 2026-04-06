@@ -1,435 +1,277 @@
-# 🌐 Portfolio Ecosystem – React Full Stack
+# Portfolio Ecosystem
 
-## 📌 Présentation du projet
+<p align="center">
+  Pièce centrale de mon portfolio : un écosystème fullstack complet réunissant une vitrine publique, une API métier, un back-office desktop et une application mobile autour d'une même base fonctionnelle.
+</p>
 
-Ce projet a pour objectif de créer un **portfolio web moderne**, accompagné d’un **écosystème complet** comprenant :
+<p align="center">
+  <a href="./LICENSE">
+    <img src="https://img.shields.io/badge/license-MIT-0f172a?style=for-the-badge" alt="License MIT" />
+  </a>
+  <img src="https://img.shields.io/badge/Next.js-16-000000?style=for-the-badge&logo=nextdotjs" alt="Next.js 16" />
+  <img src="https://img.shields.io/badge/React-19-149eca?style=for-the-badge&logo=react" alt="React 19" />
+  <img src="https://img.shields.io/badge/TypeScript-5-3178c6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 5" />
+  <img src="https://img.shields.io/badge/MongoDB-Mongoose-0e7a43?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB and Mongoose" />
+  <img src="https://img.shields.io/badge/Electron-Desktop-2b2e3a?style=for-the-badge&logo=electron&logoColor=9feaf9" alt="Electron Desktop" />
+  <img src="https://img.shields.io/badge/Expo-React_Native-111827?style=for-the-badge&logo=expo&logoColor=white" alt="Expo React Native" />
+</p>
 
-- un **site web public** (portfolio)
-- une **application desktop** (administration)
-- une **application mobile** (administration)
+<p align="center">
+  <a href="https://donovan-dev-web.vercel.app">Site public</a>
+  ·
+  <a href="https://donovan-dev-web.vercel.app/api-docs">Documentation API</a>
+</p>
 
-L’ensemble repose sur une **API commune**, pensée pour être utilisée par plusieurs plateformes.  
-Les applications desktop et mobile sont des projets personnels ajoutés **en complément** du portfolio web afin de démontrer une maîtrise complète de l’écosystème React.
+![Mockup global du projet](./portfolio-web/public/images/Mockup.webp)
 
----
+## Vue d'ensemble
 
-## 🎯 Objectifs
+Ce projet n'a pas été pensé comme un simple portfolio vitrine. L'objectif était de construire un produit complet, administrable et cohérent, capable de relier visibilité publique, gestion de contenu, logique métier et usages multi-supports.
 
-### Objectifs pédagogiques (formation)
-- Créer un **portfolio web professionnel**
-- Mettre en place un **frontend moderne**
-- Utiliser un **backend léger**
-- Gérer des données dynamiques
-- Déployer une application web
+Il démontre ma capacité à concevoir un sujet comme un véritable écosystème logiciel :
 
-### Objectifs personnels (recruteurs)
-- Concevoir une **architecture multi-plateforme**
-- Maîtriser **React sur Web / Desktop / Mobile**
-- Implémenter une **API réutilisable**
-- Montrer une démarche d’architecture et d’anticipation
-- Travailler avec plusieurs bases de données
+- une surface publique orientée image, contenu, SEO et conversion
+- une API structurée autour de domaines métier réels
+- un back-office desktop pensé pour le confort d'administration
+- une application mobile conçue pour un usage nomade
+- une logique commune autour des projets, messages, documents, tags et utilisateurs
 
----
+## Ce que le projet démontre
 
-## 🧱 Architecture globale
+- Une vision fullstack complète, de l'interface à la donnée, en passant par l'API et la distribution.
+- Une architecture multi-surfaces où web, desktop et mobile consomment la même base métier.
+- Une approche produit concrète avec messages entrants, CV téléchargeable, authentification, administration et notifications.
+- Une attention portée à la perception professionnelle du produit : SEO, métadonnées, mentions légales, consentement cookies, documentation API et expérience responsive.
 
-```txt
+## Les 4 surfaces produit
+
+| Surface | Rôle | Stack principale |
+| --- | --- | --- |
+| Web public | Présentation du profil, expertise, projets, contact, SEO | Next.js, React, TypeScript, Sass |
+| Backend API | Gestion des projets, documents, tags, messages, auth, push | Route Handlers Next.js, MongoDB, Mongoose, Zod, JWT, Vercel Blob |
+| Desktop admin | Back-office de gestion plus dense et plus confortable | Electron, React, Vite, TypeScript |
+| Mobile admin | Consultation et administration mobile, notifications | React Native, Expo, React Navigation |
+
+## Fonctionnalités globales
+
+- Catalogue de projets avec filtres, slugs propres et pages détaillées.
+- Administration des projets avec création, mise à jour, suppression et réordonnancement.
+- Gestion des tags métier : types de projet, technologies, langages.
+- Formulaire de contact connecté à la base et consultation des messages côté admin.
+- Gestion documentaire du CV avec upload, remplacement, suppression et suivi des téléchargements.
+- Authentification JWT pour les usages privés.
+- Documentation OpenAPI consultable publiquement.
+- Notifications push Expo pour faire remonter des événements métier importants.
+- Génération de sitemap, robots, métadonnées Open Graph et pages statiques pour améliorer la visibilité SEO.
+- Mentions légales, confidentialité et consentement aux cookies côté site public.
+
+## Architecture
+
+```text
 portfolio-ecosystem/
-├─ backend-prototype/   # API temporaire (Express + SQLite)
-├─ desktop/             # App Desktop (React + Vite + Electron)
-├─ mobile/              # App Mobile (React Native + Expo)
-├─ web/                 # Portfolio Web (Next.js)
-└─ README.md
-````
+├── portfolio-web/                    # Application principale : web public + API actuelle
+│   ├── src/app/                      # Pages publiques, route handlers API, sitemap, robots
+│   ├── src/backend/                  # Services métier, modèles, schémas, accès MongoDB
+│   ├── src/frontend/                 # Composants UI, layouts, hooks, contextes
+│   └── public/                       # Assets, captures, images, openapi.json
+├── Desktop/portfolio-admin-desktop/  # Back-office Electron / React
+├── Mobile/portfolio-admin-mobile/    # Application Expo / React Native
+├── Backend-proto/                    # Ancien backend Express conservé comme prototype
+├── my_packages/                      # Package local utilitaire mongoose-error-handler
+└── README.md
+```
 
-⚠️ **Seul le dossier `web/` correspond au projet évalué dans la formation**
-Les autres applications sont des projets personnels annexes.
+## Logique métier partagée
 
----
+Le coeur du projet repose sur une même organisation fonctionnelle, réutilisée sur plusieurs interfaces :
 
-## 🧑‍💻 Stack technique
+- `projects` : contenu principal du portfolio, ordre d'affichage, slug, stack, médias
+- `messages` : formulaires entrants, lecture, consultation, suivi
+- `docs` : gestion du CV public et suivi des téléchargements
+- `tags` : typologie des projets, technologies et langages
+- `auth` : accès privé et gestion utilisateurs
+- `push-token` : enregistrement des devices et diffusion de notifications Expo
 
-### 🌐 Web (Projet noté)
+Cette cohérence permet de faire dialoguer le site public, le desktop et le mobile sans dupliquer la logique métier.
 
-* **Next.js**
-* **React**
-* **TypeScript**
-* **API Routes (Next.js)**
-* **MongoDB Atlas**
-* **Déploiement : Vercel**
+## Stack technique
 
-### 🖥️ Desktop
+### Web public
 
-* **React**
-* **Vite**
-* **Electron**
-* **TypeScript**
-* **IPC (Electron)**
-* **Mode offline avec données fictives**
-
-### 📱 Mobile
-
-* **React Native**
-* **Expo**
-* **TypeScript**
-* **Mode offline avec données fictives**
-
-### 🔌 Backend prototype (temporaire)
-
-* **Node.js**
-* **Express**
-* **SQLite**
-* **REST API**
-
----
-
-## 🔄 Philosophie du projet
-
-* Le backend **prototype** sert à :
-
-  * définir les routes API
-  * valider les modèles de données
-  * permettre le développement des apps desktop & mobile
-* Le backend **final** (Next.js) reprend **exactement les mêmes routes**
-* Les applications clientes **ne changent pas** lors de la migration
-
-👉 Le prototype est volontairement **simple, local et jetable**
-
----
----
----
-
-# Plan d’Action – Portfolio Ecosystem
-
----
-
-#  ÉTAPE 1 — Backend Prototype (Express + SQLite)
-
-## 🎯 Introduction
-**Objectif**  
-Créer un backend temporaire permettant :
-- de définir les modèles de données
-- de stabiliser les routes API
-- de servir de base aux apps desktop et mobile
-
-**Stack**
-- Node.js
-- Express
-- SQLite
+- Next.js 16
+- React 19
 - TypeScript
+- Sass
+- App Router
 
-**Contraintes**
-- Backend local
-- Simple
-- Jetable
-- API REST stable et migrable
+### Backend
 
----
+- Next.js Route Handlers
+- MongoDB
+- Mongoose
+- Zod
+- JWT
+- Argon2
+- Vercel Blob
+- Scalar API Reference
 
-## 🟡 Phase 1 — Initialisation du backend
+### Desktop
 
-### Tâches
-1. Créer le dossier `backend-prototype`
-2. Initialiser le projet Node.js
-3. Installer les dépendances (Express, SQLite, etc.)
-4. Mettre en place TypeScript
-5. Configurer les scripts npm
-6. Créer la structure de dossiers
-7. Configurer le serveur Express
-8. Mettre en place un middleware de base (JSON, CORS)
-
----
-
-## 🟡 Phase 2 — Initialisation de la base de données (SQLite)
-
-### Tâches
-1. Installer SQLite
-2. Créer le fichier de base de données
-3. Définir le schéma de la table `projects`
-4. Définir le schéma de la table `messages`
-5. Créer les scripts de création de tables
-6. Insérer des données fictives
-7. Tester les requêtes SQL
-8. Centraliser l’accès à la DB
-
----
-
-## 🟡 Phase 3 — Mise en place de l’API Projects
-
-### Tâches
-1. Créer la route `GET /api/projects`
-2. Créer la route `POST /api/projects`
-3. Créer la route `PUT /api/projects/:id`
-4. Créer la route `DELETE /api/projects/:id`
-5. Mettre en place la validation des données
-6. Gérer les erreurs API
-7. Tester les endpoints (Postman)
-8. Documenter les routes Projects
-
----
-
-## 🟡 Phase 4 — Mise en place de l’API Contact
-
-### Tâches
-1. Créer la route `POST /api/contact`
-2. Valider les champs du formulaire
-3. Sauvegarder les messages en DB
-4. Gérer les erreurs
-5. Tester l’endpoint
-6. Documenter la route Contact
-
----
-
-## 🟡 Phase 5 — Stabilisation & documentation
-
-### Tâches
-1. Vérifier la cohérence des routes
-2. Vérifier les payloads
-3. Nettoyer le code
-4. Rédiger le README du backend
-5. Lister les routes et schémas
-6. Marquer le backend comme “Prototype validé”
-
----
-
-# 🔴 ÉTAPE 2 — Application Desktop (React + Vite + Electron)
-
-## 🎯 Introduction
-**Objectif**  
-Créer une application desktop privée permettant l’administration des projets.
-
-**Stack**
+- Electron
 - React
 - Vite
-- Electron
-- TypeScript
+- React Router
+- Axios
 
----
+### Mobile
 
-## 🟡 Phase 1 — Initialisation du frontend desktop
-
-### Tâches
-1. Créer le projet React + Vite
-2. Configurer TypeScript
-3. Mettre en place l’architecture du projet
-4. Installer un router
-5. Créer la structure UI de base
-6. Mettre en place un state management
-7. Créer les services API
-
----
-
-## 🟡 Phase 2 — Connexion au backend prototype
-
-### Tâches
-1. Configurer l’URL de l’API
-2. Implémenter la récupération des projets
-3. Gérer les états de chargement
-4. Gérer les erreurs réseau
-5. Créer des données mock en fallback
-
----
-
-## 🟡 Phase 3 — CRUD Projets
-
-### Tâches
-1. Affichage de la liste des projets
-2. Création d’un projet
-3. Édition d’un projet
-4. Suppression d’un projet
-5. Validation des formulaires
-6. Tests fonctionnels
-
----
-
-## 🟡 Phase 4 — Mode offline
-
-### Tâches
-1. Détecter l’absence de connexion
-2. Charger les données fictives
-3. Informer l’utilisateur
-4. Empêcher les actions critiques
-5. Tester le mode offline
-
----
-
-## 🟡 Phase 5 — Intégration Electron
-
-### Tâches
-1. Initialiser Electron
-2. Configurer le process main
-3. Configurer le preload
-4. Charger l’app React
-5. Mettre en place l’IPC
-6. Tester le build desktop
-
----
-
-## 🟡 Phase 6 — Stabilisation & gel
-
-### Tâches
-1. Nettoyer le code
-2. Corriger les bugs
-3. Vérifier les flux principaux
-4. Mettre à jour la documentation
-5. Geler l’application desktop
-
----
-
-# 🔴 ÉTAPE 3 — Application Mobile (React Native + Expo)
-
-## 🎯 Introduction
-**Objectif**  
-Créer une application mobile privée pour gérer les projets.
-
-**Stack**
 - React Native
 - Expo
-- TypeScript
+- React Navigation
+- Expo Notifications
+- AsyncStorage
 
----
+### Prototype historique
 
-## 🟡 Phase 1 — Initialisation du projet mobile
+- Node.js
+- Express
+- MongoDB
+- Jest
+- Swagger
 
-### Tâches
-1. Créer le projet Expo
-2. Configurer TypeScript
-3. Mettre en place la navigation
-4. Structurer le projet
-5. Installer les dépendances nécessaires
+## API actuelle
 
----
+L'API embarquée dans `portfolio-web` est organisée par domaines fonctionnels :
 
-## 🟡 Phase 2 — Connexion à l’API
+- `/api/projects`
+- `/api/projects/reorder`
+- `/api/messages`
+- `/api/docs`
+- `/api/project-types`
+- `/api/technologies`
+- `/api/languages`
+- `/api/auth/login`
+- `/api/auth/signup`
+- `/api/auth/password`
+- `/api/auth/users`
+- `/api/push-token`
 
-### Tâches
-1. Créer les services API
-2. Récupérer les projets
-3. Gérer les états de chargement
-4. Gérer les erreurs réseau
-5. Mettre en place des données mock
+La documentation de référence est exposée sur `/api-docs` via Scalar et s'appuie sur le fichier [`openapi.json`](./portfolio-web/public/openapi.json).
 
----
+## Pourquoi ce dépôt est intéressant
 
-## 🟡 Phase 3 — Fonctionnalités principales
+Pour un recruteur ou une équipe technique, ce projet montre concrètement que je sais :
 
-### Tâches
-1. Affichage des projets
-2. Consultation d’un projet
-3. Édition basique
-4. Validation des formulaires
-5. Tests sur émulateur
+- penser un produit au-delà d'une simple interface
+- structurer des flux de données cohérents entre plusieurs clients
+- faire coexister présentation publique et outils internes
+- construire une base technique extensible pour web, desktop et mobile
+- relier design, technique, contenu, SEO et logique d'administration dans un cadre réel
 
----
+## Mise en route
 
-## 🟡 Phase 4 — Mode offline & stabilisation
+Le dépôt n'utilise pas de script racine unique. Chaque surface se lance indépendamment.
 
-### Tâches
-1. Gestion du mode offline
-2. Tests hors connexion
-3. Nettoyage du code
-4. Mise à jour de la documentation
-5. Gel de l’application mobile
+### 1. Application principale web + API
 
----
+```bash
+cd portfolio-web
+npm install
+npm run dev
+```
 
-# 🔴 ÉTAPE 4 — Portfolio Web (Next.js + MongoDB)
+Application disponible sur `http://localhost:3000`.
 
-## 🎯 Introduction
-**Objectif**  
-Créer le portfolio web final évalué dans la formation.
+Variables utiles pour [`portfolio-web`](./portfolio-web):
 
-**Stack**
-- Next.js
-- React
-- TypeScript
-- MongoDB Atlas
-- Vercel
+| Variable | Rôle |
+| --- | --- |
+| `MONGODB_URI` | Connexion MongoDB |
+| `JWT_SECRET` | Signature des tokens d'authentification |
+| `JWT_EXPIRES` | Durée de validité des tokens |
+| `BLOB_READ_WRITE_TOKEN` | Requis pour l'upload d'images et de documents avec Vercel Blob |
 
----
+Un fichier `.env` local existe déjà dans le projet, mais ces variables sont celles attendues par le code.
 
-## 🟡 Phase 1 — Initialisation du projet web
+### 2. Desktop admin
 
-### Tâches
-1. Créer le projet Next.js
-2. Configurer TypeScript
-3. Mettre en place la structure du projet
-4. Configurer le routing
-5. Créer le layout global
+```bash
+cd Desktop/portfolio-admin-desktop
+npm install
+npm run electron:dev
+```
 
----
+Variables utiles pour [`portfolio-admin-desktop`](./Desktop/portfolio-admin-desktop):
 
-## 🟡 Phase 2 — Backend Next.js
+| Variable | Rôle |
+| --- | --- |
+| `VITE_API_BASE_URL` | URL de l'API cible. Par défaut : `http://localhost:3000/api` en dev |
 
-### Tâches
-1. Configurer MongoDB Atlas
-2. Connecter MongoDB à Next.js
-3. Recréer les schémas de données
-4. Implémenter les API Routes
-5. Tester les endpoints
+Le back-office gère actuellement l'authentification, les utilisateurs, les projets, les messages et les documents.
 
----
+### 3. Mobile admin
 
-## 🟡 Phase 3 — Frontend portfolio
+```bash
+cd Mobile/portfolio-admin-mobile
+npm install
+npm start
+```
 
-### Tâches
-1. Page d’accueil
-2. Page projets
-3. Page détail projet
-4. Page à propos
-5. Page contact
-6. Connexion au backend
-7. Validation du formulaire
+Variables utiles pour [`portfolio-admin-mobile`](./Mobile/portfolio-admin-mobile):
 
----
+| Variable | Rôle |
+| --- | --- |
+| `EXPO_PUBLIC_API_BASE_URL` | URL de l'API cible. En développement, l'application tente de résoudre automatiquement l'hôte Expo |
 
-## 🟡 Phase 4 — Finalisation & déploiement
+L'application mobile embarque les sections `Home`, `Projects`, `Messages`, `Documents` et une ouverture rapide vers le site public.
 
-### Tâches
-1. SEO
-2. Accessibilité
-3. Responsive
-4. Tests finaux
-5. Déploiement Vercel
-6. Préparation soutenance
+### 4. Backend prototype historique
 
----
+```bash
+cd Backend-proto
+npm install
+npm run dev
+```
 
-## 🏁 Conclusion
+Ce backend n'est plus la couche principale du projet, mais il reste utile pour documenter l'évolution de l'architecture et contient encore une base de tests Jest.
 
-Ce plan permet :
-- une organisation claire
-- un suivi précis via Kanban
-- une séparation nette entre projet évalué et projets personnels
-- une montée en compétence progressive
+Variables documentées dans [`Backend-proto/.env.example`](./Backend-proto/.env.example) :
 
----
+- `JWT_SECRET`
+- `JWT_EXPIRES_IN`
+- `MONGODB_URI`
 
+## Docker
 
-## 🧊 Gestion du scope
+Deux configurations Docker sont présentes dans le dépôt :
 
-* Desktop & mobile : **fonctionnels mais non prioritaires**
-* Web : **priorité absolue**
-* Pas de sur-architecture
-* Pas de fonctionnalités inutiles
+- [`docker-compose.yml`](./docker-compose.yml) pour le backend prototype avec MongoDB
+- [`portfolio-web/docker-compose.yml`](./portfolio-web/docker-compose.yml) pour l'application fullstack actuelle avec MongoDB
 
----
+## Qualités produit mises en avant
 
-## 📣 Présentation en soutenance
+- SEO technique : sitemap, robots, URLs propres, métadonnées et Open Graph.
+- Administration réelle : contenus dynamiques, documents, messages, utilisateurs.
+- Cohérence cross-platform : mêmes domaines métier consommés sur plusieurs interfaces.
+- Retour d'événements : notifications push lors des nouveaux messages ou téléchargements du CV.
+- Positionnement professionnel : site vitrine, API documentée, outils internes et logique de recrutement claire.
 
-* Présentation principale : **portfolio web**
-* Mention de l’écosystème desktop/mobile comme projet personnel
-* Le projet web est **autonome et indépendant**
+## Pistes d'évolution
 
----
+- Centraliser davantage le dépôt avec un vrai outillage monorepo.
+- Ajouter une CI commune pour lint, tests et checks de build.
+- Compléter la couverture automatisée sur la partie `portfolio-web`.
+- Renforcer encore la documentation technique de déploiement multi-surfaces.
 
-## 🚀 Conclusion
+## Auteur
 
-Ce projet démontre :
+**Donovan Chartrain**  
+Développeur web fullstack & mobile
 
-* une maîtrise complète de React
-* une capacité à concevoir une architecture scalable
-* une séparation claire des responsabilités
-* une vision produit et long terme
+- Site : <https://donovan-dev-web.vercel.app>
+- Projet détaillé : <https://donovan-dev-web.vercel.app/portfolio-projects>
+- Contact : <https://donovan-dev-web.vercel.app/contact>
 
----
+## Licence
+
+Ce projet est distribué sous licence MIT. Voir [`LICENSE`](./LICENSE).
