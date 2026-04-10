@@ -7,6 +7,7 @@ import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 import { ContactForm } from '@/frontend/components/Contact/ContactForm/ContactForm';
+import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
 
 export const metadata: Metadata = {
   title: 'Contact - Développeur web en recherche de CDI',
@@ -47,45 +48,9 @@ export default function ContactPage() {
             navigateTo="/expertise"
           />
         </div>
-      </section>
 
-      <section className={styles.sectionClass}>
-        <h2 className={styles.TitleHTwo}>Pourquoi me contacter ?</h2>
-        <p className={styles.subTitleTwo}>
-          Cette page a été pensée avant tout pour faciliter une prise de contact
-          avec des <strong>recruteurs</strong>, des{' '}
-          <strong>responsables techniques</strong> ou des{' '}
-          <strong>dirigeants d’agence</strong> à la recherche d’un développeur
-          capable d’intervenir sur des projets web modernes, bien structurés et
-          soignés dans leur exécution.
-        </p>
-
-        <div className={styles.reasonsGrid}>
-          <article className={styles.reasonCard}>
-            <h3>Profil polyvalent</h3>
-            <p>
-              Front-end, back-end, logique métier, interfaces responsive et
-              intégration produit, avec une attention particulière portée à la
-              qualité perçue.
-            </p>
-          </article>
-
-          <article className={styles.reasonCard}>
-            <h3>Bonne adéquation avec les agences</h3>
-            <p>
-              Un profil adapté aux environnements où il faut allier
-              développement, autonomie, sens du design et capacité à produire
-              proprement pour plusieurs clients ou produits.
-            </p>
-          </article>
-
-          <article className={styles.reasonCard}>
-            <h3>Recherche active en CDI</h3>
-            <p>
-              Disponible pour échanger autour d’un poste de développeur web au
-              sein d’une agence de communication, d’une agence web ou d’une ESN.
-            </p>
-          </article>
+        <div>
+          <CtaScroll NavigateTo="#formulaire" />
         </div>
       </section>
 
@@ -115,7 +80,7 @@ export default function ContactPage() {
       </section>
 
       <section className={styles.sectionClass}>
-        <div className={styles.formLayout}>
+        <div className={styles.formLayout} id="formulaire">
           <div className={styles.formIntroCard}>
             <div className={styles.formIntroBadge}>
               <Mail />

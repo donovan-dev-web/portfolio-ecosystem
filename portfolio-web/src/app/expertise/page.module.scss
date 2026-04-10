@@ -93,11 +93,20 @@
   }
 }
 .TitleHTwo {
+  text-align: center;
+  font-family: var(--font-satochi);
+  font-weight: 700;
   width: 90%;
   font-size: 2rem;
-  font-weight: 700;
-  text-decoration: underline;
-  font-family: var(--font-satochi);
+
+  &::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--glow-violet);
+    margin: 20px auto 10px auto;
+  }
 }
 
 .subTitle {
@@ -230,6 +239,15 @@
   margin-bottom: 5px;
   padding: 3px 8px;
   border-radius: 1rem;
+  display: inline-flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 5px;
+  & svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+  }
 }
 
 /* EXPERIENCE */
@@ -306,6 +324,7 @@
 
   div {
     flex: 1 1 45%;
+    min-width: 300px;
     border: 1px solid var(--glow-violet);
     border-radius: 1rem;
     padding: 15px;
@@ -314,6 +333,45 @@
       var(--sidebar-metallic),
       var(--sidebar-metallic-dark)
     );
+  }
+}
+
+.frameworks {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.frameworksPanel {
+  flex: 1 1 45%;
+  min-width: 300px;
+  border: 1px solid var(--glow-violet);
+  border-radius: 1rem;
+  padding: 15px;
+  background: linear-gradient(
+    135deg,
+    var(--sidebar-metallic),
+    var(--sidebar-metallic-dark)
+  );
+
+  & .frameworksIcons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-around;
+    margin-top: 15px;
+
+    & div {
+      border-radius: 1rem;
+      flex: 1;
+      background-color: var(--sidebar-metallic);
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 10px;
+    }
   }
 }
 
@@ -361,6 +419,10 @@
     color: var(--sidebar-metallic-bright);
     font-family: var(--font-jet);
   }
+
+  svg {
+    color: var(--glow-violet);
+  }
 }
 
 /* =========================
@@ -403,13 +465,19 @@
 }
 
 .contactInfoPanel {
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 5px;
+  width: 100%;
+  gap: 15px;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 }
+
 .CTAButton {
   width: 100%;
   display: flex;
@@ -441,6 +509,7 @@
 
 .contactCards {
   border: 1px solid var(--glow-violet);
+  flex: 1;
   border-radius: 1rem;
   padding: 15px;
   display: flex;
@@ -452,16 +521,7 @@
     var(--sidebar-metallic-dark),
     var(--sidebar-metallic)
   );
-
-  // Media Queries Tablette
-  @media screen and (min-width: 768px) and (max-width: 1400px) {
-    width: 100%;
-  }
-
-  // Media Queries Mobile
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
+  width: 100%;
   & div {
     display: flex;
     flex-direction: row;

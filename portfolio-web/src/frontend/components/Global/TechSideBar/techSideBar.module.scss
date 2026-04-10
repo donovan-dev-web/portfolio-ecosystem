@@ -61,34 +61,6 @@
   text-transform: uppercase;
 }
 
-.techSidebarHeaderDots {
-  display: flex;
-  gap: 0.25rem;
-  margin-left: 0.5rem;
-}
-
-.techSidebarHeaderDot {
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 50%;
-}
-
-.red {
-  background-color: color-mix(
-    in oklch,
-    var(--sidebar-destructive) 60%,
-    transparent
-  );
-}
-
-.yellow {
-  background-color: oklch(0.8 0.15 85 / 0.6);
-}
-
-.green {
-  background-color: #30bd4499;
-}
-
 .techSidebarContainer {
   position: relative;
   overflow: hidden;

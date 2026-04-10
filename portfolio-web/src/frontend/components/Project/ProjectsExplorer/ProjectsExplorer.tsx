@@ -99,6 +99,10 @@ export function ProjectsExplorer({
             <span>Technologies</span>
             <details className={styles.dropdownPanel}>
               <summary className={styles.dropdownSummary}>
+                <div className={styles.summaryIndicator}>
+                  <span />
+                  <span />
+                </div>
                 {selectedTechs.length > 0
                   ? `${selectedTechs.length} techno(s) sélectionnée(s)`
                   : 'Choisir des technologies'}
@@ -126,6 +130,10 @@ export function ProjectsExplorer({
             <span>Langages</span>
             <details className={styles.dropdownPanel}>
               <summary className={styles.dropdownSummary}>
+                <div className={styles.summaryIndicator}>
+                  <span />
+                  <span />
+                </div>
                 {selectedLanguages.length > 0
                   ? `${selectedLanguages.length} langage(s) sélectionné(s)`
                   : 'Choisir des langages'}
@@ -151,7 +159,11 @@ export function ProjectsExplorer({
         </div>
 
         <div className={styles.filterActions}>
-          <button type="button" className={styles.resetButton} onClick={resetFilters}>
+          <button
+            type="button"
+            className={styles.resetButton}
+            onClick={resetFilters}
+          >
             Réinitialiser les filtres
           </button>
         </div>
@@ -254,7 +266,9 @@ export function ProjectsExplorer({
                         <ChevronsLeftRightEllipsis />
                         <span>
                           {project.languages.length
-                            ? project.languages.map((item) => item.name).join(', ')
+                            ? project.languages
+                                .map((item) => item.name)
+                                .join(', ')
                             : 'Aucun langage'}
                         </span>
                       </div>
@@ -263,7 +277,9 @@ export function ProjectsExplorer({
                     <>
                       <div className={styles.metaBlock}>
                         <TabletSmartphone />
-                        <span>{project.projectType?.name || 'Non renseigné'}</span>
+                        <span>
+                          {project.projectType?.name || 'Non renseigné'}
+                        </span>
                       </div>
                       <div className={styles.metaBlock}>
                         <Blocks />
@@ -279,7 +295,9 @@ export function ProjectsExplorer({
                         <ChevronsLeftRightEllipsis />
                         <span>
                           {project.languages.length
-                            ? project.languages.map((item) => item.name).join(', ')
+                            ? project.languages
+                                .map((item) => item.name)
+                                .join(', ')
                             : 'Aucun langage'}
                         </span>
                       </div>
@@ -303,7 +321,7 @@ export function ProjectsExplorer({
 
                 <div className={styles.projectActions}>
                   <Link href={project.href} className={styles.projectLink}>
-                    Lire le projet
+                    En savoir plus
                     <ArrowRight />
                   </Link>
                   {project.githubUrl ? (
@@ -337,8 +355,8 @@ export function ProjectsExplorer({
         <div className={styles.emptyState}>
           <h3>Aucun projet ne correspond à ces filtres</h3>
           <p>
-            Essaie une autre combinaison ou utilise le bouton de réinitialisation
-            pour afficher de nouveau tout le catalogue.
+            Essaie une autre combinaison ou utilise le bouton de
+            réinitialisation pour afficher de nouveau tout le catalogue.
           </p>
         </div>
       )}

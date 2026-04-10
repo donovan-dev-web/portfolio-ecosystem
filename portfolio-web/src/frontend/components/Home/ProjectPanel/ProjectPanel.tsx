@@ -52,7 +52,7 @@ const MANUAL_FEATURED_PROJECT = {
       { name: 'Next.js', icon: null },
     ],
   },
-  stack: ['Next.js', 'MongoDB', 'React-Native', 'Electron'],
+  stack: ['Next.js', 'MongoDB', 'React-Native', 'Electron', 'API REST', 'Expo'],
   githubUrl: 'https://github.com/donovan-dev-web/portfolio-ecosystem',
   href: '/portfolio-projects',
 };

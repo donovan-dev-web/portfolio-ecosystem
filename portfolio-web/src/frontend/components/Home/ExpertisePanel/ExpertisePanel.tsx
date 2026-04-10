@@ -63,28 +63,61 @@ export default function ExpertisePanle() {
   ];
 
   return (
-    <div className={styles.ExpertisePanel}>
-      <ul className={styles.timeline}>
-        {cards.map((card, index) => (
-          <li key={index} className={styles.item}>
-            <div className={styles.marker}></div>
-
+    <>
+      <div className={styles.ExpertisePanel}>
+        <div className={styles.ExpertiseSubPanel}>
+          <div className={styles.item}>
             <div className={styles.card}>
-              <h3>{card.title}</h3>
-
-              <p>{card.description}</p>
-
+              <h3>{CARDS_FULLSTACK.title}</h3>
+              <p>{CARDS_FULLSTACK.description}</p>
               <div className={styles.tags}>
-                {card.tags.map((tag, i) => (
+                {CARDS_FULLSTACK.tags.map((tag, i) => (
                   <span key={i}>{tag}</span>
                 ))}
               </div>
-
-              <p className={styles.value}>{card.value}</p>
+              <p className={styles.value}>{CARDS_FULLSTACK.value}</p>
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          </div>
+          <div className={styles.item}>
+            <div className={styles.card}>
+              <h3>{CARDS_UI.title}</h3>
+              <p>{CARDS_UI.description}</p>
+              <div className={styles.tags}>
+                {CARDS_UI.tags.map((tag, i) => (
+                  <span key={i}>{tag}</span>
+                ))}
+              </div>
+              <p className={styles.value}>{CARDS_UI.value}</p>
+            </div>
+          </div>
+        </div>
+        <div className={styles.ExpertiseSubPanel}>
+          <div className={styles.item}>
+            <div className={styles.card}>
+              <h3>{CARDS_APPLICATION.title}</h3>
+              <p>{CARDS_APPLICATION.description}</p>
+              <div className={styles.tags}>
+                {CARDS_APPLICATION.tags.map((tag, i) => (
+                  <span key={i}>{tag}</span>
+                ))}
+              </div>
+              <p className={styles.value}>{CARDS_APPLICATION.value}</p>
+            </div>
+          </div>
+          <div className={styles.item}>
+            <div className={styles.card}>
+              <h3>{CARDS_METHODOLIGIE.title}</h3>
+              <p>{CARDS_METHODOLIGIE.description}</p>
+              <div className={styles.tags}>
+                {CARDS_METHODOLIGIE.tags.map((tag, i) => (
+                  <span key={i}>{tag}</span>
+                ))}
+              </div>
+              <p className={styles.value}>{CARDS_METHODOLIGIE.value}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

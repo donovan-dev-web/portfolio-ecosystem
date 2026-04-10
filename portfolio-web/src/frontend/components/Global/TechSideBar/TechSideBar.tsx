@@ -83,11 +83,6 @@ export function TechSideBar() {
       <div className={style.techSidebarHeader}>
         <Terminal className={style.techSidebarHeaderIcon} />
         <span className={style.techSidebarHeaderText}>nav.tsx</span>
-        <div className={style.techSidebarHeaderDots}>
-          <div className={`${style.techSidebarHeaderDot} ${style.red}`} />
-          <div className={`${style.techSidebarHeaderDot} ${style.yellow}`} />
-          <div className={`${style.techSidebarHeaderDot} ${style.green}`} />
-        </div>
       </div>
 
       <div className={style.techSidebarContainer}>

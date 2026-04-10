@@ -23,7 +23,6 @@ import CarrouselBanner from '../frontend/components/Global/CarrouselBanner/Carro
 import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
 import { CardTypeOne } from '@/frontend/components/Global/CardsTypeOne/CardsTypeOne';
-import { CardTypeTwo } from '@/frontend/components/Global/CardsTypeTwo/CardsTypeTwo';
 import ProjectPanel from '@/frontend/components/Home/ProjectPanel/ProjectPanel';
 import ExpertisePanel from '@/frontend/components/Home/ExpertisePanel/ExpertisePanel';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
@@ -47,13 +46,13 @@ export default function Home() {
           </h1>
         </div>
         <p className={styles.subTitle}>
-          <strong>
-            Développeur Web Fullstack & Mobile avec 3 ans d’expérience
-          </strong>{' '}
-          en entreprise, je développe des{' '}
-          <strong>applications web performantes</strong> orientées utilisateur.
-          Profil hybride issu du développement applicatif et de la 3D
-          professionnelle.
+          <strong>Bonjour, je suis Donovan Chartrain.</strong> <br />{' '}
+          Développeur Web Fullstack & Mobile avec 3 ans d’expérience.
+          <br />
+          <strong>Bienvenue sur mon portfolio</strong>, un espace où j’ai le
+          plaisir de vous partager mes projets, mon expertise technique, mes
+          réalisations en développement web et mobile, ainsi que ma façon de
+          travailler.
         </p>
         <div className={styles.panelCtaHero}>
           <PrimaryButton
@@ -66,7 +65,7 @@ export default function Home() {
         <div className={styles.CarrouselContainer}>
           <CarrouselBanner />
         </div>
-        <div className={styles.CtaScroll}>
+        <div>
           <CtaScroll NavigateTo="#QuiSuisJeSection" />
         </div>
       </section>
@@ -107,34 +106,7 @@ export default function Home() {
           />
         </div>
         <div className={styles.CardsPanelTypeTwo}>
-          <CardTypeTwo
-            icons={<Wallpaper />}
-            title={'Frontend'}
-            content={
-              'Développement d’interfaces web modernes, responsives et accessibles.'
-            }
-          />
-          <CardTypeTwo
-            icons={<Database />}
-            title={'Backend & API'}
-            content={
-              'Conception d’API RESTful, gestion de la logique métier et bases de données (SQL/NoSQL) pour des applications robustes et évolutives.'
-            }
-          />
-          <CardTypeTwo
-            icons={<Smartphone />}
-            title={'Développement Mobile'}
-            content={
-              'Création d’applications mobiles avec React Native pour des solutions cohérentes web / mobile.'
-            }
-          />
-          <CardTypeTwo
-            icons={<ListTree />}
-            title={'Performance & Méthodologie'}
-            content={
-              'Performance optimisée, méthodologie Agile et architecture propre.'
-            }
-          />
+          <ExpertisePanel />
         </div>
         <PrimaryButton
           icons={<IdCard />}
@@ -159,25 +131,6 @@ export default function Home() {
           icons={<FolderOpen />}
           content="Découvrir tous mes projets"
           NavigateTo="/projects"
-        />
-      </section>
-      <section
-        className={styles.sectionClass}
-        aria-label="Mes compétences et Expertise"
-      >
-        <h2 className={styles.TitleHTwo}>Compétences & Expertise</h2>
-        <p className={styles.subTitleTwo}>
-          Compétences techniques et méthodologiques mobilisées pour concevoir,
-          développer et maintenir des projets web complets, de l’interface
-          utilisateur à l’architecture applicative.
-        </p>
-        <div className={styles.StackContainer}>
-          <ExpertisePanel />
-        </div>
-        <PrimaryButton
-          icons={<IdCard />}
-          content="Découvrir mes compétences"
-          NavigateTo="/expertise"
         />
       </section>
       <section
@@ -307,11 +260,6 @@ export default function Home() {
             <span>Réponse sous 24-48h</span>
           </div>
         </div>
-        <PrimaryButton
-          icons={<Mail />}
-          content="Me contacter"
-          NavigateTo="/contact"
-        />
       </section>
       <Footer />
     </>

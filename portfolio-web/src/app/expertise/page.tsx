@@ -6,8 +6,19 @@ import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 import CarrouselBanner from '@/frontend/components/Global/CarrouselBanner/CarrouselBanner';
-
-import { Sparkles, AtSign, MapPin, Clock, Mail, Download } from 'lucide-react';
+import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
+import LanguageChart from '@/frontend/components//Expertise/Languagechart/LanguageChart';
+import {
+  Sparkles,
+  AtSign,
+  MapPin,
+  Clock,
+  Mail,
+  Download,
+  BriefcaseBusiness,
+  GraduationCap,
+  TrendingUp,
+} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
@@ -42,8 +53,11 @@ export default function ExpertisePage() {
           <SecondaryButton navigateTo="/contact" content="Me contacter" />
         </div>
         <CarrouselBanner />
+        <div>
+          <CtaScroll NavigateTo="#profils" />
+        </div>
       </section>
-      <section className={styles.sectionClass}>
+      <section className={styles.sectionClass} id="profils">
         <h2 className={styles.TitleHTwo}>Profil</h2>
 
         <div className={styles.profileContainer}>
@@ -77,7 +91,8 @@ export default function ExpertisePage() {
                 de combiner <strong>développement</strong>,{' '}
                 <strong>design</strong> et
                 <strong> logique produit</strong>, avec une approche orientée
-                <strong> performance</strong> et <strong>maintenabilité</strong>.
+                <strong> performance</strong> et <strong>maintenabilité</strong>
+                .
               </p>
             </div>
           </div>
@@ -124,7 +139,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.left}`}>
             <div className={`${styles.timelineContent} ${styles.formation}`}>
-              <span className={styles.badge}>Diplôme</span>
+              <span className={styles.badge}>
+                Diplôme <GraduationCap />
+              </span>
               <span className={styles.date}>2026</span>
               <h3>Formation Développeur Web</h3>
               <p>Diplôme de développeur informatique de niveau 5 (bac +2)</p>
@@ -134,7 +151,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
             <div className={`${styles.timelineContent} ${styles.experience}`}>
-              <span className={styles.badge}>Expérience</span>
+              <span className={styles.badge}>
+                Expérience <BriefcaseBusiness />
+              </span>
               <span className={styles.date}>Avril 2024 - Juillet 2025</span>
               <h3>Développeur Informatique — Grapheau (84)</h3>
               <ul>
@@ -151,7 +170,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.left}`}>
             <div className={`${styles.timelineContent} ${styles.formation}`}>
-              <span className={styles.badge}>Formation</span>
+              <span className={styles.badge}>
+                Formation <GraduationCap />
+              </span>
               <span className={styles.date}>2024</span>
               <h3>Formation SEO / SEA</h3>
               <p>Financée par Grapheau</p>
@@ -162,7 +183,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
             <div className={`${styles.timelineContent} ${styles.experience}`}>
-              <span className={styles.badge}>Expérience</span>
+              <span className={styles.badge}>
+                Expérience <BriefcaseBusiness />
+              </span>
               <span className={styles.date}>Septembre 2022 – Avril 2024</span>
               <h3>Infographiste 3D — Grapheau (84)</h3>
               <ul>
@@ -175,7 +198,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
             <div className={`${styles.timelineContent} ${styles.experience}`}>
-              <span className={styles.badge}>Expérience</span>
+              <span className={styles.badge}>
+                Expérience <BriefcaseBusiness />
+              </span>
               <span className={styles.date}>Mai – Octobre 2021</span>
               <h3>Infographiste 3D / Dev Unity — POLYNOTES (38)</h3>
               <ul>
@@ -187,7 +212,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
             <div className={`${styles.timelineContent} ${styles.experience}`}>
-              <span className={styles.badge}>Expérience</span>
+              <span className={styles.badge}>
+                Expérience <BriefcaseBusiness />
+              </span>
               <span className={styles.date}>Mars – Mai 2021</span>
               <h3>Dessinateur Projeteur — MB CONCEPTION (85)</h3>
               <ul>
@@ -200,7 +227,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.left}`}>
             <div className={`${styles.timelineContent} ${styles.formation}`}>
-              <span className={styles.badge}>Formation</span>
+              <span className={styles.badge}>
+                Formation <GraduationCap />
+              </span>
               <span className={styles.date}>2020</span>
               <h3>Modeleur BIM — AFPA Nîmes</h3>
             </div>
@@ -210,7 +239,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.right}`}>
             <div className={`${styles.timelineContent} ${styles.experience}`}>
-              <span className={styles.badge}>Expérience</span>
+              <span className={styles.badge}>
+                Expérience <BriefcaseBusiness />
+              </span>
               <span className={styles.date}>2015 – 2016</span>
               <h3>Infographiste 3D Junior — COM3D (34)</h3>
               <ul>
@@ -224,7 +255,9 @@ export default function ExpertisePage() {
 
           <div className={`${styles.timelineItem} ${styles.left}`}>
             <div className={`${styles.timelineContent} ${styles.formation}`}>
-              <span className={styles.badge}>Formation</span>
+              <span className={styles.badge}>
+                Formation <GraduationCap />
+              </span>
               <span className={styles.date}>2013 – 2015</span>
               <h3>BEP & Bac Pro Maintenance industrielle</h3>
               <p>Lycée François Rabelais</p>
@@ -243,19 +276,6 @@ export default function ExpertisePage() {
 
         <div className={styles.skillsPanel}>
           <div>
-            <h3>Langages</h3>
-            <p>JavaScript, TypeScript, HTML, CSS, PHP, C#</p>
-          </div>
-
-          <div>
-            <h3>Frameworks</h3>
-            <p>
-              React, Next.js, Angular, Express, React Native, Angular,
-              Inertia.js, Laravel, DotNet
-            </p>
-          </div>
-
-          <div>
             <h3>Données & sécurité</h3>
             <p>
               MongoDB, MySQL, PostgreSQL, authentification, gestion des accès,
@@ -271,80 +291,266 @@ export default function ExpertisePage() {
             </p>
           </div>
         </div>
+        <div className={styles.frameworks}>
+          <div className={styles.frameworksPanel}>
+            <h3>Ma stacks :</h3>
+            <div className={styles.frameworksIcons}>
+              <div>
+                <img
+                  src="/Icons/Logo_React.webp"
+                  alt="React"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>React</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Nodejs.webp"
+                  alt="Node.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Node.js</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_React-Native.webp"
+                  alt="React Native"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>React Native</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Nextjs.webp"
+                  alt="Next.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Next.js</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Expo.webp"
+                  alt="Expo"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Expo</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Angular.webp"
+                  alt="Angular"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Angular</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Docker.webp"
+                  alt="Docker"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Docker</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Electron.webp"
+                  alt="Electron"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Electron</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Wordpress.webp"
+                  alt="WordPress"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>WordPress</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Laravel.webp"
+                  alt="Laravel"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Laravel</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_SpringBoot.webp"
+                  alt="Spring Boot"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Spring Boot</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Sanity.webp"
+                  alt="SAnity.io"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Sanity.io</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Vuejs.webp"
+                  alt="Vue.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Vue.js</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Github.webp"
+                  alt="GitHub"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>GitHub</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Babylon.webp"
+                  alt="Babylon.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Babylon.js</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Threejs.webp"
+                  alt="Three.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Three.js</p>
+              </div>
+            </div>
+          </div>
+          <LanguageChart />
+        </div>
       </section>
       {/* APPROCHE */}
-      <section className={styles.sectionClass}>
+      <section
+        className={styles.sectionClass}
+        aria-label="Ma façon de travailler "
+      >
         <h2 className={styles.TitleHTwo}>Ma façon de travailler</h2>
-
+        <p className={styles.subTitleTwo}>
+          Au-delà du développement, j’accorde une attention particulière à la
+          compréhension des besoins clients, à la collaboration avec les équipes
+          créatives et à la qualité des projets livrés.
+        </p>
         <ul className={styles.workList}>
           <li className={styles.workListItems}>
             <h3 className={styles.workListTitle}>
               Comprendre les besoins du projet
             </h3>
             <p className={styles.workListDescribe}>
-              Analyse des objectifs pour proposer une solution technique adaptée
-              aux contraintes métiers et aux enjeux de communication.
+              Comprendre les objectifs d’un projet est essentiel pour proposer
+              une solution technique adaptée aux contraintes métiers et aux
+              enjeux de communication.
             </p>
             <div className={styles.workListGlowUp}>
               <div className={styles.workListGlowUpItems}>
-                <span>Traduire un besoin en solution concrète</span>
+                <TrendingUp />
+                <span>
+                  Traduire efficacement un brief client en solution technique
+                </span>
               </div>
               <div className={styles.workListGlowUpItems}>
-                <span>Limiter les allers-retours</span>
+                <TrendingUp />
+                <span>
+                  Limiter les allers-retours et faciliter la prise de décision
+                </span>
               </div>
             </div>
           </li>
-
           <li className={styles.workListItems}>
             <h3 className={styles.workListTitle}>
               Collaborer avec les équipes créatives
             </h3>
             <p className={styles.workListDescribe}>
-              Mon expérience en design me permet de travailler efficacement avec
-              les équipes créatives et de respecter les intentions graphiques.
+              Grâce à mon parcours mêlant développement et production visuelle,
+              je travaille facilement avec les designers et les équipes
+              créatives.
             </p>
             <div className={styles.workListGlowUp}>
               <div className={styles.workListGlowUpItems}>
-                <span>Respect du design</span>
+                <TrendingUp />
+                <span>Respect fidèle des intentions graphiques</span>
               </div>
               <div className={styles.workListGlowUpItems}>
-                <span>Communication fluide</span>
+                <TrendingUp />
+                <span>Interfaces cohérentes entre design et développement</span>
               </div>
             </div>
           </li>
-
           <li className={styles.workListItems}>
             <h3 className={styles.workListTitle}>
               Développer des projets structurés
             </h3>
             <p className={styles.workListDescribe}>
-              Code clair, maintenable et organisé pour garantir la pérennité du
-              projet.
+              La qualité d’un projet ne dépend pas seulement de la technologie
+              utilisée, mais aussi de la manière dont il est conçu et organisé.
             </p>
             <div className={styles.workListGlowUp}>
               <div className={styles.workListGlowUpItems}>
-                <span>Architecture propre</span>
+                <TrendingUp />
+                <span>Code clair, maintenable et évolutif</span>
               </div>
               <div className={styles.workListGlowUpItems}>
-                <span>Facilité de maintenance</span>
+                <TrendingUp />
+                <span>Facilite la collaboration et la maintenance</span>
               </div>
             </div>
           </li>
-
           <li className={styles.workListItems}>
             <h3 className={styles.workListTitle}>
               Concevoir des projets durables
             </h3>
             <p className={styles.workListDescribe}>
-              Anticipation des évolutions pour construire des applications
-              scalables.
+              Je privilégie des architectures et des solutions techniques qui
+              permettent aux projets d’évoluer dans le temps.
             </p>
             <div className={styles.workListGlowUp}>
               <div className={styles.workListGlowUpItems}>
-                <span>Vision à long terme</span>
+                <TrendingUp />
+                <span>Anticipation des besoins futurs</span>
               </div>
               <div className={styles.workListGlowUpItems}>
-                <span>Adaptabilité</span>
+                <TrendingUp />
+                <span>Applications plus faciles à faire évoluer</span>
               </div>
             </div>
           </li>

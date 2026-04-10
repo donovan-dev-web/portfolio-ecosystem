@@ -2,7 +2,6 @@
 
 .CardsContainer {
   width: 23%;
-  height: 200px;
   max-width: 300px;
   border: 1px solid var(--sidebar-metallic);
   border-radius: 1rem;
@@ -20,6 +19,12 @@
   );
   position: relative;
   transition: transform 0.2s ease;
+
+  & .valueContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
 
   & svg {
     color: var(--metallic-light);

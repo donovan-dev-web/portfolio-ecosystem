@@ -12,7 +12,7 @@ import {
   Github,
   ArrowRight,
 } from 'lucide-react';
-
+import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
 import styles from './page.module.scss';
 import { connectDB } from '@/backend/database/mongoose';
 import { ProjectService } from '@/backend/projects/projects.services';
@@ -362,19 +362,8 @@ export default async function ProjectsPage() {
           <SecondaryButton navigateTo="/contact" content="Me contacter" />
         </div>
 
-        <div className={styles.heroStats}>
-          <div className={styles.heroStatCard}>
-            <strong>Découvrez {projects.length}</strong>
-            <span>projets sélectionnés</span>
-          </div>
-          <div className={styles.heroStatCard}>
-            <strong>Sites & applications</strong>
-            <span>du site vitrine aux applications dynamiques</span>
-          </div>
-          <div className={styles.heroStatCard}>
-            <strong>Approche complète</strong>
-            <span>conception, développement et structure</span>
-          </div>
+        <div>
+          <CtaScroll NavigateTo="#featured" />
         </div>
       </section>
 
@@ -421,7 +410,7 @@ export default async function ProjectsPage() {
         </div>
       </section>
 
-      <section className={styles.sectionClass}>
+      <section className={styles.sectionClass} id="featured">
         <h2 className={styles.TitleHTwo}>Projet principal</h2>
 
         <p className={styles.subTitleTwo}>
@@ -532,15 +521,6 @@ export default async function ProjectsPage() {
           variés, en agence ou en équipe technique, avec une approche fiable et
           adaptée aux besoins des clients.
         </p>
-
-        <div className={styles.panelCtaHero}>
-          <PrimaryButton
-            icons={<Sparkles />}
-            content="Voir mon expertise"
-            NavigateTo="/expertise"
-          />
-          <SecondaryButton navigateTo="/contact" content="Me contacter" />
-        </div>
 
         <div className={styles.viewHints}>
           <div className={styles.viewHint}>
