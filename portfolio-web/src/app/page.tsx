@@ -46,13 +46,13 @@ export default function Home() {
           </h1>
         </div>
         <p className={styles.subTitle}>
-          <strong>Bonjour, je suis Donovan Chartrain.</strong> <br />{' '}
-          Développeur Web Fullstack & Mobile avec 3 ans d’expérience.
-          <br />
-          <strong>Bienvenue sur mon portfolio</strong>, un espace où j’ai le
-          plaisir de vous partager mes projets, mon expertise technique, mes
-          réalisations en développement web et mobile, ainsi que ma façon de
-          travailler.
+          <strong>
+            Développeur Web Fullstack & Mobile avec 3 ans d’expérience
+          </strong>{' '}
+          en entreprise, je développe des{' '}
+          <strong>applications web performantes</strong> orientées utilisateur.
+          Profil hybride issu du développement applicatif et de la 3D
+          professionnelle.
         </p>
         <div className={styles.panelCtaHero}>
           <PrimaryButton
@@ -76,6 +76,7 @@ export default function Home() {
       >
         <h2 className={styles.TitleHTwo}>Qui suis-je ?</h2>
         <p className={styles.subTitleTwo}>
+          Bonjour, je suis Donovan Chartrain. <br />
           <strong>
             Développeur web fullstack orienté performance et produit
           </strong>

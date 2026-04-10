@@ -85,7 +85,7 @@
 
 .subTitleTwo {
   width: 90%;
-  text-align: left;
+  text-align: center;
   font-family: var(--font-satochi);
   font-weight: 500;
   font-size: 1.2rem;
@@ -113,6 +113,10 @@
     gap: 20px;
     padding-bottom: 100px;
     justify-content: center;
+  }
+
+  .hero {
+    padding-bottom: 0;
   }
   .titleContainer {
     width: 100%;
