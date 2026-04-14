@@ -28,6 +28,15 @@ const COLORS = [
   '#00c6b0',
   '#04d9a0',
   '#08dfa7',
+  '#7c4bff',
+  '#5f55ff',
+  '#3f5fff',
+  '#1f6bff',
+  '#006bfa',
+  '#009ed4',
+  '#00c6b0',
+  '#04d9a0',
+  '#08dfa7',
 ];
 
 // Arc: starts at 135° (upper-left), spans 270° clockwise to 45° (upper-right).
