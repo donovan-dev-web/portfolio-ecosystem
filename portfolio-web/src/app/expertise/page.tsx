@@ -23,6 +23,15 @@ import {
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
   description: 'Portfolio de Donovan, développeur web fullstack et mobile.',
+  alternates: {
+    canonical: '/expertise',
+  },
+  openGraph: {
+    title: 'Développeur Web Fullstack & Mobile',
+    description: 'Portfolio de Donovan, développeur web fullstack et mobile.',
+    url: '/expertise',
+    type: 'website',
+  },
 };
 
 export default function ExpertisePage() {

@@ -39,18 +39,17 @@ import styles from './page.module.scss';
 import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
-import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 
 export const metadata: Metadata = {
   title: 'FurniGo — Application e-commerce mobile',
   description:
     'Étude de cas complète de FurniGo : application mobile e-commerce fullstack avec React Native, Spring Boot, paiement Stripe, OAuth2 Google, conformité RGPD et démarche produit structurée.',
-  alternates: { canonical: '/projects/furnigo' },
+  alternates: { canonical: '/furnigo' },
   openGraph: {
     title: 'FurniGo — Application e-commerce mobile',
     description:
       "Projet fullstack complet : conception, documentation, CI/CD, API REST sécurisée, paiement Stripe et conformité RGPD — du cahier des charges à l'APK buildé en production.",
-    url: '/projects/furnigo',
+    url: '/furnigo',
     type: 'article',
   },
 };
