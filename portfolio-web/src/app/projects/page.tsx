@@ -71,6 +71,40 @@ const MANUAL_FEATURED_PROJECT = {
   href: '/portfolio-projects',
 };
 
+const MANUAL_FEATURED_PROJECTTwo = {
+  id: 'furnigo-project',
+  title: 'FurniGo Mobile\nE-Commerce App',
+  shortDescription:
+    'FurniGo : application mobile e-commerce fullstack avec React Native, Spring Boot, paiement Stripe, OAuth2 Google, conformité RGPD et démarche produit structurée.',
+  coverImage: {
+    small: '/images/furnigo/onboarding.webp',
+    medium: '/images/furnigo/onboarding.webp',
+    large: '/images/furnigo/onboarding.webp',
+  },
+  projectType: [
+    { name: 'Fullstack', icon: null },
+    { name: 'Mobile', icon: null },
+  ],
+  languages: [
+    { name: 'TypeScript', icon: null },
+    { name: 'Java', icon: null },
+  ],
+  technologies: [
+    { name: 'React-Native', icon: null },
+    { name: 'Spring Boot', icon: null },
+  ],
+  stack: [
+    'Spring Boot',
+    'PostgreSQL',
+    'React-Native',
+    'OAuth2',
+    'Stripe',
+    'CI/CD',
+  ],
+  githubUrl: 'https://github.com/donovan-dev-web/FurniGo-Mobile-E-Commerce-App',
+  href: '/furnigo',
+};
+
 const FALLBACK_PROJECTS: ProjectsPageProject[] = [
   {
     id: 'fallback-fullstack',
@@ -411,14 +445,88 @@ export default async function ProjectsPage() {
       </section>
 
       <section className={styles.sectionClass} id="featured">
-        <h2 className={styles.TitleHTwo}>Projet principal</h2>
+        <h2 className={styles.TitleHTwo}>Projets principaux</h2>
 
         <p className={styles.subTitleTwo}>
-          Ce projet illustre une approche plus complète du développement avec la
-          création d’un <strong>écosystème</strong> reliant plusieurs
-          interfaces. Il montre ma capacité à structurer un projet au-delà d’un
-          simple site web.
+          Ces projets sont mis en avant pour leur complexité, leur richesse
+          fonctionnelle ou leur intérêt technique particulier. Ils illustrent ma
+          capacité à gérer des projets plus ambitieux, avec une approche
+          structurée et une attention particulière à la qualité du code et de
+          l’expérience utilisateur.
         </p>
+
+        <article className={styles.featuredProject}>
+          <div className={styles.featuredVisual}>
+            <img
+              src={MANUAL_FEATURED_PROJECTTwo.coverImage.medium}
+              srcSet={`${MANUAL_FEATURED_PROJECTTwo.coverImage.small} 640w, ${MANUAL_FEATURED_PROJECTTwo.coverImage.medium} 960w, ${MANUAL_FEATURED_PROJECTTwo.coverImage.large} 1440w`}
+              sizes="(max-width: 900px) 100vw, 48vw"
+              alt={MANUAL_FEATURED_PROJECTTwo.title}
+            />
+          </div>
+
+          <div className={styles.featuredContent}>
+            <div className={styles.featuredBadge}>
+              <Sparkles />
+              <span>Projet principal</span>
+            </div>
+
+            <h3>{MANUAL_FEATURED_PROJECTTwo.title}</h3>
+            <p>{MANUAL_FEATURED_PROJECTTwo.shortDescription}</p>
+
+            <div className={styles.metaLines}>
+              <div className={styles.metaLine}>
+                <TabletSmartphone />
+                <span>
+                  {MANUAL_FEATURED_PROJECTTwo.projectType
+                    .map((item) => item.name)
+                    .join(', ')}
+                </span>
+              </div>
+
+              <div className={styles.metaLine}>
+                <Blocks />
+                <span>
+                  {MANUAL_FEATURED_PROJECTTwo.technologies
+                    .map((item) => item.name)
+                    .join(', ')}
+                </span>
+              </div>
+
+              <div className={styles.metaLine}>
+                <ChevronsLeftRightEllipsis />
+                <span>
+                  {MANUAL_FEATURED_PROJECTTwo.languages
+                    .map((item) => item.name)
+                    .join(', ')}
+                </span>
+              </div>
+            </div>
+
+            <div className={styles.stackCloud}>
+              {MANUAL_FEATURED_PROJECTTwo.stack.map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+
+            <div className={styles.featuredActions}>
+              <PrimaryButton
+                icons={<ArrowRight />}
+                content="Voir le projet"
+                NavigateTo={MANUAL_FEATURED_PROJECTTwo.href}
+              />
+              <Link
+                href={MANUAL_FEATURED_PROJECTTwo.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.externalLink}
+              >
+                <Github />
+                Repository
+              </Link>
+            </div>
+          </div>
+        </article>
 
         <article className={styles.featuredProject}>
           <div className={styles.featuredVisual}>

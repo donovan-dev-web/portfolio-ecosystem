@@ -94,14 +94,21 @@
   gap: 20px;
   flex-wrap: wrap;
 }
-
 .TitleHTwo {
-  text-align: left;
+  text-align: center;
   font-family: var(--font-satochi);
   font-weight: 700;
   width: 90%;
-  font-size: 2rem;
-  text-decoration: underline;
+  font-size: 2.5rem;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--glow-violet);
+    margin: 20px auto 10px auto;
+  }
 }
 
 .heroVisualPanel {

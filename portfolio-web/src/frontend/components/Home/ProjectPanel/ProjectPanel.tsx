@@ -57,6 +57,42 @@ const MANUAL_FEATURED_PROJECT = {
   href: '/portfolio-projects',
 };
 
+const MANUAL_FEATURED_PROJECTTwo = {
+  id: 'furnigo-project',
+  title: 'FurniGo Mobile\nE-Commerce App',
+  shortDescription:
+    'FurniGo : application mobile e-commerce fullstack avec React Native, Spring Boot, paiement Stripe, OAuth2 Google, conformité RGPD et démarche produit structurée.',
+  coverImage: {
+    small: '/images/furnigo/onboarding.webp',
+    medium: '/images/furnigo/onboarding.webp',
+    large: '/images/furnigo/onboarding.webp',
+  },
+  tags: {
+    projectTypes: [
+      { name: 'Fullstack', icon: null },
+      { name: 'Mobile', icon: null },
+    ],
+    languages: [
+      { name: 'TypeScript', icon: null },
+      { name: 'Java', icon: null },
+    ],
+    technologies: [
+      { name: 'React-Native', icon: null },
+      { name: 'Spring Boot', icon: null },
+    ],
+  },
+  stack: [
+    'Spring Boot',
+    'PostgreSQL',
+    'React-Native',
+    'OAuth2',
+    'Stripe',
+    'CI/CD',
+  ],
+  githubUrl: 'https://github.com/donovan-dev-web/FurniGo-Mobile-E-Commerce-App',
+  href: '/furnigo',
+};
+
 const MANUAL_FALLBACK_PROJECTS: HomeProject[] = [
   {
     id: 'fallback-1',
@@ -246,97 +282,190 @@ export default async function ProjectPanel() {
 
   return (
     <div className={styles.ProjectLayout}>
-      <article className={styles.FeaturedProjectCards}>
-        <div className={styles.ProjectBadge}>
-          <div className={styles.Badgeitem}>
-            <Sparkles />
-            <span>Projet en Vedette</span>
+      <div className={styles.FeaturedProjectPanel}>
+        <article className={styles.FeaturedProjectCards}>
+          <div className={styles.ProjectBadgeTwo}>
+            <div className={styles.Badgeitem}>
+              <Sparkles />
+              <span>Projet en Vedette</span>
+            </div>
           </div>
-        </div>
-        <div className={styles.ProjectTitle}>
-          <h3>{MANUAL_FEATURED_PROJECT.title}</h3>
-        </div>
-        <div className={styles.ProjectImage}>
-          <img
-            className={styles.FeaturedCoverImages}
-            src={MANUAL_FEATURED_PROJECT.coverImage.small}
-            srcSet={`${MANUAL_FEATURED_PROJECT.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECT.coverImage.large} 1280w`}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECT.title}`}
-          />
-        </div>
-        <div className={styles.ProjectDescription}>
-          <p>{MANUAL_FEATURED_PROJECT.shortDescription}</p>
-        </div>
-        <div className={styles.ProjectTag}>
-          <div className={styles.TagsType}>
-            <TabletSmartphone />
+          <div className={styles.ProjectTitleTwo}>
+            <h3>{MANUAL_FEATURED_PROJECTTwo.title}</h3>
+          </div>
+          <div className={styles.ProjectImageTwo}>
+            <img
+              className={styles.FeaturedCoverImages}
+              src={MANUAL_FEATURED_PROJECTTwo.coverImage.small}
+              srcSet={`${MANUAL_FEATURED_PROJECTTwo.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECTTwo.coverImage.large} 1280w`}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECTTwo.title}`}
+            />
+          </div>
+          <div className={styles.ProjectDescription}>
+            <p>{MANUAL_FEATURED_PROJECTTwo.shortDescription}</p>
+          </div>
+          <div className={styles.ProjectTag}>
+            <div className={styles.TagsType}>
+              <TabletSmartphone />
+              <p>
+                {MANUAL_FEATURED_PROJECTTwo.tags.projectTypes.length
+                  ? MANUAL_FEATURED_PROJECTTwo.tags.projectTypes
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+            <div className={styles.TagsLang}>
+              <ChevronsLeftRightEllipsis />
+              <p>
+                {MANUAL_FEATURED_PROJECTTwo.tags.languages.length
+                  ? MANUAL_FEATURED_PROJECTTwo.tags.languages
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+            <div className={styles.TagsTech}>
+              <Blocks />
+              <p>
+                {MANUAL_FEATURED_PROJECTTwo.tags.technologies.length
+                  ? MANUAL_FEATURED_PROJECTTwo.tags.technologies
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+          </div>
+          <div className={styles.ProjectStackTwo}>
             <p>
-              {MANUAL_FEATURED_PROJECT.tags.projectTypes.length
-                ? MANUAL_FEATURED_PROJECT.tags.projectTypes
-                    .map(
-                      (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
-                    )
-                    .join(', ')
-                : 'Aucun'}
+              {MANUAL_FEATURED_PROJECTTwo.stack.length
+                ? MANUAL_FEATURED_PROJECTTwo.stack.map((stack) => (
+                    <span key={stack}> {stack} </span>
+                  ))
+                : 'Non renseignée'}
             </p>
           </div>
-          <div className={styles.TagsLang}>
-            <ChevronsLeftRightEllipsis />
-            <p>
-              {MANUAL_FEATURED_PROJECT.tags.languages.length
-                ? MANUAL_FEATURED_PROJECT.tags.languages
-                    .map(
-                      (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
-                    )
-                    .join(', ')
-                : 'Aucun'}
-            </p>
-          </div>
-          <div className={styles.TagsTech}>
-            <Blocks />
-            <p>
-              {MANUAL_FEATURED_PROJECT.tags.technologies.length
-                ? MANUAL_FEATURED_PROJECT.tags.technologies
-                    .map(
-                      (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
-                    )
-                    .join(', ')
-                : 'Aucun'}
-            </p>
-          </div>
-        </div>
-        <div className={styles.ProjectStack}>
-          <p>
-            {MANUAL_FEATURED_PROJECT.stack.length
-              ? MANUAL_FEATURED_PROJECT.stack.map((stack) => (
-                  <span key={stack}> {stack} </span>
-                ))
-              : 'Non renseignée'}
-          </p>
-        </div>
-        <div className={styles.ProjectCTA}>
-          {MANUAL_FEATURED_PROJECT.githubUrl ? (
+          <div className={styles.ProjectCTA}>
+            {MANUAL_FEATURED_PROJECTTwo.githubUrl ? (
+              <Link
+                href={MANUAL_FEATURED_PROJECTTwo.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.GithubLink}
+              >
+                <Github />
+                Voir GitHub
+              </Link>
+            ) : (
+              <p>Code source : non disponible</p>
+            )}
             <Link
-              href={MANUAL_FEATURED_PROJECT.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className={styles.GithubLink}
+              href={MANUAL_FEATURED_PROJECTTwo.href}
+              className={styles.ProjectLink}
             >
-              <Github />
-              Voir GitHub
+              <ExternalLink /> Voir le détail
             </Link>
-          ) : (
-            <p>Code source : non disponible</p>
-          )}
-          <Link
-            href={MANUAL_FEATURED_PROJECT.href}
-            className={styles.ProjectLink}
-          >
-            <ExternalLink /> Voir le détail
-          </Link>
-        </div>
-      </article>
+          </div>
+        </article>
+        <article className={styles.FeaturedProjectCards}>
+          <div className={styles.ProjectBadge}>
+            <div className={styles.Badgeitem}>
+              <Sparkles />
+              <span>Projet en Vedette</span>
+            </div>
+          </div>
+          <div className={styles.ProjectTitle}>
+            <h3>{MANUAL_FEATURED_PROJECT.title}</h3>
+          </div>
+          <div className={styles.ProjectImage}>
+            <img
+              className={styles.FeaturedCoverImages}
+              src={MANUAL_FEATURED_PROJECT.coverImage.small}
+              srcSet={`${MANUAL_FEATURED_PROJECT.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECT.coverImage.large} 1280w`}
+              sizes="(max-width: 768px) 100vw, 33vw"
+              alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECT.title}`}
+            />
+          </div>
+          <div className={styles.ProjectDescription}>
+            <p>{MANUAL_FEATURED_PROJECT.shortDescription}</p>
+          </div>
+          <div className={styles.ProjectTag}>
+            <div className={styles.TagsType}>
+              <TabletSmartphone />
+              <p>
+                {MANUAL_FEATURED_PROJECT.tags.projectTypes.length
+                  ? MANUAL_FEATURED_PROJECT.tags.projectTypes
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+            <div className={styles.TagsLang}>
+              <ChevronsLeftRightEllipsis />
+              <p>
+                {MANUAL_FEATURED_PROJECT.tags.languages.length
+                  ? MANUAL_FEATURED_PROJECT.tags.languages
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+            <div className={styles.TagsTech}>
+              <Blocks />
+              <p>
+                {MANUAL_FEATURED_PROJECT.tags.technologies.length
+                  ? MANUAL_FEATURED_PROJECT.tags.technologies
+                      .map(
+                        (tag) => `${tag.icon ? `${tag.icon} ` : ''}${tag.name}`
+                      )
+                      .join(', ')
+                  : 'Aucun'}
+              </p>
+            </div>
+          </div>
+          <div className={styles.ProjectStack}>
+            <p>
+              {MANUAL_FEATURED_PROJECT.stack.length
+                ? MANUAL_FEATURED_PROJECT.stack.map((stack) => (
+                    <span key={stack}> {stack} </span>
+                  ))
+                : 'Non renseignée'}
+            </p>
+          </div>
+          <div className={styles.ProjectCTA}>
+            {MANUAL_FEATURED_PROJECT.githubUrl ? (
+              <Link
+                href={MANUAL_FEATURED_PROJECT.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.GithubLink}
+              >
+                <Github />
+                Voir GitHub
+              </Link>
+            ) : (
+              <p>Code source : non disponible</p>
+            )}
+            <Link
+              href={MANUAL_FEATURED_PROJECT.href}
+              className={styles.ProjectLink}
+            >
+              <ExternalLink /> Voir le détail
+            </Link>
+          </div>
+        </article>
+      </div>
       <div className={styles.TopProjectPanel}>
         {projectsToDisplay.map((project) => (
           <article className={styles.TopCards} key={project.id}>
