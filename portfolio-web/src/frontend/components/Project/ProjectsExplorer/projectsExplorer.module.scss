@@ -24,8 +24,9 @@
 
 .filterGroup {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
+  justify-content: space-between;
 
   & > span {
     color: var(--foreground);
@@ -236,6 +237,10 @@
 .projectsGridLayout {
   grid-template-columns: repeat(3, minmax(0, 320px));
   justify-content: space-between;
+
+  @media screen and (min-width: 2560px) {
+    grid-template-columns: repeat(4, minmax(0, 320px));
+  }
 
   @media screen and (min-width: 768px) and (max-width: 1280px) {
     grid-template-columns: repeat(2, minmax(0, 320px));

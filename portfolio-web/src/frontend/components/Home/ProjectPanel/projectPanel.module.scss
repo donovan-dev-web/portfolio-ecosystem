@@ -36,6 +36,15 @@
   border: 1px solid var(--sidebar-metallic);
   border-radius: 1rem;
   animation: AnimatedBorder 3s ease-in-out infinite;
+
+  & div {
+    background-color: #3d3d3d3d;
+    border-radius: 0.5rem;
+
+    @media screen and (max-width: 768px) {
+      background-color: transparent;
+    }
+  }
 }
 
 @keyframes AnimatedBorder {

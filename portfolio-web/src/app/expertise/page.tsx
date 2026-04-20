@@ -316,16 +316,6 @@ export default function ExpertisePage() {
               </div>
               <div>
                 <img
-                  src="/Icons/Logo_Nodejs.webp"
-                  alt="Node.js"
-                  width={45}
-                  height={45}
-                  className={styles.logoImage}
-                />
-                <p>Node.js</p>
-              </div>
-              <div>
-                <img
                   src="/Icons/Logo_React-Native.webp"
                   alt="React Native"
                   width={45}
@@ -334,6 +324,17 @@ export default function ExpertisePage() {
                 />
                 <p>React Native</p>
               </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Nodejs.webp"
+                  alt="Node.js"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Node.js</p>
+              </div>
+
               <div>
                 <img
                   src="/Icons/Logo_Nextjs.webp"
@@ -356,13 +357,13 @@ export default function ExpertisePage() {
               </div>
               <div>
                 <img
-                  src="/Icons/Logo_Angular.webp"
-                  alt="Angular"
+                  src="/Icons/Logo_Github.webp"
+                  alt="GitHub"
                   width={45}
                   height={45}
                   className={styles.logoImage}
                 />
-                <p>Angular</p>
+                <p>GitHub</p>
               </div>
               <div>
                 <img
@@ -376,16 +377,6 @@ export default function ExpertisePage() {
               </div>
               <div>
                 <img
-                  src="/Icons/Logo_Electron.webp"
-                  alt="Electron"
-                  width={45}
-                  height={45}
-                  className={styles.logoImage}
-                />
-                <p>Electron</p>
-              </div>
-              <div>
-                <img
                   src="/Icons/Logo_Wordpress.webp"
                   alt="WordPress"
                   width={45}
@@ -394,6 +385,27 @@ export default function ExpertisePage() {
                 />
                 <p>WordPress</p>
               </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Angular.webp"
+                  alt="Angular"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Angular</p>
+              </div>
+              <div>
+                <img
+                  src="/Icons/Logo_Electron.webp"
+                  alt="Electron"
+                  width={45}
+                  height={45}
+                  className={styles.logoImage}
+                />
+                <p>Electron</p>
+              </div>
+
               <div>
                 <img
                   src="/Icons/Logo_Laravel.webp"
@@ -434,16 +446,7 @@ export default function ExpertisePage() {
                 />
                 <p>Vue.js</p>
               </div>
-              <div>
-                <img
-                  src="/Icons/Logo_Github.webp"
-                  alt="GitHub"
-                  width={45}
-                  height={45}
-                  className={styles.logoImage}
-                />
-                <p>GitHub</p>
-              </div>
+
               <div>
                 <img
                   src="/Icons/Logo_Babylon.webp"

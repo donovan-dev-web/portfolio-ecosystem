@@ -60,6 +60,8 @@ export default function LanguageChart() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const [mode, setMode] = useState<'compare' | 'cumulative'>('compare');
+
   useEffect(() => {
     fetch(API_URL)
       .then((r) => {
@@ -67,9 +69,8 @@ export default function LanguageChart() {
         return r.json();
       })
       .then((data: Language[]) => {
-        // Descending: highest % → index 0 → innermost ring (smallest radius)
         const sorted = [...data]
-          .sort((a, b) => a.percentage - b.percentage)
+          .sort((a, b) => b.percentage - a.percentage) // DESC
           .slice(0, COLORS.length);
         setLanguages(sorted);
         setLoading(false);
@@ -82,10 +83,31 @@ export default function LanguageChart() {
 
   const n = languages.length;
   const maxPercentage = Math.max(...languages.map((l) => l.percentage));
+  let cumulative = 0;
 
   return (
     <div className={styles.wrapper}>
-      <h3 style={{ marginBottom: '20px' }}>Langages de programmation :</h3>
+      <h3 style={{ marginBottom: '20px' }}>Langages utilisés (GitHub)</h3>
+      <p className={styles.caption}>
+        {mode === 'compare'
+          ? 'Comparaison des langages basée sur mes projets GitHub.'
+          : 'Répartition cumulative des langages (100% des projets GitHub).'}
+      </p>
+      <div className={styles.toggle}>
+        <button
+          className={mode === 'compare' ? styles.active : ''}
+          onClick={() => setMode('compare')}
+        >
+          Comparaison
+        </button>
+        <button
+          className={mode === 'cumulative' ? styles.active : ''}
+          onClick={() => setMode('cumulative')}
+        >
+          Cumulatif
+        </button>
+      </div>
+
       <div className={styles.chartWrapper}>
         {loading && (
           <div className={styles.loadingRings}>
@@ -135,17 +157,37 @@ export default function LanguageChart() {
              * Draw outermost → innermost so inner rings appear on top.
              * i = original index (0 = innermost / highest %)
              */}
-            {[...languages].reverse().map((lang, revI) => {
-              const i = n - 1 - revI;
+            {languages.map((lang, i) => {
               const r = BASE_RADIUS + i * RING_STEP;
               const circumference = 2 * Math.PI * r;
               const trackDash = (TRACK_ANGLE / 360) * circumference;
-              const relative = Math.sqrt(lang.percentage / maxPercentage);
-              const filledDash = relative * trackDash;
+
+              let start = 0;
+              let filledDash = 0;
+              let dashOffset = 0;
+
+              if (mode === 'compare') {
+                // MODE ACTUEL
+                const relative = Math.sqrt(lang.percentage / maxPercentage);
+                filledDash = relative * trackDash;
+                dashOffset = 0;
+              } else {
+                // MODE CUMULATIF
+                const startVal = cumulative;
+                const endVal = cumulative + lang.percentage;
+
+                const startRatio = startVal / 100;
+                const segmentRatio = lang.percentage / 100;
+
+                filledDash = segmentRatio * trackDash;
+                dashOffset = startRatio * trackDash;
+
+                cumulative += lang.percentage;
+              }
+
               const color = COLORS[i % COLORS.length];
               const isHov = hovered?.index === i;
 
-              // Label y aligns to the top of the ring (12-o'clock point)
               const labelY = CY - r;
 
               return (
@@ -219,10 +261,13 @@ export default function LanguageChart() {
                       strokeLinecap="round"
                       filter={isHov ? `url(#lc-glow-${i})` : undefined}
                       className={styles.filledArc}
+                      strokeDasharray={`${filledDash} ${circumference}`}
+                      strokeDashoffset={-dashOffset}
                       style={
                         {
                           '--circumference': circumference,
                           '--filled-dash': filledDash,
+                          '--dash-offset': -dashOffset,
                           '--delay': `${i * 70}ms`,
                           stroke: color,
                         } as React.CSSProperties
@@ -268,7 +313,7 @@ export default function LanguageChart() {
                 className={styles.centerHint}
                 fill="rgba(255,255,255,0.18)"
               >
-                hover
+                Github
               </text>
             )}
           </svg>

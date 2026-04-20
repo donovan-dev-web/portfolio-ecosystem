@@ -75,22 +75,55 @@ export function ProjectsExplorer({
     <div className={styles.explorerShell}>
       <div className={styles.filterPanel}>
         <div className={styles.filterGroup}>
-          <span>Type</span>
-          <div className={styles.filterChips}>
-            {typeOptions.map((option) => (
+          <div>
+            <span>Type</span>
+            <div className={styles.filterChips}>
+              {typeOptions.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  className={
+                    selectedType === option
+                      ? styles.filterChipActive
+                      : styles.filterChip
+                  }
+                  onClick={() => setSelectedType(option)}
+                >
+                  {option}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div>
+            <span>Vue</span>
+            <div className={styles.viewSwitch}>
               <button
-                key={option}
                 type="button"
                 className={
-                  selectedType === option
-                    ? styles.filterChipActive
-                    : styles.filterChip
+                  viewMode === 'list'
+                    ? styles.viewSwitchActive
+                    : styles.viewSwitchButton
                 }
-                onClick={() => setSelectedType(option)}
+                onClick={() => setViewMode('list')}
+                aria-pressed={viewMode === 'list'}
               >
-                {option}
+                <List />
+                Liste
               </button>
-            ))}
+              <button
+                type="button"
+                className={
+                  viewMode === 'grid'
+                    ? styles.viewSwitchActive
+                    : styles.viewSwitchButton
+                }
+                onClick={() => setViewMode('grid')}
+                aria-pressed={viewMode === 'grid'}
+              >
+                <LayoutGrid />
+                Grille
+              </button>
+            </div>
           </div>
         </div>
 
@@ -174,34 +207,6 @@ export function ProjectsExplorer({
           <strong>{filteredProjects.length}</strong> projet(s) correspondent aux
           filtres actuels.
         </p>
-        <div className={styles.viewSwitch}>
-          <button
-            type="button"
-            className={
-              viewMode === 'list'
-                ? styles.viewSwitchActive
-                : styles.viewSwitchButton
-            }
-            onClick={() => setViewMode('list')}
-            aria-pressed={viewMode === 'list'}
-          >
-            <List />
-            Liste
-          </button>
-          <button
-            type="button"
-            className={
-              viewMode === 'grid'
-                ? styles.viewSwitchActive
-                : styles.viewSwitchButton
-            }
-            onClick={() => setViewMode('grid')}
-            aria-pressed={viewMode === 'grid'}
-          >
-            <LayoutGrid />
-            Grille
-          </button>
-        </div>
       </div>
 
       {filteredProjects.length > 0 ? (

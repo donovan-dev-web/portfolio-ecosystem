@@ -4,13 +4,12 @@
 @keyframes drawArc {
   from {
     stroke-dasharray: 0 var(--circumference);
+    stroke-dashoffset: 0;
     opacity: 0;
-  }
-  15% {
-    opacity: 1;
   }
   to {
     stroke-dasharray: var(--filled-dash) var(--circumference);
+    stroke-dashoffset: var(--dash-offset);
     opacity: 1;
   }
 }
@@ -51,6 +50,41 @@
     width: 100%;
     min-width: 300px;
   }
+}
+
+.caption {
+  color: var(--sidebar-metallic-bright);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.toggle {
+  display: inline-flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.toggle button {
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle button:hover {
+  color: white;
+}
+
+.active {
+  background: var(--glow-violet);
+  color: white !important;
 }
 
 // ─── Chart container ─────────────────────────────────────────────────────────
