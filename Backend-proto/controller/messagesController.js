@@ -106,11 +106,16 @@ exports.markMessageAsRead = async (req, res) => {
 
     if (!msg) return res.status(404).json({ message: 'Message non trouvé' });
 
+    if (msg.read) {
+      return res
+        .status(409)
+        .json({ message: 'Ce message est déjà marqué comme lu' });
+    }
+
     msg.read = true;
     msg.dateRead = new Date();
     await msg.save();
 
-    // FIX : retourner directement le message
     res.status(200).json(msg);
   } catch (error) {
     if (error.kind === 'ObjectId') {

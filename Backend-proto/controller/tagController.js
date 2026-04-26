@@ -30,7 +30,7 @@ exports.createProjectType = async (req, res) => {
     await type.save();
     res.status(201).json(type);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 
@@ -43,7 +43,7 @@ exports.updateProjectType = async (req, res) => {
     if (!type) return res.status(404).json({ message: 'Type non trouvé' });
     res.status(200).json(type);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 
@@ -86,7 +86,7 @@ exports.createTechnology = async (req, res) => {
     await tech.save();
     res.status(201).json(tech);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 
@@ -100,7 +100,7 @@ exports.updateTechnology = async (req, res) => {
       return res.status(404).json({ message: 'Technologie non trouvée' });
     res.status(200).json(tech);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 
@@ -143,7 +143,7 @@ exports.createLanguage = async (req, res) => {
     await lang.save();
     res.status(201).json(lang);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 
@@ -157,7 +157,7 @@ exports.updateLanguage = async (req, res) => {
     if (!lang) return res.status(404).json({ message: 'Langage non trouvé' });
     res.status(200).json(lang);
   } catch (error) {
-    res.status(400).json({ message: 'Données invalides', error });
+    res.status(400).json({ message: 'Données invalides', error: error.message });
   }
 };
 

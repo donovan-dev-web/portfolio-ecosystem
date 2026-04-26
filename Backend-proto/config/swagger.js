@@ -33,6 +33,10 @@ const options = {
             'presentation',
           ],
           properties: {
+            slug: {
+              type: 'string',
+              example: 'kasa-application-de-location',
+            },
             title: {
               type: 'string',
               example: 'Kasa - Application de location',
@@ -63,7 +67,14 @@ const options = {
               type: 'string',
               example: 'Refonte front-end React d’un site de location.',
             },
-            coverImage: { type: 'string', example: '/images/kasa-cover.png' },
+            coverImage: {
+              type: 'object',
+              properties: {
+                small: { type: 'string', example: '/images/kasa-cover-sm.png' },
+                medium: { type: 'string', example: '/images/kasa-cover-md.png' },
+                large: { type: 'string', example: '/images/kasa-cover-lg.png' },
+              },
+            },
             stack: {
               type: 'array',
               items: { type: 'string', example: 'React' },
@@ -103,19 +114,26 @@ const options = {
               items: {
                 type: 'object',
                 properties: {
-                  desktopUrl: {
-                    type: 'string',
-                    example: '/images/kasa-desktop.png',
+                  desktop: {
+                    type: 'object',
+                    properties: {
+                      small: { type: 'string', example: '/images/kasa-desktop-sm.png' },
+                      medium: { type: 'string', example: '/images/kasa-desktop-md.png' },
+                      large: { type: 'string', example: '/images/kasa-desktop-lg.png' },
+                    },
                   },
-                  mobileUrl: {
-                    type: 'string',
-                    example: '/images/kasa-mobile.png',
+                  mobile: {
+                    type: 'object',
+                    properties: {
+                      small: { type: 'string', example: '/images/kasa-mobile-sm.png' },
+                      medium: { type: 'string', example: '/images/kasa-mobile-md.png' },
+                      large: { type: 'string', example: '/images/kasa-mobile-lg.png' },
+                    },
                   },
                   alt: {
                     type: 'string',
                     example: 'Vue desktop et mobile de la page d’accueil',
                   },
-                  order: { type: 'integer', example: 0 },
                 },
               },
             },
@@ -176,6 +194,35 @@ const options = {
               format: 'date-time',
               example: '2026-02-19T10:20:30Z',
             },
+          },
+        },
+        Doc: {
+          type: 'object',
+          required: ['kind', 'name', 'url', 'pathname', 'contentType', 'size'],
+          properties: {
+            kind: { type: 'string', example: 'cv' },
+            name: { type: 'string', example: 'Donovan-Chartrain-CV.pdf' },
+            url: { type: 'string', example: 'http://localhost:3000/uploads/docs/cv-123.pdf' },
+            pathname: { type: 'string', example: '/uploads/docs/cv-123.pdf' },
+            contentType: { type: 'string', example: 'application/pdf' },
+            size: { type: 'number', example: 245678 },
+            downloadCount: { type: 'number', example: 12 },
+            lastDownloadedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        User: {
+          type: 'object',
+          properties: {
+            id: { type: 'string', example: '64fa123abc456def7890ghij' },
+            email: { type: 'string', example: 'admin@example.com' },
+            createdAt: { type: 'string', format: 'date-time' },
+            updatedAt: { type: 'string', format: 'date-time' },
+          },
+        },
+        SignupStatus: {
+          type: 'object',
+          properties: {
+            signupEnabled: { type: 'boolean', example: true },
           },
         },
       },

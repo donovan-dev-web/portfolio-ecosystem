@@ -1,20 +1,22 @@
 const mongoose = require('mongoose');
+const { buildProjectSlug } = require('../utils/projectSlug');
 
 const { Schema } = mongoose;
+
+const imageVariantSchema = new Schema(
+  {
+    small: { type: String, required: true, trim: true },
+    medium: { type: String, required: true, trim: true },
+    large: { type: String, required: true, trim: true },
+  },
+  { _id: false }
+);
 
 // Gallery Item Schema
 const galleryItemSchema = new Schema(
   {
-    desktopUrl: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    mobileUrl: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    desktop: { type: imageVariantSchema, required: true },
+    mobile: { type: imageVariantSchema, required: true },
     alt: {
       type: String,
       required: true,
@@ -39,6 +41,13 @@ const presentationSchema = new Schema(
 
 const projectSchema = new Schema(
   {
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      index: true,
+    },
     title: {
       type: String,
       required: true,
@@ -78,11 +87,7 @@ const projectSchema = new Schema(
       trim: true,
     },
 
-    coverImage: {
-      type: String,
-      required: true,
-      trim: true,
-    },
+    coverImage: { type: imageVariantSchema, required: true },
 
     stack: [
       {
@@ -136,6 +141,25 @@ projectSchema.path('languages').validate(function (value) {
 projectSchema.pre('save', async function () {
   if (this.isLive && !this.liveUrl) {
     throw new Error('Live URL is required if project is marked as live.');
+  }
+
+  if (!this.slug && this.title) {
+    this.slug = buildProjectSlug(this.title, 'project');
+  }
+});
+
+projectSchema.pre('findOneAndUpdate', function () {
+  const update = this.getUpdate();
+  const nextTitle = update?.title || update?.$set?.title;
+
+  if (nextTitle) {
+    const nextSlug = buildProjectSlug(nextTitle, 'project');
+
+    if (update.$set) {
+      update.$set.slug = nextSlug;
+    } else {
+      update.slug = nextSlug;
+    }
   }
 });
 

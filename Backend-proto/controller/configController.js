@@ -3,7 +3,7 @@ const PushToken = require('../models/PushToken');
 exports.savePushToken = async (req, res) => {
   console.log('REquete recus:', req.body);
   try {
-    const { token } = req.body;
+    const { token, device } = req.body;
 
     if (!token) {
       return res.status(400).json({
@@ -20,7 +20,7 @@ exports.savePushToken = async (req, res) => {
     } else {
       await PushToken.create({
         token,
-        device: 'android',
+        device: device || 'android',
       });
     }
 

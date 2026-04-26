@@ -28,6 +28,31 @@ module.exports = {
     400,
     'INVALID_INPUT'
   ),
+  USER_ALREADY_EXISTS: new AppError(
+    'Un utilisateur avec cet email existe deja',
+    409,
+    'USER_ALREADY_EXISTS'
+  ),
+  SIGNUP_DISABLED: new AppError(
+    "La creation de compte est desactivee",
+    403,
+    'SIGNUP_DISABLED'
+  ),
+  USER_NOT_FOUND: new AppError(
+    'Utilisateur introuvable',
+    404,
+    'USER_NOT_FOUND'
+  ),
+  INVALID_OLD_PASSWORD: new AppError(
+    'Ancien mot de passe incorrect',
+    400,
+    'INVALID_OLD_PASSWORD'
+  ),
+  LAST_USER_DELETE_FORBIDDEN: new AppError(
+    'Impossible de supprimer le dernier utilisateur',
+    409,
+    'LAST_USER_DELETE_FORBIDDEN'
+  ),
 
   // Serveur
   SERVER_ERROR: new AppError('Erreur serveur', 500, 'SERVER_ERROR'),

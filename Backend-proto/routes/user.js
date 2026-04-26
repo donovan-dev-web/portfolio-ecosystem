@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const usersController = require('../controller/user');
+const auth = require('../middlesware/auth');
 
 /**
  * @swagger
@@ -90,7 +91,7 @@ const usersController = require('../controller/user');
  */
 
 // Route d'inscription (commentée pour bloquer la création de nouveaux utilisateurs) - à décommenter pour activer l'inscription
-/*router.post('/signup', usersController.signup);*/
+router.post('/signup', usersController.signup);
 
 /**
  * @swagger
@@ -163,5 +164,11 @@ const usersController = require('../controller/user');
  *                   example: Une erreur inattendue est survenue
  */
 router.post('/login', usersController.login);
+router.get('/users', auth, usersController.listUsers);
+router.put('/users/:id', auth, usersController.updateUser);
+router.delete('/users/:id', auth, usersController.deleteUser);
+router.put('/password', auth, usersController.changePassword);
+router.get('/signup-status', auth, usersController.getSignupStatus);
+router.put('/signup-status', auth, usersController.updateSignupStatus);
 
 module.exports = router;

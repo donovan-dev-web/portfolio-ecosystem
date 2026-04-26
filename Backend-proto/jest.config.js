@@ -1,5 +1,6 @@
 module.exports = {
   testEnvironment: 'node',
+  setupFiles: ['<rootDir>/config/JestPolyfills.js'],
   setupFilesAfterEnv: ['<rootDir>/config/JestSetup.js'],
   collectCoverage: true,
   coverageDirectory: './test/coverage',
