@@ -1,7 +1,7 @@
 import { ProjectQueries } from './projects.queries';
 import { ProjectSchema, ReorderSchema } from './projects.schemaValidation';
 import { ProjectType } from './projects.types';
-import { buildProjectSlug, slugifyProjectTitle } from '@/utils/projectSlug';
+import { buildProjectSlug } from '@/utils/projectSlug';
 
 async function generateUniqueProjectSlug(title: string, excludeId?: string) {
   const baseSlug = buildProjectSlug(title, 'project');
@@ -16,58 +16,49 @@ async function generateUniqueProjectSlug(title: string, excludeId?: string) {
   return candidate;
 }
 
-async function ensureProjectSlug<T extends { _id?: string; title?: string; slug?: string }>(
-  project: T | null
-) {
+function withProjectSlug<T extends { title?: string; slug?: string }>(project: T | null) {
   if (!project) return project;
 
-  if (project.slug || !project._id || !project.title) {
+  if (project.slug || !project.title) {
     return project;
   }
 
-  const slug = await generateUniqueProjectSlug(project.title, project._id);
-  const updated = await ProjectQueries.updateSlug(project._id, slug);
-
-  return updated as typeof project;
+  return {
+    ...project,
+    slug: buildProjectSlug(project.title, 'project'),
+  };
 }
 
 export const ProjectService = {
   getAll: async () => {
     const projects = await ProjectQueries.getAll();
 
-    return Promise.all(projects.map((project) => ensureProjectSlug(project)));
+    return projects.map((project) => withProjectSlug(project));
   },
 
   getById: async (id: string) => {
     const project = await ProjectQueries.getById(id);
-    return ensureProjectSlug(project);
+    return withProjectSlug(project);
   },
 
   getBySlug: async (slug: string) => {
     const project = await ProjectQueries.getBySlug(slug);
 
     if (project) {
-      return ensureProjectSlug(project);
+      return withProjectSlug(project);
     }
 
     const projects = await ProjectQueries.getAllBasic();
     const matchingProject = projects.find((item) => {
       if (!item.title) return false;
-      return slugifyProjectTitle(item.title) === slug;
+      return buildProjectSlug(item.title, 'project') === slug;
     });
 
-    if (!matchingProject?._id || !matchingProject.title) {
+    if (!matchingProject?._id) {
       return null;
     }
 
-    const ensuredSlug = await generateUniqueProjectSlug(
-      matchingProject.title,
-      matchingProject._id.toString()
-    );
-
-    await ProjectQueries.updateSlug(matchingProject._id.toString(), ensuredSlug);
-
-    return ProjectQueries.getBySlug(ensuredSlug);
+    return ProjectService.getById(matchingProject._id.toString());
   },
 
   create: async (data: ProjectType) => {

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { ProjectService } from '@/backend/projects/projects.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
+import { handleRouteError } from '@/backend/api/route.utils';
 
 /**
  * Admin - Réorganiser les projets
@@ -21,14 +22,7 @@ export async function PUT(request: NextRequest) {
       { message: 'Ordre mis à jour avec succès' },
       { status: 200 }
     );
-  } catch (error: any) {
-    if (error.message === 'UNAUTHORIZED') {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
-
-    return NextResponse.json(
-      { message: 'Format invalide', error: error.message },
-      { status: 400 }
-    );
+  } catch (error) {
+    return handleRouteError(error, { message: 'Format invalide', status: 400 });
   }
 }

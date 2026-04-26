@@ -5,16 +5,30 @@ const USER_KEY = 'auth_user'
 const EMAIL_KEY = 'auth_email'
 
 export const storage = {
-  saveUser(user: User) {
+  async saveUser(user: User) {
+    if (window.electronAPI?.authStorage) {
+      await window.electronAPI.authStorage.setUser(user)
+      return
+    }
+
     localStorage.setItem(USER_KEY, JSON.stringify(user))
   },
 
-  getUser(): User | null {
+  async getUser(): Promise<User | null> {
+    if (window.electronAPI?.authStorage) {
+      return window.electronAPI.authStorage.getUser()
+    }
+
     const data = localStorage.getItem(USER_KEY)
     return data ? JSON.parse(data) : null
   },
 
-  clearUser() {
+  async clearUser() {
+    if (window.electronAPI?.authStorage) {
+      await window.electronAPI.authStorage.clearUser()
+      return
+    }
+
     localStorage.removeItem(USER_KEY)
   },
 

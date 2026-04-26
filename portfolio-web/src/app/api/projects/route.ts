@@ -4,6 +4,8 @@ import { ProjectService } from '@/backend/projects/projects.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import { connectDB } from '@/backend/database/mongoose';
 import { ImageService } from '@/backend/config/image.service';
+import { ProjectCreateFormSchema } from '@/backend/projects/projects.formData';
+import { handleRouteError } from '@/backend/api/route.utils';
 
 export const runtime = 'nodejs';
 
@@ -32,21 +34,6 @@ function getIndexedValues(formData: FormData, fieldName: string) {
 
   return indexedValues;
 }
-
-function getGalleryIndexes(formData: FormData) {
-  const indexes = new Set<number>();
-
-  for (const [key] of formData.entries()) {
-    const match = key.match(/^gallery\[(\d+)\]\[(desktop|mobile|alt)\]/);
-
-    if (match) {
-      indexes.add(Number(match[1]));
-    }
-  }
-
-  return Array.from(indexes).sort((a, b) => a - b);
-}
-
 /**
  * Public - Récupérer tous les projets
  * Endpoint public utilise par le site web pour afficher le catalogue de projets
@@ -69,129 +56,74 @@ export async function GET() {
  * @openapi
  */
 export async function POST(request: Request) {
-  await connectDB();
-  requireAuth(request);
+  try {
+    await connectDB();
+    requireAuth(request);
 
-  const formData = await request.formData();
+    const formData = await request.formData();
+    const parsed = ProjectCreateFormSchema.parse(formData);
 
-  // 🔹 Récupérer les variantes du cover
-  const coverSmall = formData.get('coverImage[small]') as File | null;
-  const coverMedium = formData.get('coverImage[medium]') as File | null;
-  const coverLarge = formData.get('coverImage[large]') as File | null;
+    const coverVariants = {
+      small: (await ImageService.processAndUpload(parsed.coverImage.small, 'projects'))
+        .small,
+      medium: (
+        await ImageService.processAndUpload(parsed.coverImage.medium, 'projects')
+      ).medium,
+      large: (await ImageService.processAndUpload(parsed.coverImage.large, 'projects'))
+        .large,
+    };
 
-  if (!coverSmall || !coverMedium || !coverLarge) {
-    throw new Error('All cover image variants are required');
-  }
+    const gallery = [];
 
-  // 🔹 Générer les URLs via ImageService
-  const coverVariants = {
-    small: (await ImageService.processAndUpload(coverSmall, 'projects')).small,
-    medium: (await ImageService.processAndUpload(coverMedium, 'projects'))
-      .medium,
-    large: (await ImageService.processAndUpload(coverLarge, 'projects')).large,
-  };
+    for (const item of parsed.gallery) {
+      const desktopVariants = {
+        small: (await ImageService.processAndUpload(item.desktop.small, 'projects'))
+          .small,
+        medium: (
+          await ImageService.processAndUpload(item.desktop.medium, 'projects')
+        ).medium,
+        large: (await ImageService.processAndUpload(item.desktop.large, 'projects'))
+          .large,
+      };
 
-  // 🔹 Traitement de la gallery
-  const gallery: any[] = [];
-  const galleryIndexes = getGalleryIndexes(formData);
+      const mobileVariants = {
+        small: (await ImageService.processAndUpload(item.mobile.small, 'projects'))
+          .small,
+        medium: (
+          await ImageService.processAndUpload(item.mobile.medium, 'projects')
+        ).medium,
+        large: (await ImageService.processAndUpload(item.mobile.large, 'projects'))
+          .large,
+      };
 
-  for (const i of galleryIndexes) {
-    const desktopSmall = formData.get(
-      `gallery[${i}][desktop][small]`
-    ) as File | null;
-    const desktopMedium = formData.get(
-      `gallery[${i}][desktop][medium]`
-    ) as File | null;
-    const desktopLarge = formData.get(
-      `gallery[${i}][desktop][large]`
-    ) as File | null;
-
-    const mobileSmall = formData.get(
-      `gallery[${i}][mobile][small]`
-    ) as File | null;
-    const mobileMedium = formData.get(
-      `gallery[${i}][mobile][medium]`
-    ) as File | null;
-    const mobileLarge = formData.get(
-      `gallery[${i}][mobile][large]`
-    ) as File | null;
-
-    if (
-      !desktopSmall ||
-      !desktopMedium ||
-      !desktopLarge ||
-      !mobileSmall ||
-      !mobileMedium ||
-      !mobileLarge
-    ) {
-      continue; // skip incomplete gallery item
+      gallery.push({
+        desktop: desktopVariants,
+        mobile: mobileVariants,
+        alt: item.alt,
+      });
     }
 
-    const desktopVariants = {
-      small: (await ImageService.processAndUpload(desktopSmall, 'projects'))
-        .small,
-      medium: (await ImageService.processAndUpload(desktopMedium, 'projects'))
-        .medium,
-      large: (await ImageService.processAndUpload(desktopLarge, 'projects'))
-        .large,
-    };
+    const created = await ProjectService.create({
+      title: parsed.title,
+      projectType: parsed.projectType,
+      shortDescription: parsed.shortDescription,
+      githubUrl: parsed.githubUrl,
+      isLive: parsed.isLive,
+      liveUrl: parsed.liveUrl,
+      presentation: parsed.presentation,
+      stack: getIndexedValues(formData, 'stack'),
+      technologies: getIndexedValues(formData, 'technologies'),
+      languages: getIndexedValues(formData, 'languages'),
+      coverImage: coverVariants,
+      gallery,
+      order: 0,
+    });
 
-    const mobileVariants = {
-      small: (await ImageService.processAndUpload(mobileSmall, 'projects'))
-        .small,
-      medium: (await ImageService.processAndUpload(mobileMedium, 'projects'))
-        .medium,
-      large: (await ImageService.processAndUpload(mobileLarge, 'projects'))
-        .large,
-    };
-
-    gallery.push({
-      desktop: desktopVariants,
-      mobile: mobileVariants,
-      alt: (formData.get(`gallery[${i}][alt]`) as string) || '',
+    return NextResponse.json(created, { status: 201 });
+  } catch (error) {
+    return handleRouteError(error, {
+      message: 'Impossible de créer le projet',
+      status: 400,
     });
   }
-
-  // 🔹 Données JSON supplémentaires
-  // Récupérer les champs projet directement
-  const title = formData.get('title') as string;
-  const projectType = formData.get('projectType') as string;
-  const shortDescription = formData.get('shortDescription') as string;
-  const githubUrl = formData.get('githubUrl') as string;
-  const isLive = formData.get('isLive') === 'true';
-  const liveUrl = formData.get('liveUrl') as string;
-
-  // Présentation
-  const presentation = {
-    description: formData.get('presentation[description]') as string,
-    context: formData.get('presentation[context]') as string,
-    objectives: formData.get('presentation[objectives]') as string,
-    skills: formData.get('presentation[skills]') as string,
-    results: formData.get('presentation[results]') as string,
-    improvements: formData.get('presentation[improvements]') as string,
-  };
-
-  // Stack & technologies
-  const stack = getIndexedValues(formData, 'stack');
-  const technologies = getIndexedValues(formData, 'technologies');
-  const languages = getIndexedValues(formData, 'languages');
-
-  // 🔹 Création du projet
-  const created = await ProjectService.create({
-    title,
-    projectType,
-    shortDescription,
-    githubUrl,
-    isLive,
-    liveUrl,
-    presentation,
-    stack,
-    technologies,
-    languages,
-    coverImage: coverVariants,
-    gallery,
-    order: 0,
-  });
-
-  return NextResponse.json(created, { status: 201 });
 }

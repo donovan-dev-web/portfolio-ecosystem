@@ -9,11 +9,7 @@ export function slugifyProjectTitle(title: string) {
     .replace(/-{2,}/g, '-');
 }
 
-export function buildProjectSlug(title: string, slugOrId: string) {
+export function buildProjectSlug(title: string, fallbackSlug: string) {
   const slug = slugifyProjectTitle(title);
-  return slug ? `${slug}` : slugOrId;
-}
-
-export function extractProjectIdFromSlug(slug: string) {
-  return slug;
+  return slug || fallbackSlug;
 }

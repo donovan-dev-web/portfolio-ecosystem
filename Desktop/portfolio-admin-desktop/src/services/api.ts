@@ -12,8 +12,8 @@ export const api = axios.create({
 })
 
 // 🔹 Interceptor pour inclure le token
-api.interceptors.request.use((config) => {
-  const user = storage.getUser()
+api.interceptors.request.use(async (config) => {
+  const user = await storage.getUser()
   if (user?.token && config.headers) {
     config.headers.Authorization = `Bearer ${user.token}`
   }
@@ -23,9 +23,9 @@ api.interceptors.request.use((config) => {
 // 🔹 Interceptor pour gérer les 401
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
     if (error.response?.status === 401) {
-      storage.clearUser()
+      await storage.clearUser()
       window.location.href = '/'
     }
     return Promise.reject(error)

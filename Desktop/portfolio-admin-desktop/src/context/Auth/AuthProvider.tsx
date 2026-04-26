@@ -1,4 +1,4 @@
-import { type ReactNode, useState } from 'react'
+import { type ReactNode, useEffect, useState } from 'react'
 import { AuthContext, type User } from './AuthContext'
 import { authService } from '../../services/authService'
 import { storage } from '../../utils/storage'
@@ -8,9 +8,25 @@ type Props = {
 }
 
 export function AuthProvider({ children }: Props) {
-  const [user, setUser] = useState<User | null>(() => {
-    return storage.getUser()
-  })
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    let isMounted = true
+
+    const hydrateUser = async () => {
+      const storedUser = await storage.getUser()
+
+      if (isMounted) {
+        setUser(storedUser)
+      }
+    }
+
+    hydrateUser()
+
+    return () => {
+      isMounted = false
+    }
+  }, [])
 
   const isAuthenticated = !!user
 
@@ -24,12 +40,12 @@ export function AuthProvider({ children }: Props) {
     }
 
     setUser(loggedUser)
-    storage.saveUser(loggedUser)
+    await storage.saveUser(loggedUser)
   }
 
-  const logout = () => {
+  const logout = async () => {
     setUser(null)
-    storage.clearUser()
+    await storage.clearUser()
   }
 
   return (

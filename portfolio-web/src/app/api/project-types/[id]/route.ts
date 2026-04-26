@@ -3,10 +3,7 @@ import { ProjectTypeSchema } from '@/backend/tags/tags.schema';
 import { TagService } from '@/backend/tags/tags.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import { connectDB } from '@/backend/database/mongoose';
-
-function getId(request: NextRequest) {
-  return new URL(request.url).pathname.split('/').pop()!;
-}
+import { getRouteParam, handleRouteError } from '@/backend/api/route.utils';
 
 /**
  * Récupérer un ProjectType par ID
@@ -14,9 +11,12 @@ function getId(request: NextRequest) {
  * @response 404:Error:ProjectType non trouvé
  * @openapi
  */
-export async function GET(request: NextRequest) {
+export async function GET(
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   await connectDB();
-  const id = getId(request);
+  const id = await getRouteParam(context, 'id');
 
   const data = await TagService.getProjectTypeById(id);
 
@@ -38,24 +38,34 @@ export async function GET(request: NextRequest) {
  * @responseSet auth
  * @openapi
  */
-export async function PUT(request: NextRequest) {
-  await connectDB();
-  requireAuth(request);
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    await connectDB();
+    requireAuth(request);
 
-  const id = getId(request);
-  const body = await request.json();
-  const validated = ProjectTypeSchema.parse(body);
+    const id = await getRouteParam(context, 'id');
+    const body = await request.json();
+    const validated = ProjectTypeSchema.parse(body);
 
-  const updated = await TagService.updateProjectType(id, validated);
+    const updated = await TagService.updateProjectType(id, validated);
 
-  if (!updated) {
-    return NextResponse.json(
-      { message: 'ProjectType non trouvé' },
-      { status: 404 }
-    );
+    if (!updated) {
+      return NextResponse.json(
+        { message: 'ProjectType non trouvé' },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(updated, { status: 200 });
+  } catch (error) {
+    return handleRouteError(error, {
+      message: 'Impossible de mettre à jour le type de projet',
+      status: 400,
+    });
   }
-
-  return NextResponse.json(updated, { status: 200 });
 }
 
 /**
@@ -65,23 +75,32 @@ export async function PUT(request: NextRequest) {
  * @responseSet auth
  * @openapi
  */
-export async function DELETE(request: NextRequest) {
-  await connectDB();
-  requireAuth(request);
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    await connectDB();
+    requireAuth(request);
 
-  const id = getId(request);
+    const id = await getRouteParam(context, 'id');
+    const deleted = await TagService.deleteProjectType(id);
 
-  const deleted = await TagService.deleteProjectType(id);
+    if (!deleted) {
+      return NextResponse.json(
+        { message: 'ProjectType non trouvé' },
+        { status: 404 }
+      );
+    }
 
-  if (!deleted) {
     return NextResponse.json(
-      { message: 'ProjectType non trouvé' },
-      { status: 404 }
+      { message: 'ProjectType supprimé' },
+      { status: 200 }
     );
+  } catch (error) {
+    return handleRouteError(error, {
+      message: 'Impossible de supprimer le type de projet',
+      status: 400,
+    });
   }
-
-  return NextResponse.json(
-    { message: 'ProjectType supprimé' },
-    { status: 200 }
-  );
 }

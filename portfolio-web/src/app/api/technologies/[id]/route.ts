@@ -4,10 +4,7 @@ import { TagService } from '@/backend/tags/tags.services';
 import { requireAuth } from '@/backend/auth/auth.middleware';
 import type { TechnologyType } from '@/backend/tags/tags.types';
 import { connectDB } from '@/backend/database/mongoose';
-
-function getId(request: NextRequest) {
-  return new URL(request.url).pathname.split('/').pop()!;
-}
+import { getRouteParam, handleRouteError } from '@/backend/api/route.utils';
 
 /**
  * Récupérer une Technology par ID
@@ -15,9 +12,12 @@ function getId(request: NextRequest) {
  * @response 404:Error:Technology non trouvée
  * @openapi
  */
-export async function GET(request: NextRequest) {
+export async function GET(
+  _request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
   await connectDB();
-  const id = getId(request);
+  const id = await getRouteParam(context, 'id');
 
   const data = await TagService.getTechnologyById(id);
 
@@ -38,25 +38,34 @@ export async function GET(request: NextRequest) {
  * @responseSet auth
  * @openapi
  */
-export async function PUT(request: NextRequest) {
-  await connectDB();
+export async function PUT(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    await connectDB();
+    requireAuth(request);
 
-  requireAuth(request);
+    const id = await getRouteParam(context, 'id');
+    const body: TechnologyType = await request.json();
+    const validated = TechnologySchema.parse(body);
 
-  const id = getId(request);
-  const body = await request.json();
-  const validated = TechnologySchema.parse(body);
+    const updated = await TagService.updateTechnology(id, validated);
 
-  const updated = await TagService.updateTechnology(id, validated);
+    if (!updated) {
+      return NextResponse.json(
+        { message: 'Technology non trouvée' },
+        { status: 404 }
+      );
+    }
 
-  if (!updated) {
-    return NextResponse.json(
-      { message: 'Technology non trouvée' },
-      { status: 404 }
-    );
+    return NextResponse.json(updated, { status: 200 });
+  } catch (error) {
+    return handleRouteError(error, {
+      message: 'Impossible de mettre à jour la technologie',
+      status: 400,
+    });
   }
-
-  return NextResponse.json(updated, { status: 200 });
 }
 
 /**
@@ -65,24 +74,32 @@ export async function PUT(request: NextRequest) {
  * @responseSet auth
  * @openapi
  */
-export async function DELETE(request: NextRequest) {
-  await connectDB();
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    await connectDB();
+    requireAuth(request);
 
-  requireAuth(request);
+    const id = await getRouteParam(context, 'id');
+    const deleted = await TagService.deleteTechnology(id);
 
-  const id = getId(request);
+    if (!deleted) {
+      return NextResponse.json(
+        { message: 'Technology non trouvée' },
+        { status: 404 }
+      );
+    }
 
-  const deleted = await TagService.deleteTechnology(id);
-
-  if (!deleted) {
     return NextResponse.json(
-      { message: 'Technology non trouvée' },
-      { status: 404 }
+      { message: 'Technology supprimée' },
+      { status: 200 }
     );
+  } catch (error) {
+    return handleRouteError(error, {
+      message: 'Impossible de supprimer la technologie',
+      status: 400,
+    });
   }
-
-  return NextResponse.json(
-    { message: 'Technology supprimée' },
-    { status: 200 }
-  );
 }
