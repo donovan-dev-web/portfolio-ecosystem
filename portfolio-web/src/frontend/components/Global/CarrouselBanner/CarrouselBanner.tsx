@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 import styles from './carrouselBanner.module.scss';
 
 type IconItem = {
@@ -58,12 +56,14 @@ function IconRow({
             className={styles.logoCard}
             aria-hidden={index >= items.length}
           >
-            <Image
+            <img
               src={item.src}
               alt={item.alt}
               width={72}
               height={72}
               className={styles.logoImage}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         ))}

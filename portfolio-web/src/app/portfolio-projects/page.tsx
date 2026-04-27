@@ -400,7 +400,12 @@ export default function PortfolioProjectsPage() {
                     : styles.caseStudyMediaRight
                 }
               >
-                <img src={section.image} alt={section.title} />
+                <img
+                  src={section.image}
+                  alt={section.title}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
 
               <div className={styles.caseStudyContent}>

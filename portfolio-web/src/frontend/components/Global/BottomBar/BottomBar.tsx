@@ -40,9 +40,7 @@ export function BottomBar() {
                 aria-current={isActive ? 'page' : undefined}
                 aria-label={tab.label}
               >
-                {isActive && (
-                  <span className={styles.tabLabel}>{tab.label}</span>
-                )}
+                <span className={styles.tabLabel}>{tab.label}</span>
                 <span className={styles.tabIcon}>{tab.icon}</span>
                 <span className={styles.tabLabelBottom}>{tab.label}</span>
               </Link>

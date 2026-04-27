@@ -300,6 +300,8 @@ export default async function ProjectPanel() {
               srcSet={`${MANUAL_FEATURED_PROJECTTwo.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECTTwo.coverImage.large} 1280w`}
               sizes="(max-width: 768px) 100vw, 33vw"
               alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECTTwo.title}`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className={styles.ProjectDescription}>
@@ -391,6 +393,8 @@ export default async function ProjectPanel() {
               srcSet={`${MANUAL_FEATURED_PROJECT.coverImage.medium} 768w, ${MANUAL_FEATURED_PROJECT.coverImage.large} 1280w`}
               sizes="(max-width: 768px) 100vw, 33vw"
               alt={`Aperçu du projet ${MANUAL_FEATURED_PROJECT.title}`}
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className={styles.ProjectDescription}>
@@ -475,6 +479,8 @@ export default async function ProjectPanel() {
                 srcSet={`${project.coverImage.medium} 768w, ${project.coverImage.large} 1280w`}
                 sizes="(max-width: 768px) 100vw, 33vw"
                 alt={`Aperçu du projet ${project.title}`}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className={styles.TopData}>

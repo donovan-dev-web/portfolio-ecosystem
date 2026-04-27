@@ -77,6 +77,8 @@ export default function ExpertisePage() {
                 alt="Photo de profil de Donovan Chartrain"
                 width={200}
                 height={200}
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div className={styles.profileText}>
@@ -311,6 +313,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>React</p>
               </div>
@@ -321,6 +325,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>React Native</p>
               </div>
@@ -331,6 +337,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Node.js</p>
               </div>
@@ -342,6 +350,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Next.js</p>
               </div>
@@ -352,6 +362,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Expo</p>
               </div>
@@ -362,6 +374,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>GitHub</p>
               </div>
@@ -372,6 +386,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Docker</p>
               </div>
@@ -382,6 +398,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>WordPress</p>
               </div>
@@ -392,6 +410,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Angular</p>
               </div>
@@ -402,6 +422,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Electron</p>
               </div>
@@ -413,6 +435,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Laravel</p>
               </div>
@@ -423,6 +447,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Spring Boot</p>
               </div>
@@ -433,6 +459,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Sanity.io</p>
               </div>
@@ -443,6 +471,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Vue.js</p>
               </div>
@@ -454,6 +484,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Babylon.js</p>
               </div>
@@ -464,6 +496,8 @@ export default function ExpertisePage() {
                   width={45}
                   height={45}
                   className={styles.logoImage}
+                  loading="lazy"
+                  decoding="async"
                 />
                 <p>Three.js</p>
               </div>
