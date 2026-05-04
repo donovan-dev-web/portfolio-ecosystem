@@ -17,7 +17,7 @@
 </p>
 
 <p align="center">
-  <a href="https://donovan-dev-web.vercel.app">Site public</a>
+  <a href="https://donovan-dev-web.vercel.app/">Site public</a>
   ·
   <a href="https://donovan-dev-web.vercel.app/api-docs">Documentation API</a>
 </p>
@@ -268,7 +268,7 @@ Deux configurations Docker sont présentes dans le dépôt :
 **Donovan Chartrain**  
 Développeur web fullstack & mobile
 
-- Site : <https://donovan-dev-web.vercel.app>
+- Site : <https://donovan-dev-web.vercel.app/>
 - Projet détaillé : <https://donovan-dev-web.vercel.app/portfolio-projects>
 - Contact : <https://donovan-dev-web.vercel.app/contact>
 
