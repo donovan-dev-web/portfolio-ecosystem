@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: 'Projet introuvable',
   description:
     'Le projet demandé est introuvable ou n’est plus disponible dans le catalogue.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function ProjectNotFoundPage() {

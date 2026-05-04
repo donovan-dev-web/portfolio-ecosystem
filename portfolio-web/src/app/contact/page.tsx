@@ -15,13 +15,13 @@ export const metadata: Metadata = {
   description:
     'Contactez Donovan Chartrain, développeur web fullstack et mobile, pour échanger autour d’un poste en CDI en agence web, agence de communication ou ESN.',
   alternates: {
-    canonical: '/expertise',
+    canonical: '/contact',
   },
   openGraph: {
     title: 'Contact - Développeur web en recherche de CDI',
     description:
       'Contactez Donovan Chartrain, développeur web fullstack et mobile, pour échanger autour d’un poste en CDI en agence web, agence de communication ou ESN.',
-    url: '/expertise',
+    url: '/contact',
     type: 'website',
   },
 };

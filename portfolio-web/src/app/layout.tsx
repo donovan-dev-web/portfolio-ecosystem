@@ -4,6 +4,7 @@ import { JetBrains_Mono } from 'next/font/google';
 import { MainLayout } from '@/frontend/layouts/MainLayout';
 import { CookieConsentManager } from '@/frontend/components/Global/CookieConsent/CookieConsentManager';
 import { themeInitScript } from '@/frontend/theme/theme.shared';
+import { absoluteUrl, siteUrl } from '@/frontend/utils/site';
 
 import './globals.css';
 import '@/frontend/style/main.scss';
@@ -35,7 +36,7 @@ const jetBrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://donovan-dev-web.vercel.app/'),
+  metadataBase: new URL(`${siteUrl}/`),
 
   title: {
     default: 'Donovan — Développeur Web Fullstack & Mobile',
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: 'Donovan',
-      url: 'https://donovan-dev-web.vercel.app/',
+      url: absoluteUrl('/'),
     },
   ],
 
@@ -70,13 +71,13 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://donovan-dev-web.vercel.app/',
+    canonical: absoluteUrl('/'),
   },
 
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://donovan-dev-web.vercel.app/',
+    url: absoluteUrl('/'),
     siteName: 'Portfolio Donovan',
 
     title: 'Donovan — Développeur Web Fullstack & Mobile',
@@ -125,10 +126,10 @@ export default function RootLayout({
     '@graph': [
       {
         '@type': 'Person',
-        '@id': 'https://donovan-dev-web.vercel.app/#person',
+        '@id': absoluteUrl('/#person'),
         name: 'Donovan Chartrain',
-        url: 'https://donovan-dev-web.vercel.app/',
-        image: 'https://donovan-dev-web.vercel.app/images/PhotoProfil.png',
+        url: absoluteUrl('/'),
+        image: absoluteUrl('/images/PhotoProfil.png'),
         jobTitle: 'Développeur Web Fullstack & Mobile',
         description:
           "Développeur web fullstack spécialisé en React, Next.js, Node.js et développement d'applications modernes.",
@@ -162,34 +163,34 @@ export default function RootLayout({
 
       {
         '@type': 'WebSite',
-        '@id': 'https://donovan-dev-web.vercel.app/#website',
-        url: 'https://donovan-dev-web.vercel.app/',
+        '@id': absoluteUrl('/#website'),
+        url: absoluteUrl('/'),
         name: 'Portfolio Donovan',
         inLanguage: 'fr-FR',
         publisher: {
-          '@id': 'https://donovan-dev-web.vercel.app/#person',
+          '@id': absoluteUrl('/#person'),
         },
       },
 
       {
         '@type': 'WebPage',
-        '@id': 'https://donovan-dev-web.vercel.app/#homepage',
-        url: 'https://donovan-dev-web.vercel.app/',
+        '@id': absoluteUrl('/#homepage'),
+        url: absoluteUrl('/'),
         name: 'Portfolio Donovan',
         isPartOf: {
-          '@id': 'https://donovan-dev-web.vercel.app/#website',
+          '@id': absoluteUrl('/#website'),
         },
         about: {
-          '@id': 'https://donovan-dev-web.vercel.app/#person',
+          '@id': absoluteUrl('/#person'),
         },
       },
 
       {
         '@type': 'Service',
-        '@id': 'https://donovan-dev-web.vercel.app/#service',
+        '@id': absoluteUrl('/#service'),
         name: 'Développement Web & Mobile',
         provider: {
-          '@id': 'https://donovan-dev-web.vercel.app/#person',
+          '@id': absoluteUrl('/#person'),
         },
         areaServed: {
           '@type': 'Country',

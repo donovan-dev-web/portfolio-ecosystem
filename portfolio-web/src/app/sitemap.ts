@@ -2,71 +2,89 @@ import { MetadataRoute } from 'next';
 
 import { connectDB } from '@/backend/database/mongoose';
 import { ProjectService } from '@/backend/projects/projects.services';
+import { absoluteUrl } from '@/frontend/utils/site';
 
-const baseUrl = 'https://donovan-dev-web.vercel.app';
+export const revalidate = 3600;
+
+const SITEMAP_DYNAMIC_TIMEOUT_MS = 3000;
+
+async function getProjectRoutes(now: Date): Promise<MetadataRoute.Sitemap> {
+  await connectDB();
+  const projects = await ProjectService.getAll();
+
+  return projects
+    .filter(
+      (
+        project
+      ): project is typeof project & {
+        slug: string;
+        updatedAt?: Date | string;
+        createdAt?: Date | string;
+      } => Boolean(project?.slug)
+    )
+    .map((project) => ({
+      url: absoluteUrl(`/projects/${project.slug}`),
+      lastModified: new Date(project.updatedAt ?? project.createdAt ?? now),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    }));
+}
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
-      url: `${baseUrl}/`,
+      url: absoluteUrl('/'),
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
-      url: `${baseUrl}/expertise`,
+      url: absoluteUrl('/expertise'),
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/projects`,
+      url: absoluteUrl('/projects'),
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.95,
     },
     {
-      url: `${baseUrl}/portfolio-projects`,
+      url: absoluteUrl('/portfolio-projects'),
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.75,
     },
     {
-      url: `${baseUrl}/contact`,
+      url: absoluteUrl('/contact'),
       lastModified: now,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/legal`,
+      url: absoluteUrl('/legal'),
       lastModified: now,
       changeFrequency: 'yearly',
       priority: 0.3,
     },
+    {
+      url: absoluteUrl('/furnigo'),
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
   ];
 
   try {
-    await connectDB();
-    const projects = await ProjectService.getAll();
-
-    const projectRoutes: MetadataRoute.Sitemap = projects
-      .filter(
-        (
-          project
-        ): project is typeof project & {
-          slug: string;
-          updatedAt?: Date | string;
-          createdAt?: Date | string;
-        } => Boolean(project?.slug)
-      )
-      .map((project) => ({
-        url: `${baseUrl}/projects/${project.slug}`,
-        lastModified: new Date(project.updatedAt ?? project.createdAt ?? now),
-        changeFrequency: 'monthly',
-        priority: 0.85,
-      }));
+    const projectRoutes = await Promise.race<MetadataRoute.Sitemap>([
+      getProjectRoutes(now),
+      new Promise<MetadataRoute.Sitemap>((resolve) =>
+        setTimeout(() => resolve([]), SITEMAP_DYNAMIC_TIMEOUT_MS)
+      ),
+    ]);
 
     return [...staticRoutes, ...projectRoutes];
   } catch {

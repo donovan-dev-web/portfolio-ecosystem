@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: '404 - Page introuvable',
   description:
     'La page demandée est introuvable. Retournez à l’accueil, aux projets ou prenez contact.',
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function NotFoundPage() {

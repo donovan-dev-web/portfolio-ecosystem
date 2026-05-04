@@ -10,6 +10,16 @@ export const metadata: Metadata = {
   title: 'Mentions légales',
   description:
     'Consultez les mentions légales et la politique de confidentialité du portfolio de Donovan Chartrain.',
+  alternates: {
+    canonical: '/legal',
+  },
+  openGraph: {
+    title: 'Mentions légales',
+    description:
+      'Consultez les mentions légales et la politique de confidentialité du portfolio de Donovan Chartrain.',
+    url: '/legal',
+    type: 'website',
+  },
 };
 
 export default function LegalPage() {

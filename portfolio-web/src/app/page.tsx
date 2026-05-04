@@ -31,6 +31,16 @@ import { Footer } from '@/frontend/components/Global/Footer/Footer';
 export const metadata: Metadata = {
   title: 'Développeur Web Fullstack & Mobile',
   description: 'Portfolio de Donovan, développeur web fullstack et mobile.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'Donovan — Développeur Web Fullstack & Mobile',
+    description:
+      'Portfolio de Donovan, développeur web fullstack et mobile spécialisé en applications modernes performantes.',
+    url: '/',
+    type: 'website',
+  },
 };
 
 export default function Home() {

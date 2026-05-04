@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { absoluteUrl, siteUrl } from '@/frontend/utils/site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/api-docs', '/openapi.json'],
       },
     ],
-    host: 'https://donovan-dev-web.vercel.app',
-    sitemap: 'https://donovan-dev-web.vercel.app/sitemap.xml',
+    host: siteUrl,
+    sitemap: absoluteUrl('/sitemap.xml'),
   };
 }
