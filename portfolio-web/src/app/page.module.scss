@@ -188,6 +188,15 @@
   margin-bottom: 15px;
 }
 
+.aboutActions {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
 @include m.mobile-and-tablet-portrait {
   .TitleHTwo {
     width: 90%;
@@ -195,6 +204,12 @@
 
   .CardsPanelTypeTwo {
     gap: 1%;
+  }
+
+  .aboutActions {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
   }
 }
 

@@ -17,6 +17,7 @@ import {
   MapPin,
   Clock,
 } from 'lucide-react';
+import { DownloadCvButton } from '@/frontend/components/Global/Button/downloadCvButton/DownloadCvButton';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 import CarrouselBanner from '../frontend/components/Global/CarrouselBanner/CarrouselBanner';
@@ -109,11 +110,14 @@ export default function Home() {
         <div className={styles.CardsPanelTypeTwo}>
           <ExpertisePanel />
         </div>
-        <PrimaryButton
-          icons={<IdCard />}
-          content="Découvrir mon parcours"
-          NavigateTo="/expertise"
-        />
+        <div className={styles.aboutActions}>
+          <PrimaryButton
+            icons={<IdCard />}
+            content="Découvrir mon parcours"
+            NavigateTo="/expertise"
+          />
+          <DownloadCvButton />
+        </div>
       </section>
       <section
         className={`${styles.sectionClass} ${styles.projects}`}

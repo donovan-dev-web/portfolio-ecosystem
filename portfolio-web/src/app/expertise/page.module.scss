@@ -484,21 +484,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  .cvBtn {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 15px;
-    border: 1px solid var(--sidebar-metallic-bright);
-    padding: 8px 16px;
-    border-radius: 1rem;
-    background: linear-gradient(
-      135deg,
-      var(--sidebar-metallic),
-      var(--sidebar-metallic-dark),
-      var(--sidebar-metallic)
-    );
-  }
+  gap: 20px;
 }
 
 @include m.mobile-and-tablet-portrait {

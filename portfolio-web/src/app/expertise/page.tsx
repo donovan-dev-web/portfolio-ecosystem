@@ -5,6 +5,7 @@ import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
+import { DownloadCvButton } from '@/frontend/components/Global/Button/downloadCvButton/DownloadCvButton';
 import CarrouselBanner from '@/frontend/components/Global/CarrouselBanner/CarrouselBanner';
 import { CtaScroll } from '@/frontend/components/Global/CTA_Scroll/ctaScroll';
 import LanguageChart from '@/frontend/components//Expertise/Languagechart/LanguageChart';
@@ -14,7 +15,6 @@ import {
   MapPin,
   Clock,
   Mail,
-  Download,
   BriefcaseBusiness,
   GraduationCap,
   TrendingUp,
@@ -664,10 +664,7 @@ export default function ExpertisePage() {
           </div>
         </div>
         <div className={styles.CTAButton}>
-          <a href="/api/docs" download className={styles.cvBtn}>
-            <Download />
-            Télécharger mon CV{' '}
-          </a>
+          <DownloadCvButton />
           <PrimaryButton
             icons={<Mail />}
             content="Me contacter"

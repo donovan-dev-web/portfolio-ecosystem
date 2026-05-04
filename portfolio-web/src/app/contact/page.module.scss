@@ -234,6 +234,11 @@
   }
 }
 
+.formActions {
+  display: flex;
+  align-items: flex-start;
+}
+
 @include m.mobile-and-tablet-portrait {
   .sectionClass {
     gap: 20px;
@@ -287,5 +292,9 @@
 
   .formTitle {
     font-size: 1.7rem;
+  }
+
+  .formActions {
+    width: 100%;
   }
 }

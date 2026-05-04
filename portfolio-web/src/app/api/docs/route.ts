@@ -31,11 +31,33 @@ export async function GET() {
 
     await DocsServices.handleCvDownload(doc._id.toString());
 
-    const response = NextResponse.redirect(doc.url, 307);
-    response.headers.set('Cache-Control', 'no-store');
-    response.headers.set('Content-Disposition', buildContentDisposition(doc.name));
+    const fileResponse = await fetch(doc.url, { cache: 'no-store' });
 
-    return response;
+    if (!fileResponse.ok || !fileResponse.body) {
+      return NextResponse.json(
+        { message: 'Impossible de récupérer le fichier PDF' },
+        { status: 502 }
+      );
+    }
+
+    const headers = new Headers();
+    headers.set('Cache-Control', 'no-store');
+    headers.set('Content-Disposition', buildContentDisposition(doc.name));
+    headers.set(
+      'Content-Type',
+      fileResponse.headers.get('content-type') ||
+        doc.contentType ||
+        'application/pdf'
+    );
+
+    if (doc.size) {
+      headers.set('Content-Length', String(doc.size));
+    }
+
+    return new NextResponse(fileResponse.body, {
+      status: 200,
+      headers,
+    });
   } catch (error: any) {
     return NextResponse.json(
       { message: 'Impossible de récupérer le document', error: error.message },

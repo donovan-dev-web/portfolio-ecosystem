@@ -4,6 +4,7 @@ import { AtSign, Clock, Mail, MapPin, MessageSquareMore } from 'lucide-react';
 import styles from './page.module.scss';
 import { Badge } from '@/frontend/components/Global/Badge/BadgeItem';
 import { Footer } from '@/frontend/components/Global/Footer/Footer';
+import { DownloadCvButton } from '@/frontend/components/Global/Button/downloadCvButton/DownloadCvButton';
 import { PrimaryButton } from '@/frontend/components/Global/Button/primaryButton/PrimaryButton';
 import { SecondaryButton } from '@/frontend/components/Global/Button/secondaryButton/SecondaryButton';
 import { ContactForm } from '@/frontend/components/Contact/ContactForm/ContactForm';
@@ -116,6 +117,10 @@ export default function ContactPage() {
                 rapidement.
               </li>
             </ul>
+
+            <div className={styles.formActions}>
+              <DownloadCvButton />
+            </div>
           </div>
 
           <ContactForm />
