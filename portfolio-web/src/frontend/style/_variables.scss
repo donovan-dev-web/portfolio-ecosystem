@@ -1,4 +1,5 @@
-:root {
+:root,
+:root[data-theme='dark'] {
   --background: oklch(0.06 0.005 270);
   --foreground: oklch(0.88 0.01 270);
 
@@ -24,6 +25,123 @@
   --sidebar-radius: 1.25rem;
   --sidebar-radius-sm: 0.75rem;
   --sidebar-radius-lg: 1rem;
+
+  --surface-panel-start: rgba(24, 24, 31, 0.9);
+  --surface-panel-mid: rgba(38, 38, 46, 0.82);
+  --surface-panel-end: rgba(18, 18, 25, 0.92);
+  --surface-input-start: rgba(16, 16, 22, 0.94);
+  --surface-input-end: rgba(27, 27, 35, 0.9);
+  --surface-subtle: rgba(255, 255, 255, 0.03);
+  --surface-subtle-strong: rgba(255, 255, 255, 0.05);
+  --surface-accent-soft: rgba(123, 75, 255, 0.04);
+  --surface-accent: rgba(123, 75, 255, 0.08);
+  --surface-accent-strong: rgba(123, 75, 255, 0.1);
+  --surface-accent-hover: rgba(123, 75, 255, 0.18);
+  --surface-neutral-strong: rgba(18, 18, 25, 0.95);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --shadow-ambient: rgba(0, 0, 0, 0.28);
+  --shadow-ambient-strong: rgba(0, 0, 0, 0.32);
+  --shadow-soft: rgba(0, 0, 0, 0.18);
+  --focus-ring: rgba(123, 75, 255, 0.12);
+  --status-success-border: rgba(97, 231, 155, 0.4);
+  --status-success-surface: rgba(38, 115, 79, 0.18);
+  --status-success-text: #9cf0c2;
+  --status-danger-border: rgba(255, 140, 140, 0.35);
+  --status-danger-surface: rgba(123, 44, 44, 0.22);
+  --status-danger-text: #ffb1b1;
+  --status-warning-text: #ffd86b;
+  --status-error-text: #ff8c8c;
+  --bottom-bar-background: rgba(2, 2, 2, 0.92);
+  --bottom-bar-border: color-mix(in oklch, var(--sidebar-metallic-light) 85%, transparent);
+  --bottom-bar-text: color-mix(in oklch, var(--sidebar-muted) 75%, transparent);
+  --bottom-bar-text-muted: color-mix(in oklch, var(--sidebar-muted) 90%, transparent);
+  --bottom-bar-badge-text: color-mix(in oklch, var(--sidebar-metallic-bright) 88%, transparent);
+  --bottom-bar-badge-background: rgba(11, 11, 11, 0.8);
+  --bottom-bar-icon-border: color-mix(in oklch, var(--sidebar-metallic-mid) 95%, transparent);
+  --bottom-bar-icon-surface: linear-gradient(145deg, transparent, rgba(44, 44, 44, 0.31), transparent);
+  --bottom-bar-icon-active-surface: linear-gradient(145deg, rgba(131, 0, 124, 0.41), transparent, rgba(131, 0, 124, 0.41));
+  --carousel-card-border: rgba(255, 255, 255, 0.08);
+  --carousel-card-surface-top: rgba(255, 255, 255, 0.08);
+  --carousel-card-surface-bottom: rgba(255, 255, 255, 0.03);
+  --carousel-card-surface-base: rgba(8, 11, 22, 0.55);
+  --carousel-card-highlight: rgba(255, 255, 255, 0.08);
+  --chart-toggle-surface: rgba(255, 255, 255, 0.05);
+  --chart-toggle-text: rgba(255, 255, 255, 0.6);
+  --chart-toggle-text-hover: #fff;
+  --chart-loading-ring: rgba(56, 189, 248, 0.85);
+  --chart-error-text: rgba(255, 255, 255, 0.4);
+  --mobile-screen-background: #000;
+}
+
+:root[data-theme='light'] {
+  --background: oklch(0.97 0.008 285);
+  --foreground: oklch(0.24 0.02 275);
+
+  --glow-violet: oklch(0.62 0.22 292);
+  --glow-blue: oklch(0.66 0.17 245);
+  --metallic-light: oklch(0.76 0.018 265);
+  --border: oklch(0.82 0.012 265);
+
+  --sidebar-background: oklch(0.93 0.01 280);
+  --sidebar-foreground: oklch(0.22 0.018 275);
+  --sidebar-primary: oklch(0.57 0.21 290);
+  --sidebar-primary-foreground: oklch(0.99 0.004 0);
+  --sidebar-accent: oklch(0.6 0.16 245);
+  --sidebar-metallic-dark: oklch(0.86 0.01 275);
+  --sidebar-metallic: oklch(0.9 0.01 275);
+  --sidebar-metallic-mid: oklch(0.8 0.014 272);
+  --sidebar-metallic-light: oklch(0.7 0.02 270);
+  --sidebar-metallic-bright: oklch(0.36 0.018 275);
+  --sidebar-glow-violet: oklch(0.62 0.22 292);
+  --sidebar-glow-blue: oklch(0.66 0.17 245);
+  --sidebar-muted: oklch(0.52 0.015 275);
+  --sidebar-destructive: oklch(0.63 0.19 27);
+
+  --surface-panel-start: rgba(255, 255, 255, 0.88);
+  --surface-panel-mid: rgba(242, 244, 252, 0.92);
+  --surface-panel-end: rgba(233, 237, 247, 0.96);
+  --surface-input-start: rgba(255, 255, 255, 0.96);
+  --surface-input-end: rgba(240, 243, 250, 0.98);
+  --surface-subtle: rgba(106, 116, 144, 0.08);
+  --surface-subtle-strong: rgba(106, 116, 144, 0.12);
+  --surface-accent-soft: rgba(124, 75, 255, 0.06);
+  --surface-accent: rgba(124, 75, 255, 0.1);
+  --surface-accent-strong: rgba(124, 75, 255, 0.14);
+  --surface-accent-hover: rgba(124, 75, 255, 0.2);
+  --surface-neutral-strong: rgba(241, 244, 251, 0.96);
+  --glass-highlight: rgba(255, 255, 255, 0.72);
+  --shadow-ambient: rgba(35, 42, 62, 0.12);
+  --shadow-ambient-strong: rgba(35, 42, 62, 0.16);
+  --shadow-soft: rgba(35, 42, 62, 0.1);
+  --focus-ring: rgba(124, 75, 255, 0.18);
+  --status-success-border: rgba(49, 148, 99, 0.24);
+  --status-success-surface: rgba(78, 178, 126, 0.12);
+  --status-success-text: oklch(0.42 0.11 155);
+  --status-danger-border: rgba(205, 91, 91, 0.24);
+  --status-danger-surface: rgba(218, 114, 114, 0.12);
+  --status-danger-text: oklch(0.5 0.13 25);
+  --status-warning-text: oklch(0.56 0.14 88);
+  --status-error-text: oklch(0.52 0.17 28);
+  --bottom-bar-background: rgba(255, 255, 255, 0.86);
+  --bottom-bar-border: rgba(120, 132, 164, 0.34);
+  --bottom-bar-text: color-mix(in oklch, var(--sidebar-muted) 78%, transparent);
+  --bottom-bar-text-muted: color-mix(in oklch, var(--sidebar-muted) 92%, transparent);
+  --bottom-bar-badge-text: var(--sidebar-foreground);
+  --bottom-bar-badge-background: rgba(255, 255, 255, 0.94);
+  --bottom-bar-icon-border: rgba(130, 142, 176, 0.38);
+  --bottom-bar-icon-surface: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(225, 230, 244, 0.95), rgba(255, 255, 255, 0.96));
+  --bottom-bar-icon-active-surface: linear-gradient(145deg, rgba(124, 75, 255, 0.22), rgba(255, 255, 255, 0.92), rgba(124, 75, 255, 0.18));
+  --carousel-card-border: rgba(107, 118, 148, 0.16);
+  --carousel-card-surface-top: rgba(255, 255, 255, 0.88);
+  --carousel-card-surface-bottom: rgba(239, 242, 250, 0.9);
+  --carousel-card-surface-base: rgba(228, 233, 245, 0.72);
+  --carousel-card-highlight: rgba(255, 255, 255, 0.9);
+  --chart-toggle-surface: rgba(106, 116, 144, 0.08);
+  --chart-toggle-text: rgba(63, 72, 96, 0.7);
+  --chart-toggle-text-hover: var(--foreground);
+  --chart-loading-ring: rgba(56, 189, 248, 0.6);
+  --chart-error-text: rgba(63, 72, 96, 0.58);
+  --mobile-screen-background: rgba(228, 233, 245, 0.9);
 }
 
 $bp-mobile-max: 767px;

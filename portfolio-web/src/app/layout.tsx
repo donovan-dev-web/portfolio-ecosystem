@@ -3,6 +3,7 @@ import localFonts from 'next/font/local';
 import { JetBrains_Mono } from 'next/font/google';
 import { MainLayout } from '@/frontend/layouts/MainLayout';
 import { CookieConsentManager } from '@/frontend/components/Global/CookieConsent/CookieConsentManager';
+import { themeInitScript } from '@/frontend/theme/theme.shared';
 
 import './globals.css';
 import '@/frontend/style/main.scss';
@@ -204,8 +205,10 @@ export default function RootLayout({
     ],
   };
   return (
-    <html lang="fr">
+    <html lang="fr" data-theme="dark" suppressHydrationWarning>
       <head>
+        <meta name="color-scheme" content="dark light" />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd, null, 0) }}

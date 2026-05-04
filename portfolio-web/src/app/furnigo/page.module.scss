@@ -116,7 +116,7 @@
   padding: 7px 14px;
   border-radius: 999px;
   border: 1px solid var(--sidebar-metallic-light);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-subtle);
   font-family: var(--font-jet);
   font-size: 0.82rem;
   color: var(--sidebar-metallic-bright);
@@ -145,7 +145,7 @@
   padding: 11px 22px;
   border-radius: 999px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.1);
+  background: var(--surface-accent-strong);
   color: var(--foreground);
   font-family: var(--font-jet);
   font-size: 0.9rem;
@@ -156,7 +156,7 @@
 
   &:hover {
     transform: translateY(-2px);
-    background: rgba(123, 75, 255, 0.18);
+    background: var(--surface-accent-hover);
   }
 
   & svg {
@@ -168,11 +168,11 @@
 }
 
 .ctaLinkSecondary {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-subtle);
   border-color: var(--sidebar-metallic-light);
 
   &:hover {
-    background: rgba(255, 255, 255, 0.07);
+    background: var(--surface-subtle-strong);
   }
 
   & svg {
@@ -193,13 +193,13 @@
   padding: 20px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -242,13 +242,13 @@
   padding: 24px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -273,7 +273,7 @@
   height: 42px;
   border-radius: 10px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -300,8 +300,8 @@
   padding: 16px 14px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
   display: flex;
   flex-direction: column;
@@ -326,7 +326,7 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -357,8 +357,8 @@
   border-radius: 1.2rem;
   overflow: hidden;
   border: 1px solid var(--glow-violet);
-  background: rgba(18, 18, 25, 0.95);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  background: var(--surface-neutral-strong);
+  box-shadow: 0 20px 60px var(--shadow-ambient-strong);
 
   & iframe,
   & video {
@@ -429,10 +429,10 @@
   border-radius: 22px;
   border: 1px solid var(--sidebar-metallic-light);
   overflow: hidden;
-  background: rgba(18, 18, 25, 0.95);
+  background: var(--surface-neutral-strong);
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 12px 40px var(--shadow-ambient-strong),
+    inset 0 1px 0 var(--glass-highlight);
 
   & img {
     width: 100%;
@@ -456,13 +456,13 @@
   padding: 20px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -521,8 +521,8 @@
   border-radius: 1rem;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
   text-decoration: none;
   color: var(--foreground);
@@ -541,7 +541,7 @@
   height: 40px;
   border-radius: 10px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -589,8 +589,8 @@
   padding: 28px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
 }
 
@@ -626,7 +626,7 @@
   height: 44px;
   border-radius: 50%;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.1);
+  background: var(--surface-accent-strong);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -644,7 +644,7 @@
   background: linear-gradient(
     to bottom,
     var(--glow-violet),
-    rgba(123, 75, 255, 0.1)
+    var(--surface-accent-strong)
   );
   margin: 4px 0;
 }
@@ -682,13 +682,13 @@
   padding: 22px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -714,7 +714,7 @@
   height: 40px;
   border-radius: 10px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -770,7 +770,7 @@
   padding: 10px 18px;
   border-radius: 999px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.06);
+  background: var(--surface-accent-soft);
   color: var(--foreground);
   font-family: var(--font-jet);
   font-size: 0.85rem;
@@ -795,8 +795,8 @@
   padding: 24px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
   display: flex;
   flex-direction: column;
@@ -843,7 +843,7 @@
   padding: 4px 12px;
   border-radius: 999px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.1);
+  background: var(--surface-accent-strong);
   font-family: var(--font-jet);
   font-size: 0.8rem;
   font-weight: 700;
@@ -917,8 +917,8 @@
   border-radius: 1rem;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
   min-width: 110px;
   text-align: center;
@@ -934,7 +934,7 @@
   height: 36px;
   border-radius: 10px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -982,7 +982,7 @@
   padding: 18px 22px;
   border: 1px solid var(--sidebar-metallic-light);
   border-radius: 1rem;
-  background: rgba(123, 75, 255, 0.04);
+  background: var(--surface-accent-soft);
 
   & > svg {
     width: 20px;
@@ -1021,13 +1021,13 @@
   padding: 22px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -1052,7 +1052,7 @@
   height: 40px;
   border-radius: 10px;
   border: 1px solid var(--glow-violet);
-  background: rgba(123, 75, 255, 0.08);
+  background: var(--surface-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1071,8 +1071,8 @@
   padding: 24px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82)
+    var(--surface-panel-start),
+    var(--surface-panel-mid)
   );
   display: flex;
   flex-direction: column;
@@ -1096,7 +1096,7 @@
   border-radius: 0.8rem;
   padding: 14px 16px;
   border-left: 3px solid transparent;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-subtle);
 
   & strong {
     display: block;

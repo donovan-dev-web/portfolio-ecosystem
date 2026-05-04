@@ -16,13 +16,13 @@
   border: 1px solid var(--glow-violet);
   background: linear-gradient(
     135deg,
-    rgba(20, 20, 27, 0.96),
-    rgba(36, 36, 45, 0.92),
-    rgba(18, 18, 24, 0.98)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    0 20px 60px var(--shadow-ambient-strong),
+    inset 0 1px 0 var(--surface-subtle-strong);
   backdrop-filter: blur(16px);
   padding: 20px;
   display: flex;
@@ -82,7 +82,7 @@
 .linkButton,
 .footerManageButton {
   border: 1px solid var(--sidebar-metallic-light);
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--surface-subtle);
   color: var(--sidebar-metallic-bright);
 }
 

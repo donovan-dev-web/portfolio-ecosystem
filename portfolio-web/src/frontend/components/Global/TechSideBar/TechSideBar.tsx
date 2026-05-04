@@ -15,6 +15,8 @@ import {
   House,
 } from 'lucide-react';
 
+import { ThemeToggle } from '@/frontend/components/Global/ThemeToggle/ThemeToggle';
+
 import style from './techSideBar.module.scss';
 
 type NavItem = {
@@ -153,8 +155,12 @@ export function TechSideBar() {
                 >
                   {item.icon}
                 </a>
+                <span className={style.SocialLinkLabel}>{item.label}</span>
               </li>
             ))}
+            <li>
+              <ThemeToggle variant="mobile" />
+            </li>
           </ul>
         </div>
 

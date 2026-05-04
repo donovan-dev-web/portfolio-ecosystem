@@ -6,11 +6,13 @@
   bottom: max(18px, env(safe-area-inset-bottom));
   transform: translateX(-50%);
   width: min(460px, calc(100vw - 28px));
-  background-color: #020202;
-  border: 1px solid #555;
+  background-color: var(--bottom-bar-background);
+  border: 1px solid var(--bottom-bar-border);
   border-radius: 20px;
   z-index: 60;
   padding: 8px 10px;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 14px 38px -28px var(--shadow-ambient-strong);
 
   @include m.desktop-and-tablet-landscape {
     display: none;
@@ -22,7 +24,7 @@
   align-items: flex-end;
   justify-content: space-around;
   list-style: none;
-  gap: 10px;
+  gap: 6px;
 }
 
 .tabItem {
@@ -35,23 +37,23 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  min-width: 64px;
-  color: #555;
+  min-width: clamp(52px, 14vw, 64px);
+  color: var(--bottom-bar-text);
   position: relative;
 }
 
 .tabLabel {
   position: absolute;
   bottom: 65px;
-  color: #888;
+  color: var(--bottom-bar-badge-text);
   font-weight: 600;
   font-size: 0.75rem;
   min-width: 84px;
   text-align: center;
-  border: 1px solid #725bef;
+  border: 1px solid var(--sidebar-primary);
   border-radius: 15px;
   padding: 3px 8px;
-  background: #0b0b0bcc;
+  background: var(--bottom-bar-badge-background);
   opacity: 0;
   visibility: hidden;
   transition:
@@ -63,11 +65,11 @@
   width: 40px;
   height: 40px;
   border-radius: 999px;
-  border: 1px solid #4e4e4e;
+  border: 1px solid var(--bottom-bar-icon-border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(145deg, #0000, #2c2c2c4f, #0000);
+  background: var(--bottom-bar-icon-surface);
   transition: border-color 0.2s ease;
 
   svg {
@@ -78,7 +80,7 @@
 }
 
 .tabLabelBottom {
-  color: #727272;
+  color: var(--bottom-bar-text-muted);
   font-weight: 600;
   font-size: 0.65rem;
   line-height: 1;
@@ -91,7 +93,7 @@
 }
 
 .active {
-  color: #725bef;
+  color: var(--sidebar-primary);
 
   .tabLabel {
     opacity: 1;
@@ -104,7 +106,7 @@
   }
 
   .tabIcon {
-    border-color: #725bef;
-    background: linear-gradient(145deg, #83007c69, #00000000, #83007c69);
+    border-color: var(--sidebar-primary);
+    background: var(--bottom-bar-icon-active-surface);
   }
 }

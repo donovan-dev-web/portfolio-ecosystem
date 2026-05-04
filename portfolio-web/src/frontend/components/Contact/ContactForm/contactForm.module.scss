@@ -7,13 +7,13 @@
   padding: 24px;
   background: linear-gradient(
     135deg,
-    rgba(24, 24, 31, 0.9),
-    rgba(38, 38, 46, 0.82),
-    rgba(18, 18, 25, 0.92)
+    var(--surface-panel-start),
+    var(--surface-panel-mid),
+    var(--surface-panel-end)
   );
   box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 20px 60px var(--shadow-ambient),
+    inset 0 1px 0 var(--glass-highlight);
   backdrop-filter: blur(12px);
   display: flex;
   flex-direction: column;
@@ -46,8 +46,8 @@
     border-radius: 1rem;
     background: linear-gradient(
       135deg,
-      rgba(16, 16, 22, 0.94),
-      rgba(27, 27, 35, 0.9)
+      var(--surface-input-start),
+      var(--surface-input-end)
     );
     color: var(--foreground);
     padding: 14px 16px;
@@ -65,7 +65,7 @@
 
     &:focus {
       border-color: var(--glow-violet);
-      box-shadow: 0 0 0 4px rgba(123, 75, 255, 0.12);
+      box-shadow: 0 0 0 4px var(--focus-ring);
       transform: translateY(-1px);
     }
   }
@@ -98,11 +98,11 @@
 }
 
 .fieldError {
-  color: #ff8c8c;
+  color: var(--status-error-text);
 }
 
 .counterWarning {
-  color: #ffd86b;
+  color: var(--status-warning-text);
 }
 
 .feedbackSuccess,
@@ -148,15 +148,15 @@
 }
 
 .feedbackSuccess {
-  border: 1px solid rgba(97, 231, 155, 0.4);
-  background: rgba(38, 115, 79, 0.18);
-  color: #9cf0c2;
+  border: 1px solid var(--status-success-border);
+  background: var(--status-success-surface);
+  color: var(--status-success-text);
 }
 
 .feedbackError {
-  border: 1px solid rgba(255, 140, 140, 0.35);
-  background: rgba(123, 44, 44, 0.22);
-  color: #ffb1b1;
+  border: 1px solid var(--status-danger-border);
+  background: var(--status-danger-surface);
+  color: var(--status-danger-text);
 }
 
 .actions {
@@ -189,7 +189,7 @@
 
   &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 12px 36px rgba(123, 75, 255, 0.2);
+    box-shadow: 0 12px 36px color-mix(in oklch, var(--sidebar-glow-violet) 30%, transparent);
   }
 
   &:disabled {

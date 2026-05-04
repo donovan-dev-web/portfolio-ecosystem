@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { ReactNode } from 'react';
 import { IdCard, FolderOpen, House, Mail } from 'lucide-react';
 
+import { ThemeToggle } from '@/frontend/components/Global/ThemeToggle/ThemeToggle';
+
 import styles from './bottomBar.module.scss';
 
 type TabItem = {
@@ -47,6 +49,9 @@ export function BottomBar() {
             </li>
           );
         })}
+        <li className={styles.tabItem}>
+          <ThemeToggle variant="mobile" />
+        </li>
       </ul>
     </nav>
   );

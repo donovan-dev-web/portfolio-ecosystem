@@ -8,5 +8,8 @@ body {
 
 body {
   color: var(--foreground);
-  background: #000;
+  background: var(--background);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
 }
